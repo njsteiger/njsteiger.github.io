@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Earth’s Atmosphere and Energy Balance</title>
+    <meta property="og:title" content="Earth’s Atmosphere and Energy Balance">
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <meta property="orbit:color" content="orange" /> <!--Make all Orbit questions orange-->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!--Mathjax for equations-->
+  </head>
+
+  <body>
+        
+  <article>
+  <ht><a href="index.html">Global Warming Science</a></ht>
+  <h1 id="black-radiation">Earth’s Atmosphere and Energy Balance</h1> 
+  <p class="subtitle">Revised and adapted from: <br>‘Atmosphere, Clouds, and Climate’, Randall (2012)<br> ‘Atmospheric Evolution on Inhabited and Lifeless Worlds’, Catling and Kasting (2017)<br> ‘Principles of Planetary Climate’, Pierrehumbert (2010)</p>
+
+          <!--
+HERE is the code for a side citation:
+
+<label for="ref1" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="ref1" class="margin-toggle"/>
+<span class="sidenote">CONTENT HERE</span>
+
+HERE is the code for a figure:
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Caption here</span>
+<img src="img/filenameofFig.jpg" alt="Alternate Title" />
+</figure>
+
+HERE is the code for Orbit questions, both cloze and regular
+can use either of these for images associated with the question or answer:
+question-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
+answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
+
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    cloze=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
+
+          -->
+          
+<section>
+<h2 id="atmosphere">Earth’s Atmosphere</h2>    
+    
+<p>
+The atmosphere is big. Its total mass is \(5.1\times10^{18}\) kg, which is approximately the same mass as the Mediterranean Sea. The ocean as whole is of course much more massive than the atmosphere, coming in at \(1.4\times10^{21}\) kg. Yet it is the atmosphere that largely controls the climate of Earth. Why is that?
+</p>
+
+<p>
+The explanation has two parts. First, the atmosphere serves as an outer skin, standing between the other components of the climate system and space. As a result, the atmosphere can regulate the all-important exchanges of energy between the Earth and space, which take the forms of solar radiation coming in and infrared radiation going out (more about radiation below). 
+</p>
+      
+<p>
+The second reason is that the atmosphere can transport energy and other things from place to place much faster than any other component of the climate system. Typical wind speeds are hundreds or even thousands of times faster than the speeds of ocean currents, which are in turn much faster than the ponderous motions of the continents. 
+</p>    
+    
+<p>    
+What is the atmosphere made of? The most abundant constituents of the atmosphere are the doubled elements of nitrogen (\(\text{N}_2\)) and oxygen (\(\text{O}_2\)). They are very well mixed throughout almost the entire atmosphere, so that their relative concentrations are essentially constant in space and time.
+</p>
+
+<p>
+Ozone (\(\text{O}_3\)) and water vapor (\(\text{H}_2\text{O}\)) are ‘minor’ but very important atmospheric constituents that are not well mixed, because they have strong sources and sinks inside the atmosphere. Ozone makes up less than one millionth of the atmosphere’s mass, but that is enough to protect Earth’s life from deadly solar ultraviolet (UV) radiation. Water vapor is only about a quarter of 1% of the atmosphere’s mass, but its importance for the Earth’s climate, and for the biosphere, would be hard to exaggerate.
+</p>
+      
+<p>
+Carbon dioxide (\(\text{CO}_2\)) is present in even lower quantities than ozone or water vapor. Yet, as we will discuss in more detail later, it turns out to also have a critical role in keeping Earth habitable. Similar to nitrogen and oxygen, carbon dioxide is well-mixed throughout the entire atmosphere.
+</p>    
+    
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">A partial list of gases in the atmosphere, in order of their volume fraction (ppm is ‘part per million’). Water vapor varies considerably by the location on Earth, with high values in humid and hot locations and low values in high and cold locations. There are many additional gases in the atmosphere, but in smaller amounts. The volume fraction for ozone is the average value in the stratosphere. Sources: <a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html">NASA</a>, Salby, <em>Physics of the Atmosphere and Climate</em>, 2012.</span>
+<img src="img/atmos-composition.png" alt="Table of gases of the atmosphere" />
+</figure>
+
+      
+<p>
+Here is how the atmosphere varies with height in density, pressure, and temperature, from the surface to an altitude of 50 km, based on what is called the ‘U.S. Standard Atmosphere’: 
+</p>
+      
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/us-standard-atmos-labeled.png" alt="US standard atmosphere" />
+</figure>
+
+      
+<p>
+This figure shows the two lowest layers of Earth’s atmosphere. The troposphere at the bottom is where all of Earth’s weather takes place. The tropopause is the top boundary of the troposphere. At the top of this figure is the stratosphere, which is quite different than the troposphere. The stratosphere has basically no weather phenomena and increases in temperature with height instead of decreasing with height like the troposphere.
+</p>
+
+<p>
+This viewpoint nicely shows what the layers of the atmosphere look like during a sunset from space, with red-orange colors indicating the troposphere and blue colors the stratosphere and upper atmosphere:
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">International Space Station astronauts captured this photo of Earth’s atmospheric layers on July 31, 2011. <a href="https://www.nasa.gov/content/earths-atmospheric-layers">NASA</a></span>
+<img src="img/earth-atmos-layers-nasa.jpeg" alt="NASA atmospheric layers" />
+</figure>
+    
+<p>
+How heavy is a column of air? The total pressure is typically about 100,000 Pa or 1000 hPa near sea level (see figure above; 1 hPa = 100 Pa), where a Pa (pascal) is defined to be a newton (N) per square meter. For comparison, the weight of a typical car is about 20,000 N, so the weight of an air column per square meter is roughly equivalent to the weight of five cars piled on top of each other, over one square meter of a junk yard. That’s obviously pretty heavy.
+</p>    
+    
+<p>
+As we saw in the ‘U.S. Standard Atmosphere’ figure, a dominant feature of the atmosphere is that the pressure decreases exponentially with height. In the ocean, density increases only linearly with depth. What explains the difference between the two?
+</p>
+      
+<p>
+To understand this, let’s first start with the basic physics of atmospheric gases. For atmospheres like the Earth that are not super dense and the gas is compressible, each gas approximately obeys the ideal gas law, which can be written for a particular gas, denoted by subscript \(i\), as
+
+\[p_i V = N_i kT\]
+
+Here \(p_i\) is the partial pressure of the gas (the fractional pressure due to the presence of this one gas among a collection of gases), \(V\) is the volume under consideration, \(N_i\) is the number of particles, \(k\) is Boltzman’s constant, and \(T\) is the temperature. If the gas is in thermal equilibrium, then the temperature will be the same for all gases in the mixture. This is an excellent assumption for dry air, valid up to at least 100 km above the surface. We can write \(N_i k = n_i R^{*}\), where \(n_i\) is the number of moles and \(R^{*}\) is the universal gas constant. The total mass of the gas, \(M_i\) , satisfies \(n_i = \frac{M_i}{m_i}\), where \(m_i\) is the molecular mass. Substituting, we find that
+
+\[p_i=\rho_i \frac{R^{*}}{m_i}T \tag{1} \] 
+
+where the density is mass divided by volume, \(\rho_i=\frac{M_i}{V}\). 
+</p>
+    
+<p>
+Equation (1) tells us how pressure varies as a function of temperature, but in order to explain how pressure varies with height in the atmosphere, we need to think about how vertical forces are balanced in the atmosphere.
+</p>
+      
+<p>
+We’ll need to balance the gravitational force going down with the force of the air pressure pushing back up. Consider a slice of a column of atmosphere that has a vertical thickness \(dz\) and a cross-sectional area \(A\) in the horizontal direction. Since pressure is simply force per unit area, \(P=F/A\), then the change in pressure from the base of this slice to the top of this slice is just the force exerted by the mass. Using Newton’s second law and balancing the two forces we have
+
+\[A dp=-A g dm\] 
+
+where \(dm\) is the increment of mass in the column per unit area and the negative sign appears because the gravitational force points in the direction of decreasing \(z\). We can write this in terms of density as
+
+ \[A dp=-A g \rho dz\]
+
+and dividing by \(dz\) to get the change of pressure with a change in height and adding subscripts back in to indicate the particular gas we’re interested in, we get
+
+\[\frac{dp_i}{dz} = -\rho_i g \tag{2}\] 
+    
+This equation is known as the hydrostatic equation and mathematically represents the dominant vertical force balance in the atmosphere.
+</p>
+
+<p>
+How is this relationship different from water? Since water is not compressible, that means that its density is (approximately) constant even at great depths in the ocean. The force of the water pressure is just the force of the amount of mass of the water above a given depth \(D\). So 
+
+\[p=\frac{F}{A}=g\frac{m}{A}=gD\rho_{water}\]
+
+where \(g\) is the acceleration due to gravity. This gives us the linear relationship of pressure with depth for the ocean.
+
+</p>
+      
+<p>
+If we circle back to the original question that started this, how do we get an <em>exponential</em> decrease in pressure with height? If we combine Eq. (2) with the ideal gas law, Eq. (1), we get
+
+\[\frac{1}{p_i}\frac{dp_i}{dz} = -\frac{m_i g}{R^{*} T}\] 
+
+We can now integrate this equation, summing up all the infinitesimal air layers from the surface to the top of the atmosphere (assuming that T varies slowly with height and can be treated as a constant) to get
+
+\[p_i(z)=p_{si} \text{exp}\Big(\frac{-R^{*} Tz}{m_ig}\Big) \tag{3}\]
+
+where \(p_{si}\) is the surface partial pressure of the gas. This equation shows the exponential decrease in pressure with height.
+</p>
+      
+<p>
+A puzzling feature of the atmosphere is that it warms throughout the stratosphere. What causes this? The answer lies in a series of chemical reactions. UV light photons strike some of the O\(_2\) in the stratosphere and break it apart into two atomic oxygen molecules, 2O; the photon also gives each O atom additional energy. The atmoic O atoms combine with molecular oxygen, O\(_2\), in the presence of other gas species, to form ozone, O\(_3\). Ozone itself loves to absorb UV photons and be broken back apart into O\(_2\) and O. The absorption of UV photons in the cycling of these chemical reactions is what heats up the stratosphere. From physics we know that temperature is really just a measure of the energy of the random motions of atoms and molecules. So the photons speed up the motion of oxygen in the stratosphere, thereby heating it up.
+</p>
+
+<p>
+The atmospheres of other planets can also have warm stratospheres if they have gases that behave similarly to oxygen and ozone on Earth, see below. For Jupiter, Saturn, Titan, Uranus, and Neptune, the stratospheric heating is due to methane (CH\(_4\)) and the heating of tiny particles suspended in the air called ‘aerosols’.
+</p>
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Temperature–pressure profiles for the atmospheres of various planets of the Solar System. Some planets have warm stratospheres while others do not (e.g., Mars and Venus). Dotted line shows a common tropopause near 0.1 bar (1 bar = 1000 hPa). Catling and Kasting, <em>Atmospheric Evolution on Inhabited and Lifeless Worlds</em> (2017).</span>
+<img src="img/planetary-atmos-profiles.png" alt="Planetary Atmospheres" />
+</figure>
+
+</section>
+
+      
+<section>
+<h2 id="rad-physics">The Physics of Radiation</h2> 
+    
+<p>
+The most familiar source of energy warming a planet is the absorption of light from the planet’s star. This is the dominant way that Earth and other rocky planets like Venus and Mars are heated. It’s also possible to heat the surface of a planet from below; heat can be come the interior of the planet due to radioactive decay below, massive gravitational tides (tidal dissipation), or hot material left over from the formation of the planet. Relative to the amount of sunlight they absorb, heat flux from below the surface of the planet is important for the ‘surface’ climates of Jupiter and Saturn but not for rocky planets like Earth. Gas giants can transport heat from their interiors through the motions of gases in their atmospheres. But on a rocky planet like Earth the diffusion of heat is sluggish through the solid rock, so the deep interior heat contributes only a tiny amount to the surface temperature of Earth.
+</p>
+      
+<p>
+While there are many ways a planet can gain energy, there is essentially only one way a planet can lose energy. Since a planet sits in the hard vacuum of outer space, and its atmosphere is rather tightly bound by gravity, not much energy can be lost through heated matter streaming away from the planet. The only significant energy loss occurs through emission of electromagnetic radiation. Electromagnetic radiation is the historical term given to all the different kinds of photons: visible light, gamma ray, x-ray, ultraviolet, infrared, microwave, and radio; these are all photons (or equivalently ‘electromagnetic radiation’ or ‘electromagnetic waves’ or simply ‘radiation’) but with different wavelengths and energies. 
+</p>
+      
+    <p>figure for EM spectrum</p>
+    
+<p>
+We know from experience that something that is heated to a very high temperature glows red or white, thus emitting visible photons or electromagnetic radiation. Similarly, almost any object that has a temperature at all, also emits electromagnetic radiation (though at typical Earth temperatures it is radiation that we cannot see). This phenomena is called ‘blackbody radiation’. Blackbody radiation is incredibly important in the history of physics. In the process of figuring out a mathematical description of this phenomena, the physicist Max Planck accidentally discovered the foundational idea of quantum mechanics: that radiation is emitted only in small packets of energy, called ‘quanta’. Specifically, the quantum of energy for radiation having frequency \(\nu\) is \(E=h\nu\), where \(h\) is known as ‘Planck’s constant’. The quanta idea would revolutionize physics. For our purposes here, we can go straight to the ‘Planck function’, its assumptions and features:
+    
+\[ B(\nu,T) =\frac{2h\nu^3}{c^2}\frac{1}{e^{h\nu/kT}-1} \tag{4}\]
+    
+where \(c\) is the speed of light and \(B(\nu,T)\) is known as the irradiance or flux emission spectrum, which mathematically describes a distribution of radiation output. Here’s what the Planck function looks like for different temperature values (in degrees K):
+</p>
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Pierrehumbert, <em>Principles of Planetary Climate</em>, (2010)</span>
+<img src="img/planck-spectra.png" alt="Planck spectra" />
+</figure> 
+    
+<p>
+The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’. A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of light. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Smerlak, <em>A blackbody is not a blackbox</em>, (2011)</span>
+<img src="img/solar-irradiance.png" alt="Planck spectra" />
+</figure>
+    
+<p>
+Nearly all objects radiate photons, but not all objects emit them according to a blackbody distribution. One example is the emission spectra of many galaxies. Take for example the emission spectra of the irregular galaxy NGC 6052, composed of a group of stars and gas (Sloan Digital Sky Survey III Science Archive Server, accessed Feb 2022). 
+</p>
+      
+<figure class="fullwidth">
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/galaxy-emission-spectra.png" alt="Galaxy spectra" />
+</figure>
+    
+<p>
+This galaxy clearly shows emission <em>lines</em> instead of an approximately smooth distribution. This is because the emission spectrum we are seeing is primarily from the heated gas <em>between the stars</em> of the galaxy. And gases by themselves emit photons for only specific wavelengths related to their atomic structure. Here we are seeing emission lines predominantly from the gases hydrogen and helium.
+</p>
+      
+<p>
+DERIVE PLANCK RELATION FROM PIERREHUMBERT
+</p>
+      
+<p>
+
+</p>
+      
+<p>
+
+</p>
+  
+<section>
+<h2 id="earth-energy-balance">Earth’s Energy Balance</h2>
+    
+    
+<p>
+FIGURE OF INCOMING SOLAR; SIMPLE MATHEMATICAL MODELS OF ENERGY BALANCE
+</p>
+      
+<p>
+
+</p>
+    
+</section>
+          
+      
+</article>      
+      
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
