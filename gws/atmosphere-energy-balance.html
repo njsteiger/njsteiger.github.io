@@ -17,7 +17,7 @@
         
   <article>
   <ht><a href="index.html">Global Warming Science</a></ht>
-  <h1 id="black-radiation">Earth’s Atmosphere and Energy Balance</h1> 
+  <h1 id="atmos-energy-balance">Earth’s Atmosphere and Energy Balance</h1> 
   <p class="subtitle">Revised and adapted from: <br>‘Atmosphere, Clouds, and Climate’, Randall (2012)<br> ‘Atmospheric Evolution on Inhabited and Lifeless Worlds’, Catling and Kasting (2017)<br> ‘Principles of Planetary Climate’, Pierrehumbert (2010)</p>
 
           <!--
@@ -128,17 +128,52 @@ How heavy is a column of air? The total pressure is typically about 100,000 Pa o
 </p>    
     
 <p>
+<orbit-reviewarea>
+    <orbit-prompt
+    cloze="What are the two primary reasons that the atmosphere controls Earth's climate and not the ocean? (1) {The atmosphere controls the exchange of energy between Earth and space.} (2) The atmosphere can distribute energy around on Earth faster than the ocean."
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What are the two major gases in Earth's atmosphere?"
+    answer="N$_2$ and O$_2$"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What part of the atmosphere is this?"
+    question-attachments="https://njsteiger.github.io/gws/img/us-standard-atmos-orbit-tropopause.png"
+    answer="The tropopause"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What part of the atmosphere is this?"
+    question-attachments="https://njsteiger.github.io/gws/img/us-standard-atmos-orbit-troposphere.png"
+    answer="The troposphere"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What part of the atmosphere is this?"
+    question-attachments="https://njsteiger.github.io/gws/img/us-standard-atmos-orbit-stratosphere.png"
+    answer="The stratosphere"
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="What are the two primary reasons that the atmosphere controls Earth's climate and not the ocean? (1) The atmosphere controls the exchange of energy between Earth and space. (2) {The atmosphere can distribute energy around on Earth faster than the ocean.}"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
+    
+    
+<p>
 As we saw in the ‘U.S. Standard Atmosphere’ figure, a dominant feature of the atmosphere is that the pressure decreases exponentially with height. In the ocean, density increases only linearly with depth. What explains the difference between the two?
 </p>
       
 <p>
 To understand this, let’s first start with the basic physics of atmospheric gases. For atmospheres like the Earth that are not super dense and the gas is compressible, each gas approximately obeys the ideal gas law, which can be written for a particular gas, denoted by subscript \(i\), as
 
-\[p_i V = N_i kT\]
+\[p_i V = N_i kT \; .\]
 
 Here \(p_i\) is the partial pressure of the gas (the fractional pressure due to the presence of this one gas among a collection of gases), \(V\) is the volume under consideration, \(N_i\) is the number of particles, \(k\) is Boltzman’s constant, and \(T\) is the temperature. If the gas is in thermal equilibrium, then the temperature will be the same for all gases in the mixture. This is an excellent assumption for dry air, valid up to at least 100 km above the surface. We can write \(N_i k = n_i R^{*}\), where \(n_i\) is the number of moles and \(R^{*}\) is the universal gas constant. The total mass of the gas, \(M_i\) , satisfies \(n_i = \frac{M_i}{m_i}\), where \(m_i\) is the molecular mass. Substituting, we find that
 
-\[p_i=\rho_i \frac{R^{*}}{m_i}T \tag{1} \] 
+\[p_i=\rho_i \frac{R^{*}}{m_i}T \; , \tag{1} \] 
 
 where the density is mass divided by volume, \(\rho_i=\frac{M_i}{V}\). 
 </p>
@@ -150,7 +185,7 @@ Equation (1) tells us how pressure varies as a function of temperature, but in o
 <p>
 We’ll need to balance the gravitational force going down with the force of the air pressure pushing back up. Consider a slice of a column of atmosphere that has a vertical thickness \(dz\) and a cross-sectional area \(A\) in the horizontal direction. Since pressure is simply force per unit area, \(P=F/A\), then the change in pressure from the base of this slice to the top of this slice is just the force exerted by the mass. Using Newton’s second law and balancing the two forces we have
 
-\[A dp=-A g dm\] 
+\[A dp=-A g dm \; ,\] 
 
 where \(dm\) is the increment of mass in the column per unit area and the negative sign appears because the gravitational force points in the direction of decreasing \(z\). We can write this in terms of density as
 
@@ -158,7 +193,7 @@ where \(dm\) is the increment of mass in the column per unit area and the negati
 
 and dividing by \(dz\) to get the change of pressure with a change in height and adding subscripts back in to indicate the particular gas we’re interested in, we get
 
-\[\frac{dp_i}{dz} = -\rho_i g \tag{2}\] 
+\[\frac{dp_i}{dz} = -\rho_i g \; .\tag{2}\] 
     
 This equation is known as the hydrostatic equation and mathematically represents the dominant vertical force balance in the atmosphere.
 </p>
@@ -166,7 +201,7 @@ This equation is known as the hydrostatic equation and mathematically represents
 <p>
 How is this relationship different from water? Since water is not compressible, that means that its density is (approximately) constant even at great depths in the ocean. The force of the water pressure is just the force of the amount of mass of the water above a given depth \(D\). So 
 
-\[p=\frac{F}{A}=g\frac{m}{A}=gD\rho_{water}\]
+\[p=\frac{F}{A}=g\frac{m}{A}=gD\rho_{water} \; , \tag{3} \]
 
 where \(g\) is the acceleration due to gravity. This gives us the linear relationship of pressure with depth for the ocean.
 
@@ -175,11 +210,11 @@ where \(g\) is the acceleration due to gravity. This gives us the linear relatio
 <p>
 If we circle back to the original question that started this, how do we get an <em>exponential</em> decrease in pressure with height? If we combine Eq. (2) with the ideal gas law, Eq. (1), we get
 
-\[\frac{1}{p_i}\frac{dp_i}{dz} = -\frac{m_i g}{R^{*} T}\] 
+\[\frac{1}{p_i}\frac{dp_i}{dz} = -\frac{m_i g}{R^{*} T}\; .\] 
 
 We can now integrate this equation, summing up all the infinitesimal air layers from the surface to the top of the atmosphere (assuming that T varies slowly with height and can be treated as a constant) to get
 
-\[p_i(z)=p_{si} \text{exp}\Big(\frac{-R^{*} Tz}{m_ig}\Big) \tag{3}\]
+\[p_i(z)=p_{si} \text{exp}\Big(\frac{-R^{*} Tz}{m_ig}\Big) \; ,\tag{4}\]
 
 where \(p_{si}\) is the surface partial pressure of the gas. This equation shows the exponential decrease in pressure with height.
 </p>
@@ -204,19 +239,22 @@ The atmospheres of other planets can also have warm stratospheres if they have g
 <h2 id="rad-physics">The Physics of Radiation</h2> 
     
 <p>
-The most familiar source of energy warming a planet is the absorption of light from the planet’s star. This is the dominant way that Earth and other rocky planets like Venus and Mars are heated. It’s also possible to heat the surface of a planet from below; heat can be come the interior of the planet due to radioactive decay below, massive gravitational tides (tidal dissipation), or hot material left over from the formation of the planet. Relative to the amount of sunlight they absorb, heat flux from below the surface of the planet is important for the ‘surface’ climates of Jupiter and Saturn but not for rocky planets like Earth. Gas giants can transport heat from their interiors through the motions of gases in their atmospheres. But on a rocky planet like Earth the diffusion of heat is sluggish through the solid rock, so the deep interior heat contributes only a tiny amount to the surface temperature of Earth.
+The most familiar source of energy warming a planet is the absorption of light from the planet’s star. This is the dominant way that Earth and other rocky planets like Venus and Mars are heated. It’s also possible to heat the surface of a planet from below. Heat can come up from the interior of a planet due to radioactive decay below, massive gravitational tides (tidal dissipation), or hot material left over from the formation of the planet. Relative to the amount of sunlight they absorb, heat flux from below the surface of the planet is important for the ‘surface’ climates of Jupiter and Saturn but not for rocky planets like Earth. Gas giants can transport heat from their interiors through the motions of gases in their atmospheres. But on a rocky planet like Earth the diffusion of heat is sluggish through the solid rock, so the deep interior heat contributes only a tiny amount to the surface temperature of Earth.
 </p>
       
 <p>
-While there are many ways a planet can gain energy, there is essentially only one way a planet can lose energy. Since a planet sits in the hard vacuum of outer space, and its atmosphere is rather tightly bound by gravity, not much energy can be lost through heated matter streaming away from the planet. The only significant energy loss occurs through emission of electromagnetic radiation. Electromagnetic radiation is the historical term given to all the different kinds of photons: visible light, gamma ray, x-ray, ultraviolet, infrared, microwave, and radio; these are all photons (or equivalently ‘electromagnetic radiation’ or ‘electromagnetic waves’ or simply ‘radiation’) but with different wavelengths and energies. 
+While there are many ways a planet can gain energy, there is essentially only one way a planet can lose energy. Since a planet sits in the hard vacuum of outer space, and its atmosphere is rather tightly bound by gravity, not much energy can be lost through heated matter streaming away from the planet. The only significant energy loss occurs through emission of electromagnetic radiation. Electromagnetic radiation is the historical term given to all the different kinds of photons: visible light, gamma ray, x-ray, ultraviolet, infrared, microwave, and radio; these are all photons (or equivalently ‘electromagnetic radiation’ or ‘electromagnetic waves’ or simply ‘radiation’) but with different wavelengths and energies. Here is how the different kinds radiation relate to each other, with longer wavelengths corresponding to lower energies:
 </p>
       
-    <p>figure for EM spectrum</p>
+<figure class="fullwidth">
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/EM-spectrum-simple.png" alt="EM spectrum" />
+</figure>
     
 <p>
-We know from experience that something that is heated to a very high temperature glows red or white, thus emitting visible photons or electromagnetic radiation. Similarly, almost any object that has a temperature at all, also emits electromagnetic radiation (though at typical Earth temperatures it is radiation that we cannot see). This phenomena is called ‘blackbody radiation’. Blackbody radiation is incredibly important in the history of physics. In the process of figuring out a mathematical description of this phenomena, the physicist Max Planck accidentally discovered the foundational idea of quantum mechanics: that radiation is emitted only in small packets of energy, called ‘quanta’. Specifically, the quantum of energy for radiation having frequency \(\nu\) is \(E=h\nu\), where \(h\) is known as ‘Planck’s constant’. The quanta idea would revolutionize physics. For our purposes here, we can go straight to the ‘Planck function’, its assumptions and features:
+We know from experience that something that is heated to a very high temperature glows red or white, thus emitting visible photons or electromagnetic radiation. Similarly, almost any object that has a temperature at all, also emits electromagnetic radiation (though at typical Earth temperatures it is radiation that we cannot see). This phenomena is called ‘blackbody radiation’. Blackbody radiation is incredibly important in the history of physics. In the process of figuring out a mathematical description of this phenomena, the physicist Max Planck accidentally discovered the foundational idea of quantum mechanics: that radiation is emitted only in small packets of energy, called ‘quanta’. Specifically, the quantum of energy for radiation having frequency \(\nu\) is \(E=h\nu\), where \(h\) is known as ‘Planck’s constant’. The size of \(h\), which is equal to \(6.626\times 10^{-34}\) Joule-seconds, determines the granularity of reality. This value is so small that we don’t notice quantum effects in everyday life. Yet the energy-quanta idea would revolutionize physics. For our purposes here, we can go straight to the features of the ‘Planck function’,
     
-\[ B(\nu,T) =\frac{2h\nu^3}{c^2}\frac{1}{e^{h\nu/kT}-1} \tag{4}\]
+\[ B(\nu,T) =\frac{2h\nu^3}{c^2}\frac{1}{e^{h\nu/kT}-1}\; , \tag{5}\]
     
 where \(c\) is the speed of light and \(B(\nu,T)\) is known as the irradiance or flux emission spectrum, which mathematically describes a distribution of radiation output. Here’s what the Planck function looks like for different temperature values (in degrees K):
 </p>
@@ -227,7 +265,7 @@ where \(c\) is the speed of light and \(B(\nu,T)\) is known as the irradiance or
 </figure> 
     
 <p>
-The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’. A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of light. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
+The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’ at a given temperature and as a function of wavelength or wavenumber (the inverse of wavelength). A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of light. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
 </p>
     
 <figure>
@@ -245,31 +283,45 @@ Nearly all objects radiate photons, but not all objects emit them according to a
 </figure>
     
 <p>
-This galaxy clearly shows emission <em>lines</em> instead of an approximately smooth distribution. This is because the emission spectrum we are seeing is primarily from the heated gas <em>between the stars</em> of the galaxy. And gases by themselves emit photons for only specific wavelengths related to their atomic structure. Here we are seeing emission lines predominantly from the gases hydrogen and helium.
+This galaxy clearly shows emission <em>lines</em> instead of a basically smooth Planck distribution. This is because the emission spectrum we are seeing is primarily from the heated <em>gas between the stars</em> of the galaxy. And gases by themselves emit photons for only specific wavelengths related to their atomic structure. Here we are seeing emission lines predominantly from the gases hydrogen and helium.
 </p>
       
 <p>
-DERIVE PLANCK RELATION FROM PIERREHUMBERT
+It’s very useful to know what the total power output of a blackbody is (where power is energy per unit time). To find an equation for that power \(F\), we can assume a spherical object and integrate the Planck function over all frequencies,
+    
+\[F =\int^{\infty}_{0} \pi B(\nu,T) d\nu =\int^{\infty}_{0}\frac{2\pi h}{c^2}\frac{\nu^3}{e^{h\nu/kT}-1}d\nu =\sigma T^4 \; ,\tag{6}\]
+    
+where \(\sigma = 2\pi^5k^4/(15c^2h^3) \approx 5.67\times 10^{-8} \text{W}/(\text{m}^2\text{K}^4)\) is known as the Stefan-Boltzmann constant. This equation, \(F=\sigma T^4\), is called the Stefan-Boltzmann law. We will use this law to derive simple climate models for a rocky planet like Earth.
 </p>
-      
-<p>
-
-</p>
-      
-<p>
-
-</p>
+    
   
 <section>
 <h2 id="earth-energy-balance">Earth’s Energy Balance</h2>
     
     
 <p>
-FIGURE OF INCOMING SOLAR; SIMPLE MATHEMATICAL MODELS OF ENERGY BALANCE
+As we discussed previously, the surface of Earth is heated almost entirely by the Sun. The incoming solar radiation gets spread across the surface of the Earth and is balanced by Earth’s outgoing radiation. This fundamental situation is referred to as Earth’s planetary energy balance.
 </p>
-      
-<p>
+    
+<p>    
+In order to figure out the precise amount of solar radiation Earth receives, we need to work out some geometry. Because the Sun is so far away, solar radiation comes in almost exactly perpendicular to the Earth. As the Earth rotates, this solar radiation, \(S\), is absorbed across the entire surface area of Earth. If we assume that Earth is perfectly spherical and has a radius \(a\), then this surface area is \(4\pi a^2\). Yet the solar radiation that Earth receives is the amount that would hit a disk with the same radius as Earth. This energy balance and geometrical situation is sketched out below:
+</p>
 
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Vallis, <em>Climate and the Oceans</em>, (2012)</span>
+<img src="img/earth-energy-balance.png" alt="Earth's Energy Balance" />
+</figure>
+    
+<p>
+The incoming solar radiation that hits the ‘Earth disk’ is \(S\pi a^2\) and this gets divided over the surface area of Earth. So the total solar radiation is \(S\pi a^2/(4\pi a^2)=S/4\), where \(S=1361 \text{W}/\text{m}^2\) at Earth’s orbital distance. 
+</p>
+    
+<p>
+As we worked out previously, we know that a planetary blackbody like Earth will emit radiation to space following the Stefan-Boltzman law, \(F=\sigma T^4\). If the Earth were to absorb all solar radiation, then the energy balance of Earth can be written as \(S/4=\sigma T^4\).  In actuality, the energy balance isn’t quite this simple since some solar radiation gets reflected back out to space before it has a chance to be absorbed by the Earth. This reflected amount of radiation is called the ‘albedo’, denoted by \(\alpha\). Earth’s global average albedo is approximately 0.31. Planets in the solar system have albedos that range from Mercury’s 0.07 all the way up to 0.77 for the cloudy and reflective Venus. So correcting for albedo, we have an energy balance equation of
+
+\[\frac{S}{4}(1-\alpha) = \sigma T^4 \; .\tag{7}\]
+
+If we solve this equation for \(T\) and plug in the constants we find that Earth’s temperature ought to be \(T=253.7\, \text{K} = -19.5 ^{\circ}\text{C}\). Obviously something has gone wrong here since Earth isn’t a frozen snowball! This model of Earth’s climate has neglected the atmosphere’s greenhouse effect, which will be the subject of our next chapter.
 </p>
     
 </section>
