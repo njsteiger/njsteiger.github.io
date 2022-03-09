@@ -1,5 +1,6 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2636
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 FiraSans-Regular;}
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 FiraSans-Regular;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 Times-Roman;
+}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
 {\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww20620\viewh16160\viewkind0
@@ -181,11 +182,45 @@ PLANCK DISTRIBUTIONS \
 The Plank function is for a perfect blackbody, which is an object with a rich energy spectrum that can radiate all frequencies of light.  A \'91black\'92-body is named that way for historical reasons related to the theoretical idea behind how it was derived. In reality many things behave very similarly to blackbodies but aren\'92t very black at all, such as stars. Below is a figure showing how the sun\'92s irradiance (yellow) compares to a Planck function (gray), as well as how these compare to the spectral irradiance of hydrogen and iron gas (which do <em>not</em> behave like blackbodies).\
 FIG FROM BLACKBODY IS NOT A BLACKBOX\
 =========================================\
-Use Pierrehumbert\'92s derivation of the \
+It\'92s very useful to know what the total power output of a blackbody is (where power is energy per unit time). To find an equation for that, we can assume a spherical object and integrate the Planck function over all frequencies:\
+\\[F =\\int^\{\\inf\}_\{0\} \\pi B(\\nu,T) d\\nu =\\int^\{\\inf\}_\{0\}\\frac\{2\\pi h\\nu^3\}\{c^2\}\\frac\{1\}\{e^\{h\\nu/kT\}-1\}d\\nu =\\sigma T^4\\]\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 \kerning1\expnd0\expndtw0 \
 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+The Sun provides an intense supply of electromagnetic radiation from a small, point-like patch of sky. The incoming solar radiation at the top of the atmosphere is called the \'91insolation\'92, or the \'91solar irradiance\'92. The amount of radiation the Sun emits is remarkably, but not perfectly, constant. Calibrated measurements from satellites above the atmosphere, which have been available since about 1980, show that since then, the total rate of energy output by the Sun has varied by only about \\(\\pm 0.1%\\) or \\(\\pm 1 \\text\{W\}/\\text\{m\}^2\\). Fortunately for us, the Sun is very reliable.\
+The solar radiation coming to Earth \
 \
+The total solar irradiance, summed over all wavelengths, at the mean radius of the earth\'92s not-quite-circular orbit, is about 1,365 W, which is roughly the energy used by a hair dryer, per m\'962. Another way to get an intui- tive grasp of this number is to imagine fourteen 100 W light bulbs per square meter.2 Another is to consider that 1,365 W m\'962 is the same as 1.365 GW km\'962, that is, equivalent to the energy output of a large power plant for each square kilometer of the earth\'92s \'93projected\'94 circular area normal to the solar beam, that is, 
+\f1 \uc0\u61552 
+\f0 a2, where a is the radius of the earth.\cf0 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+==========================================\
+\
+\
+As we discussed previously, the surface of Earth is heated almost entirely by the Sun. The incoming solar radiation gets spread across the surface of the Earth and is balanced by Earth\'92s outgoing radiation. In order to figure out the precise amount of solar radiation Earth receives, we need to work out some geometry. Because the Sun is so far away, solar radiation comes in almost exactly perpendicular to the Earth. As the Earth rotates, this solar radiation, \\(S\\), is absorbed across the entire surface area of Earth. If we assume that Earth is perfectly spherical and has a radius \\(a\\), then this surface area is \\(4\\pi a^2\\). Yet the solar radiation that Earth receives is the amount that would hit a disk with the same radius as Earth. This energy balance and geometrical situation is sketched out below:\
+\
+FIGURE of radiation balance\
+\
+The incoming solar radiation that hits the Earth disk is \\(S\\pi a^2\\) and this gets divided over the surface area of Earth. So the total solar radiation is \\(S\\pi a^2/(4\\pi a^2)=S/4\\), where \\(S=1361 \\text\{W\}/\\text\{m\}^2\\) at Earth\'92s orbital distance. \
+\
+As we worked out previously, we know that a rocky blackbody like Earth will emit radiation to space following the Stefan-Boltzman law, \\(F=\\sigma T^4\\). If the Earth were to absorb all solar radiation, then the energy balance of Earth can be written as \\(S/4=\\sigma T^4\\).  In actuality, the energy balance isn\'92t quite this simple since some solar radiation gets reflected back out to space before it has a chance to be absorbed by the Earth. This reflected amount of radiation is called the \'91albedo\'92, denoted by \\(\\alpha\\). Earth\'92s global average albedo is approximately 0.3. Planets in the solar system have albedos that range from Mercury\'92s 0.07 all the way up to 0.77 for the cloudy and reflective Venus. So correcting for albedo, we have an energy balance equation of\
+\
+\\[\\frac\{S\}\{4\}(1-\\alpha) = \\sigma T^4\\]\
+\
+If we solve this equation for \\(T\\) and plug in the constants we find that Earth\'92s temperature ought to be \\(T=254.6 \\text\{K\} = -18.6 ^\{\\circ\}\\text\{C\}\\). Obviously something has gone wrong here since Earth isn\'92t a frozen snowball! This model of Earth has neglected the atmosphere\'92s greenhouse effect of the atmosphere.\
+ \
+\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f2\fs24 \cf2 \expnd0\expndtw0\kerning0
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 \kerning1\expnd0\expndtw0 \
 \
 \
 \

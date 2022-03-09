@@ -14,6 +14,7 @@
   </head>
 
   <body>
+  <a name="top"></a>
         
   <article>
   <ht><a href="index.html">Global Warming Science</a></ht>
@@ -152,18 +153,31 @@ How heavy is a column of air? The total pressure is typically about 100,000 Pa o
     answer="The stratosphere"
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    question="How does the temperature of the troposphere change from its bottom to its top?"
+    answer="It gets colder"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How does the temperature of the stratosphere change from its bottom to its top?"
+    answer="It gets warmer"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="After N$_2$ and O$_2$, what is the third most prevalent gas in Earth's atmosphere?"
+    answer="Water vapor (or H$_2$O)"
     ></orbit-prompt>
     <orbit-prompt
     cloze="What are the two primary reasons that the atmosphere controls Earth's climate and not the ocean? (1) The atmosphere controls the exchange of energy between Earth and space. (2) {The atmosphere can distribute energy around on Earth faster than the ocean.}"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Sketch (in your mind) how temperature varies in the atmosphere as you go from the surface up to the top of the stratosphere"
+    answer=""
+    answer-attachments="https://njsteiger.github.io/gws/img/us-standard-atmos.png"
     ></orbit-prompt>
 </orbit-reviewarea>
 </p>    
     
     
 <p>
-As we saw in the ‘U.S. Standard Atmosphere’ figure, a dominant feature of the atmosphere is that the pressure decreases exponentially with height. In the ocean, density increases only linearly with depth. What explains the difference between the two?
+As we saw in the ‘U.S. Standard Atmosphere’ figure, a dominant feature of the atmosphere is that the pressure decreases exponentially with height. In the ocean, pressure increases only linearly with depth. What explains the difference between the two?
 </p>
       
 <p>
@@ -232,6 +246,33 @@ The atmospheres of other planets can also have warm stratospheres if they have g
 <img src="img/planetary-atmos-profiles.png" alt="Planetary Atmospheres" />
 </figure>
 
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="As you go up in the atmosphere, how mathematically does pressure decrease?"
+    answer="It decreases exponentially"
+    answer-attachments="https://njsteiger.github.io/gws/img/us-standard-atmos.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="As you go down in the ocean, how mathematically does pressure increase?"
+    answer="It increases linearly"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why does the stratosphere warm with height?"
+    answer="O$_2$ and O$_3$ get additional energy by absorbing UV photons"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What physically is temperature a measure of?"
+    answer="The energy of the random motions of atoms and molecules"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why do some planets other than Earth have warm stratospheres?"
+    answer="They have gases and/or aerosols high in their atmospheres that can significantly absorb light"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
+    
+    
 </section>
 
       
@@ -239,7 +280,7 @@ The atmospheres of other planets can also have warm stratospheres if they have g
 <h2 id="rad-physics">The Physics of Radiation</h2> 
     
 <p>
-The most familiar source of energy warming a planet is the absorption of light from the planet’s star. This is the dominant way that Earth and other rocky planets like Venus and Mars are heated. It’s also possible to heat the surface of a planet from below. Heat can come up from the interior of a planet due to radioactive decay below, massive gravitational tides (tidal dissipation), or hot material left over from the formation of the planet. Relative to the amount of sunlight they absorb, heat flux from below the surface of the planet is important for the ‘surface’ climates of Jupiter and Saturn but not for rocky planets like Earth. Gas giants can transport heat from their interiors through the motions of gases in their atmospheres. But on a rocky planet like Earth the diffusion of heat is sluggish through the solid rock, so the deep interior heat contributes only a tiny amount to the surface temperature of Earth.
+The most familiar source of energy warming a planet is the absorption of light from the planet’s star. This is the dominant way that Earth and other rocky planets like Venus and Mars are heated. It’s also possible to heat the surface of a planet from below. Heat can come up from the interior of a planet due to radioactive decay, massive gravitational tides (tidal dissipation), or hot material left over from the formation of the planet. Relative to the amount of sunlight they absorb, heat flux from below the surface of the planet is important for the ‘surface’ climates of Jupiter and Saturn but not for rocky planets like Earth. Gas giants can transport heat from their interiors through the motions of gases in their atmospheres. But on a rocky planet like Earth the diffusion of heat is sluggish through the solid rock, so the deep interior heat contributes only a tiny amount to the surface temperature of Earth.
 </p>
       
 <p>
@@ -265,7 +306,7 @@ where \(c\) is the speed of light and \(B(\nu,T)\) is known as the irradiance or
 </figure> 
     
 <p>
-The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’ at a given temperature and as a function of wavelength or wavenumber (the inverse of wavelength). A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of light. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
+The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’ at a given temperature and as a function of wavelength or wavenumber (the inverse of wavelength). A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of light. By musical analogy, a ‘blackbody instrument’ would be a hypothetical musical instrument that could play every possible note, instead of a small range like normal instruments. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
 </p>
     
 <figure>
@@ -294,6 +335,51 @@ It’s very useful to know what the total power output of a blackbody is (where 
 where \(\sigma = 2\pi^5k^4/(15c^2h^3) \approx 5.67\times 10^{-8} \text{W}/(\text{m}^2\text{K}^4)\) is known as the Stefan-Boltzmann constant. This equation, \(F=\sigma T^4\), is called the Stefan-Boltzmann law. We will use this law to derive simple climate models for a rocky planet like Earth.
 </p>
     
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="Where does Earth's atmosphere get nearly all of its heat energy?"
+    answer="From the Sun"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How is it possible for Jupiter to be heated from its deep interior?"
+    answer="Gases transport heat upwards"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why is the surface of the Earth not heated by its hot interior?"
+    answer="Heat can't diffuse very well through Earth's rocky crust"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Through what mechanism do planets lose energy to space?"
+    answer="They emit (electromagnetic) radiation"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Rank these kinds of photons from highest to lowest energy/frequency: gamma-ray, radiowaves, microwaves, visible light, ultraviolet (UV), x-ray, infrared (IR)"
+    answer="gamma-ray :: x-ray :: UV :: visible :: IR :: microwave :: radiowave"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What characterizes a perfect blackbody (from physics)?"   
+    answer="It can radiate all frequencies of light"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Give two examples of objects that radiate energy approximately like blackbodies."   
+    answer="Stars and planets"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What does a plot of the Planck distribution show?"
+    question-attachments="https://njsteiger.github.io/gws/img/planck-spectra.png"    
+    answer="The distribution of radiation that is emitted for a perfect blackbody"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Write down the equation that relates the total blackbody power output (F) to its temperature"   
+    answer="$F=\sigma T^4$"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is the name of this equation: $F=\sigma T^4$?"   
+    answer="The Stefan-Boltzmann law"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
   
 <section>
 <h2 id="earth-energy-balance">Earth’s Energy Balance</h2>
@@ -304,7 +390,7 @@ As we discussed previously, the surface of Earth is heated almost entirely by th
 </p>
     
 <p>    
-In order to figure out the precise amount of solar radiation Earth receives, we need to work out some geometry. Because the Sun is so far away, solar radiation comes in almost exactly perpendicular to the Earth. As the Earth rotates, this solar radiation, \(S\), is absorbed across the entire surface area of Earth. If we assume that Earth is perfectly spherical and has a radius \(a\), then this surface area is \(4\pi a^2\). Yet the solar radiation that Earth receives is the amount that would hit a disk with the same radius as Earth. This energy balance and geometrical situation is sketched out below:
+In order to figure out the precise amount of solar radiation Earth receives, we need to work out some geometry. Because the Sun is so far away, solar photons come in almost exactly parallel to each other. As the Earth rotates, this solar radiation, \(S\), is absorbed across the entire surface area of Earth. If we assume that Earth is perfectly spherical and has a radius \(a\), then this surface area is \(4\pi a^2\). Yet the solar radiation that Earth receives is the amount that would hit a disk with the same radius as Earth. This energy balance and geometrical situation is sketched out below:
 </p>
 
 <figure>
@@ -321,9 +407,37 @@ As we worked out previously, we know that a planetary blackbody like Earth will 
 
 \[\frac{S}{4}(1-\alpha) = \sigma T^4 \; .\tag{7}\]
 
-If we solve this equation for \(T\) and plug in the constants we find that Earth’s temperature ought to be \(T=253.7\, \text{K} = -19.5 ^{\circ}\text{C}\). Obviously something has gone wrong here since Earth isn’t a frozen snowball! This model of Earth’s climate has neglected the atmosphere’s greenhouse effect, which will be the subject of our next chapter.
+If we solve this equation for \(T\) and plug in the constants we find that Earth’s temperature ought to be \(T=253.7\, \text{K} = -19.5 ^{\circ}\text{C}\). Obviously something has gone wrong here since Earth isn’t a frozen snowball! This is the simplest, basically accurate model of global climate that exists, yet we see here that it is in fact too simple. This model of Earth’s climate has neglected the atmosphere and its greenhouse effect, which will be the subject of our next chapter.
 </p>
+
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="What is a planet's 'albedo'?"
+    answer="The fraction of solar radiation it reflects back out to space"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="In the planetary energy balance equation $\frac{S}{4}(1-\alpha) = \sigma T^4$, what does $\frac{S}{4}(1-\alpha)$ represent?"
+    answer="The total amount of solar radiation that is absorbed by the planet"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="In the planetary energy balance equation $\frac{S}{4}(1-\alpha) = \sigma T^4$, what does $\sigma T^4$ represent?"
+    answer="The amount of radiation that is emitted by the planet"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What would Earth's average climate be like if it had no atmosphere and no greenhouse effect?"
+    answer="It's climate would be below freezing (approximately $-20^{\circ}$C)"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is the name for the fraction of solar radiation that hits a planet and is reflected back out to space?"
+    answer="Planetary albedo"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
     
+<p>\(\Uparrow\) <a href="#top">To the top</a></p>
+<!--<p>\(\Rightarrow\) <a href="atmosphere-energy-balance.html">Next chapter</a></p>-->
+<p>\(\Leftarrow\) <a href="index.html">Table of contents</a></p> 
 </section>
           
       
