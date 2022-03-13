@@ -181,15 +181,11 @@ As we saw in the ‘U.S. Standard Atmosphere’ figure, a dominant feature of th
 </p>
       
 <p>
-To understand this, let’s first start with the basic physics of atmospheric gases. For atmospheres like the Earth that are not super dense and the gas is compressible, each gas approximately obeys the ideal gas law, which can be written for a particular gas, denoted by subscript \(i\), as
+To understand this, let’s first start with the basic physics of atmospheric gases. For atmospheres like the Earth that are not super dense and the gas is compressible, each gas approximately obeys the ideal gas law, where the pressure \(p\) for a particular gas can be written as
 
-\[p_i V = N_i kT \; .\]
+\[p = \rho \frac{R}{\overline{M}}T \; , \tag{1}\]
 
-Here \(p_i\) is the partial pressure of the gas (the fractional pressure due to the presence of this one gas among a collection of gases), \(V\) is the volume under consideration, \(N_i\) is the number of particles, \(k\) is Boltzman’s constant, and \(T\) is the temperature. If the gas is in thermal equilibrium, then the temperature will be the same for all gases in the mixture. This is an excellent assumption for dry air, valid up to at least 100 km above the surface. We can write \(N_i k = n_i R^{*}\), where \(n_i\) is the number of moles and \(R^{*}\) is the universal gas constant. The total mass of the gas, \(M_i\) , satisfies \(n_i = \frac{M_i}{m_i}\), where \(m_i\) is the molecular mass. Substituting, we find that
-
-\[p_i=\rho_i \frac{R^{*}}{m_i}T \; , \tag{1} \] 
-
-where the density is mass divided by volume, \(\rho_i=\frac{M_i}{V}\). 
+where \(\rho\) is the density of the gas, \(R\) is the universal gas constant, \(\overline{M}\) is the mean molecular weight of the gas, and \(T\) is the temperature. We can use this equation for any atmosphere as long as we know \(\overline{M}\) for whatever collection of gases are in it; for Earth, dry air has a mean molecular weight of 28.97. 
 </p>
     
 <p>
@@ -197,17 +193,17 @@ Equation (1) tells us how pressure varies as a function of temperature, but in o
 </p>
       
 <p>
-We’ll need to balance the gravitational force going down with the force of the air pressure pushing back up. Consider a slice of a column of atmosphere that has a vertical thickness \(dz\) and a cross-sectional area \(A\) in the horizontal direction. Since pressure is simply force per unit area, \(P=F/A\), then the change in pressure from the base of this slice to the top of this slice is just the force exerted by the mass. Using Newton’s second law and balancing the two forces we have
+We’ll need to balance the gravitational force going down with the force of the air pressure pushing back up. Consider a slice of a column of atmosphere that has a vertical thickness \(dz\) and a cross-sectional area \(A\) in the horizontal direction. Since pressure is simply force per unit area, \(P=F/A\), then the change in pressure from the base of this slice to the top of this slice is just the force exerted by the mass. Using Newton’s second law (force equals mass times acceleration) and balancing the two forces we have
 
 \[A dp=-A g dm \; ,\] 
 
-where \(dm\) is the increment of mass in the column per unit area and the negative sign appears because the gravitational force points in the direction of decreasing \(z\). We can write this in terms of density as
+where \(g\) is the acceleration due to gravity (at sea level on Earth \(g = 9.81\, \text{m}/\text{s}^2\)), \(dm\) is the increment of mass in the column per unit area and the negative sign appears because the gravitational force points in the direction of decreasing \(z\). We can write this in terms of density as
 
  \[A dp=-A g \rho dz\]
 
-and dividing by \(dz\) to get the change of pressure with a change in height and adding subscripts back in to indicate the particular gas we’re interested in, we get
+and dividing by \(dz\) to get the change of pressure with a change in height we get
 
-\[\frac{dp_i}{dz} = -\rho_i g \; .\tag{2}\] 
+\[\frac{dp}{dz} = -\rho g \; .\tag{2}\] 
     
 This equation is known as the hydrostatic equation and mathematically represents the dominant vertical force balance in the atmosphere.
 </p>
@@ -215,22 +211,23 @@ This equation is known as the hydrostatic equation and mathematically represents
 <p>
 How is this relationship different from water? Since water is not compressible, that means that its density is (approximately) constant even at great depths in the ocean. The force of the water pressure is just the force of the amount of mass of the water above a given depth \(D\). So 
 
-\[p=\frac{F}{A}=g\frac{m}{A}=gD\rho_{water} \; , \tag{3} \]
+\[p=\frac{F}{A}=g\frac{m}{A}=gD\rho_{water} \; . \tag{3} \]
 
-where \(g\) is the acceleration due to gravity. This gives us the linear relationship of pressure with depth for the ocean.
+This gives us the linear relationship of pressure with depth for the ocean.
 
 </p>
       
 <p>
-If we circle back to the original question that started this, how do we get an <em>exponential</em> decrease in pressure with height? If we combine Eq. (2) with the ideal gas law, Eq. (1), we get
+If we circle back to the original question that started this, how do we get an <em>exponential</em> decrease in pressure with height? If we combine Eq. (2) with the ideal gas law, Eq. (1), by substituting in the equation for density \(\rho\) we get
 
-\[\frac{1}{p_i}\frac{dp_i}{dz} = -\frac{m_i g}{R^{*} T}\; .\] 
+\[\frac{dp}{dz} = -\frac{p\overline{M}g}{R T}\; ,\]
+\[\frac{1}{p}dp = -\frac{\overline{M}g}{R T}dz\; .\] 
 
 We can now integrate this equation, summing up all the infinitesimal air layers from the surface to the top of the atmosphere (assuming that T varies slowly with height and can be treated as a constant) to get
 
-\[p_i(z)=p_{si} \text{exp}\Big(\frac{-R^{*} Tz}{m_ig}\Big) \; ,\tag{4}\]
+\[p(z)=p_{s} \exp\Big(\frac{-g \overline{M}z}{RT}\Big) \; ,\tag{4}\]
 
-where \(p_{si}\) is the surface partial pressure of the gas. This equation shows the exponential decrease in pressure with height.
+where \(p_{s}\) is the surface pressure of the gas. This equation shows the exponential decrease in pressure with height.
 </p>
       
 <p>
