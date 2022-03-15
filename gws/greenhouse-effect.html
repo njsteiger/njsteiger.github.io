@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Science of the Greenhouse Effect</title>
+    <meta property="og:title" content="Science of the Greenhouse Effect">
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <meta property="orbit:color" content="orange" /> <!--Make all Orbit questions orange-->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!--Mathjax for equations-->
+  </head>
+
+  <body>
+  <a name="top"></a>
+        
+  <article>
+  <ht><a href="index.html">Global Warming Science</a></ht>
+  <h1 id="greenhouse-effect">Science of the Greenhouse Effect</h1> 
+  <p class="subtitle">Revised and adapted from: <br>‘Climate and the Oceans’, Vallis (2012)<br> ‘Atmospheric Evolution on Inhabited and Lifeless Worlds’, Catling and Kasting (2017)<br> ‘Principles of Planetary Climate’, Pierrehumbert (2010)</p>
+
+          <!--
+HERE is the code for a side citation:
+
+<label for="ref1" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="ref1" class="margin-toggle"/>
+<span class="sidenote">CONTENT HERE</span>
+
+HERE is the code for a figure:
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Caption here</span>
+<img src="img/filenameofFig.jpg" alt="Alternate Title" />
+</figure>
+
+HERE is the code for Orbit questions, both cloze and regular
+can use either of these for images associated with the question or answer:
+question-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
+answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
+
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    cloze=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
+
+          -->
+          
+<section>
+<h2 id="greenhouse-energy-balance-model">Energy Balance Model of Earth’s Greenhouse Effect</h2>    
+    
+<p>
+In the last chapter we derived an energy balance equation for a planet without an atmosphere,
+
+\[\frac{S}{4}(1-\alpha)  = \sigma T^4 \; . \tag{1}\]
+
+Though by neglecting an atmosphere this equation gave us a global mean temperature that was far too cold (254 K) compared to Earth’s actual temperature (288 K). Let’s revise the energy balance model to add in an atmosphere and a greenhouse effect. For this revised mathematical model we’ll assume the following: (1) The atmosphere is completely transparent to solar radiation; (2) The atmosphere is opaque to infrared radiation so that it absorbs infrared radiation and acts like a blackbody; (3) The Earth’s surface and it’s atmospheric layer have a single average temperature, each denoted by \(T_s\) and \(T_a\). Assumptions (1) and (2) are actually fairly realistic and assumption (3) is just so that we can keep things simple.
+</p>
+
+<p>
+Here’s an illustration of this model with equations showing where the energy comes from and where it is going:
+</p>
+      
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/energy-balance-model-1layer.jpeg" alt="1-layer atmospheric model" />
+</figure>
+    
+<p>
+The parameter \(\epsilon\), called the emissivity or the absorptivity, determines what fraction of infrared radiation coming from the surface is absorbed by the atmosphere. 
+</p>    
+    
+<p>    
+To derive the equations for this model we’ll need to balance energy going into and out of each component. So we balance all the radiation arrows going into and out of the surface and all the radiation arrows going into and out of the atmosphere. And let’s initially assume that \(\epsilon=1\), that is, the atmosphere is a perfect blackbody and absorbs all the surface infrared radiation. Here’s the energy balance equation for the surface
+
+\[\frac{S}{4}(1-\alpha) + \sigma T^4_a = \sigma T^4_s \; , \tag{2} \]
+
+and for the atmosphere the equation is
+
+\[\sigma T^4_s=2\sigma T^4_a \; . \tag{3}\]
+
+If we look at the planet as a whole and ask how the energy going in is balanced with the energy coming out, with \(\epsilon=1\) we have 
+
+\[\frac{S}{4}(1-\alpha)  = \sigma T^4_a \; . \tag{4}\]
+</p>
+
+<p>
+Notice that equation (4) is the same energy balance equation as our first model, equation (1). So our initial equation actually applies best to the energy balance at the top of the atmosphere.
+</p>
+      
+<p>
+We can now solve these equations for \(T_a\) and \(T_s\). We can use equation (4) for \(T_a\) and either substitute equation (4) or equation (3) into equation (2) to get an equation only in terms of \(T_s\),
+
+\[T_a=\left[\frac{S}{4\sigma}(1-\alpha)\right]^{1/4} \]
+
+\[T_s=\left[\frac{S}{2\sigma}(1-\alpha)\right]^{1/4} \; .\]
+</p>          
+      
+<p>
+Using \(S=1361 \text{W}/\text{m}^2\) and \(\alpha = 0.31\) we get \(T_a=254\, \text{K}\) and \(T_s=302\, \text{K}\). Our atmospheric temperature is the same as before but the surface temperature is now warmer: we now have a greenhouse effect! Though \(302\, \text{K}\) is too warm compared to the actual average temperature of the Earth \(288\, \text{K}\). The surface temperature is too warm because we are assuming with \(\epsilon=1\) that the Earth’s atmosphere is a perfect blackbody, absorbing all the infrared radiation that hits it. In fact we know from observations that some of the infrared radiation emitted by the surface escapes to space, so let’s account for that. 
+</p>
+
+<p>
+Instead of assuming that the atmosphere absorbs all the infrared radiation emitted by the ground, let’s assume that it absorbs just a fraction, \(\epsilon\), of it, where \(0 \lt \epsilon \lt 1\). Thus looking at the model figure above we see that an amount \((1-\epsilon)\sigma T^4_s\) of surface radiation escapes to space. Similarly, we also assume that the atmosphere only emits an \(\epsilon\) fraction of the amount it would as a perfect blackbody. In all other ways the model is the same as above. If we follow the same process of balancing energy in with energy out for the surface and the atmosphere we get the following equations:
+</p>
+    
+    
+<p>
+\[\frac{S}{4}(1-\alpha)+\epsilon T^4_a = \sigma T^4_s \; , \]
+
+\[\frac{S}{4}(1-\alpha)=\epsilon T^4_a + (1-\epsilon)\sigma T^4_s \; . \]
+
+Solving these two equations for \(T_s\) we obtain
+
+\[T_s=\left[\frac{S(1-\alpha)}{2\sigma(2-\epsilon)}\right]^{1/4} \; . \]
+</p>    
+    
+<p>
+If \(\epsilon = 1\), we recover our most recent greenhouse effect result with \(T_s = 302 \text{K}\).  If \(\epsilon = 0\), then the atmosphere has no radiative effect and, as in equation (1), we obtain \(T_s = 255 \text{K}\). The real atmosphere is somewhere between these two extremes, and for \(\epsilon = 0.8\), approximately similar to observations, we find \(T_s = 288 \text{K}\). The real emissivity on Earth actually varies by location and to model Earth more accurately we would want spatial details and even more layers in our model atmosphere, but for such a simple model it does remarkably well. Global warming is analogous to increasing Earth’s emissivity in this model: by adding more greenhouse gases to the atmosphere we increase the amount of infrared radiation the atmosphere absorbs.
+</p>
+     
+    
+</section>
+    
+<section>      
+<h2 id="absorb-emit-physics">Physics of Radiation Absorption and Emission</h2> 
+    
+<p>
+
+</p>
+    
+<p>
+
+</p>
+      
+<p>
+
+</p>    
+    
+     
+    
+<p>\(\Uparrow\) <a href="#top">To the top</a></p>
+<!--<p>\(\Rightarrow\) <a href="atmosphere-energy-balance.html">Next chapter</a></p>-->
+<p>\(\Leftarrow\) <a href="index.html">Table of contents</a></p> 
+</section>
+          
+      
+</article>      
+      
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
