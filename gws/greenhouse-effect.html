@@ -19,7 +19,6 @@
   <article>
   <ht><a href="index.html">Global Warming Science</a></ht>
   <h1 id="greenhouse-effect">Science of the Greenhouse Effect</h1> 
-  <p class="subtitle">Revised and adapted from: <br>‘Climate and the Oceans’, Vallis (2012)<br> ‘Atmospheric Evolution on Inhabited and Lifeless Worlds’, Catling and Kasting (2017)<br> ‘Principles of Planetary Climate’, Pierrehumbert (2010)</p>
 
           <!--
 HERE is the code for a side citation:
@@ -74,7 +73,11 @@ In the last chapter we derived an energy balance equation for a planet without a
 
 \[\frac{S}{4}(1-\alpha)  = \sigma T^4 \; . \tag{1}\]
 
-Though by neglecting an atmosphere this equation gave us a global mean temperature that was far too cold (254 K) compared to Earth’s actual temperature (288 K). Let’s revise the energy balance model to add in an atmosphere and a greenhouse effect. For this revised mathematical model we’ll assume the following: (1) The atmosphere is completely transparent to solar radiation; (2) The atmosphere is opaque to infrared radiation so that it absorbs infrared radiation and acts like a blackbody; (3) The Earth’s surface and it’s atmospheric layer have a single average temperature, each denoted by \(T_s\) and \(T_a\). Assumptions (1) and (2) are actually fairly realistic and assumption (3) is just so that we can keep things simple.
+Though by neglecting an atmosphere this equation gave us a global mean temperature that was far too cold (254 K) compared to Earth’s actual temperature (288 K). Let’s revise the energy balance model to add in an atmosphere and a greenhouse effect.<label for="mn-demo" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-demo" class="margin-toggle"/>
+<span class="marginnote">
+This section follows the modeling approach in Chapter 1 of Vallis, <em>Climate and the Oceans</em>, (2011).
+</span> For this revised mathematical model we’ll assume the following: (1) The atmosphere is completely transparent to solar radiation; (2) The atmosphere is opaque to infrared radiation so that it absorbs infrared radiation and acts like a blackbody; (3) The Earth’s surface and it’s atmospheric layer have a single average temperature, each denoted by \(T_s\) and \(T_a\). Assumptions (1) and (2) are actually fairly realistic and assumption (3) is just so that we can keep things simple.
 </p>
 
 <p>
@@ -146,8 +149,32 @@ If \(\epsilon = 1\), we recover our most recent greenhouse effect result with \(
 <h2 id="absorb-emit-physics">Physics of Radiation Absorption and Emission</h2> 
     
 <p>
-
+So far we’ve used the physics of blackbody radiation to explain and model the greenhouse effect. Insofar as the atmosphere behaves as a perfect blackbody with a smooth Planck emission spectrum, this level of description is enough. But the real atmosphere is more complicated, with big gaps missing in its emission spectrum. To illustrate this, let’s first look at the atmosphere of Mars. Mars’s atmosphere is 95% \(\text{CO}_2\) and nearly all of the remaining gases do not really absorb much radiation at all. Mars is therefore a relatively simple atmosphere in which to see radiative effects. Here is how the emission spectrum of Mars (red line) compares to two Planck blackbody emission spectra (black dashed lines):
 </p>
+    
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">This figure shows a summer-afternoon emission spectrum for Mars observed by the TES instrument on the <em>Mars Global Surveyor</em>. Pierrehumbert, <em>Infrared radiation and planetary temperature</em>, (2011).</span>
+<img src="img/IR-flux-Mars.png" alt="1-layer atmospheric model" />
+</figure>
+    
+<p>
+We can see that compared to the emission spectrum of a perfect blackbody, Mars is missing a big chunk of its emission centered at \(667 \text{cm}^{-1}\) (corresponding to a wavelength of \(15 \mu m\). Because of Mars’ simple atmosphere we know this has to be due to the absorption of \(\text{CO}_2\). So the Sun is shining on the surface of Mars, which we know from observations is emitting like an almost perfect blackbody, but then as that radiation tries to escape to space, a big chunk is absorbed by \(\text{CO}_2\) and is re-emitted back down to the surface. This re-emitted radiation mostly stays within the surface and atmosphere of Mars, warming the planet and giving it a small greenhouse effect. This process is somewhat different than changing the bulk emissivity in our one-layer energy balance model; changing \(\epsilon\) so that \(0 \lt \epsilon \lt 1\) is like simply squashing down the whole Planck emission spectrum instead of removing a chunk of the spectrum like what actually happens. 
+</p>
+      
+<p>
+Let’s look now at the more complex emission spectrum of Earth (satellite observations in red, a complex atmospheric radiation model in blue):
+</p>
+
+<p>
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">This figure compares a computed global-mean, annual-mean emission spectrum for Earth (blue) with observations from the satellite-borne AIRS instrument (red); both are superimposed over four Planck distributions. Arrows point to emission spikes in the middle of the main \(\text{CO}_2\) and \(\text{O}_3\) bands. Pierrehumbert, <em>Infrared radiation and planetary temperature</em>, (2011).</span>
+<img src="img/IR-flux-Earth.png" alt="1-layer atmospheric model" />
+</figure>
+</p>
+      
+<p>
+Like Mars, Earth is missing a chunk of its spectrum centered at \(667 \text{cm}^{-1}\) due to \(\text{CO}_2\). Yet Earth is missing additional chunks, with the primary atmospheric gases at fault labeled at the top of the graph (\(\text{H}_2\text{O}, \text{CO}_2, \text{O}_3\)).
+</p> 
     
 <p>
 
@@ -155,7 +182,47 @@ If \(\epsilon = 1\), we recover our most recent greenhouse effect result with \(
       
 <p>
 
-</p>    
+</p>
+
+<p>
+
+</p>
+      
+<p>
+
+</p> 
+    
+<p>
+
+</p>
+      
+<p>
+
+</p>
+
+<p>
+
+</p>
+      
+<p>
+
+</p> 
+    
+<p>
+
+</p>
+      
+<p>
+
+</p>
+
+<p>
+
+</p>
+      
+<p>
+
+</p> 
     
      
     
