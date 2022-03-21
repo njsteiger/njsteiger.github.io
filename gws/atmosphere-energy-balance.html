@@ -297,20 +297,39 @@ The most familiar source of energy warming a planet is the absorption of light f
 <p>
 While there are many ways a planet can gain energy, there is essentially only one way a planet can lose energy. Since a planet sits in the hard vacuum of outer space, and its atmosphere is rather tightly bound by gravity, not much energy can be lost through heated matter streaming away from the planet. The only significant energy loss occurs through emission of electromagnetic radiation.<label for="ref1" class="margin-toggle sidenote-number"></label>
 <input type="checkbox" id="ref1" class="margin-toggle"/>
-<span class="sidenote">Pierrehumbert, <em>Principles of Planetary Climate</em>, 2010.</span> Electromagnetic radiation is the historical term given to all the different kinds of photons: visible light, gamma ray, x-ray, ultraviolet, infrared, microwave, and radio; these are all photons, which are wave-like packets of energy that travel at the speed of light. These photon types are equivalently called ‘electromagnetic radiation’ or ‘electromagnetic waves’ or simply ‘radiation’ but each type has a different range of wavelengths and energies. Here is how the different kinds of radiation relate to each other, with longer wavelengths corresponding to lower energies (e.g., longer wavelength radiowaves have less energy than shorter wavelength visible light):
+<span class="sidenote">Pierrehumbert, <em>Principles of Planetary Climate</em>, 2010.</span> Electromagnetic radiation is the historical term given to all the different kinds of photons: visible light, gamma ray, x-ray, ultraviolet, infrared, microwave, and radio; these are all photons, which are wave-like packets of energy that travel at the speed of light. These photon types are equivalently called ‘electromagnetic radiation’ or ‘electromagnetic waves’ or simply ‘radiation’ but each type has a different range of wavelengths and energies.
 </p>
-      
+    
+<!--
 <figure class="fullwidth">
 <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
 <img src="img/EM-spectrum-simple.png" alt="EM spectrum" />
 </figure>
+-->
+
+<p>
+Here is how the different kinds of radiation relate to each other, lined up next to each other according to wavelength and frequency, along with a closer look at an example visible blue light photon on the bottom of the figure: 
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Electromagnetic spectrum visualization, KCVS.ca. \(\gamma\) is short for ‘gamma ray’ and ultraviolet is abbreviated as UV. A wavelength measurement is shown in orange. You can explore this example further using an interactive <a href="https://applets.kcvs.ca/ElectromagneticSpectrum/electromagneticSpectrum.html">applet</a>. </span>
+<img src="img/em-spectrum-bluelight.png" alt="EM spectrum" />
+</figure>     
+    
+<p>On the bottom we’re picking out a blue light photon with a wavelength of 450 nm. The wavelength is the distance from one peak to another if we think of a stream of photons behaving like a long wave. Photons individually act like a wave packet of energy, illustrated on the bottom right ‘Photon View’. A photon wavelength \(\lambda\) is related to its frequency \(\nu\) by the speed of light \(c\) through the equation: \(\lambda = c/\nu\). This equation tells us that if we increase the wavelength the frequency will decrease. We can also see this if we compare the blue light example to a red light (730 nm wavelength) example below. The red light has a longer wavelength and a decreased frequency:
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Electromagnetic spectrum visualization, KCVS.ca. </span>
+<img src="img/em-spectrum-redlight.png" alt="EM spectrum" />
+</figure>    
     
 <p>
-We know from experience that something that is heated to a very high temperature glows red or white, thus emitting visible photons or electromagnetic radiation. Similarly, almost any object that has a temperature at all, also emits electromagnetic radiation (though at typical Earth temperatures it is radiation that we cannot see). This phenomena is called ‘blackbody radiation’. Blackbody radiation is incredibly important in the history of physics. In the process of figuring out a mathematical description of this phenomena, the physicist Max Planck accidentally discovered the foundational idea of quantum mechanics: that radiation is emitted only in small packets of energy, called ‘quanta’. Specifically, the quantum of energy for radiation having frequency \(\nu\) is \(E=h\nu\), where \(h\) is known as ‘Planck’s constant’. The size of \(h\), which is equal to \(6.626\times 10^{-34}\) Joule-seconds, determines the granularity of reality. This value is so small that we don’t notice quantum effects in everyday life. Yet the energy-quanta idea would revolutionize physics. For our purposes here, we can go straight to the features of the ‘Planck function’,
+We know from experience that something that is heated to a very high temperature glows red or white, thus emitting visible photons or electromagnetic radiation. Similarly, almost any object that has a temperature at all, also emits electromagnetic radiation (though at typical Earth temperatures it is radiation that we cannot see). This phenomena is called ‘blackbody radiation’. Blackbody radiation is incredibly important in the history of physics. In the process of figuring out a mathematical description of this phenomena, the physicist Max Planck accidentally discovered the foundational idea of quantum mechanics: that radiation is emitted only in small packets of energy, called at the time ‘quanta’. Specifically, the quantum of energy for radiation having frequency \(\nu\) is \(E=h\nu\), where \(h\) is known as ‘Planck’s constant’. This energy value, in units of electronvolts (eV), is what is shown in the bottom right ‘Photon View’ panels of the blue and red light figures above. The size of \(h\), which is equal to \(6.626\times 10^{-34}\) Joule-seconds, determines the granularity of reality. This value is so small that we don’t notice quantum effects in everyday life. After discovering the energy-quanta idea, Max Planck derived an equation for how an object would emit radiation, now known as  the ‘Planck function’,
     
 \[ B(\nu,T) =\frac{2h\nu^3}{c^2}\frac{1}{e^{h\nu/kT}-1}\; , \tag{5}\]
     
-where \(c\) is the speed of light and \(B(\nu,T)\) is known as the irradiance or flux emission spectrum, which mathematically describes a distribution of radiation output. Here’s what the Planck function looks like for different temperature values (in degrees K):
+where \(B(\nu,T)\) is known as the irradiance or flux emission spectrum. This equation describes a distribution of radiation output. Here’s what the Planck function looks like for different temperature values (in degrees K):
 </p>
 
 <figure>
@@ -319,7 +338,7 @@ where \(c\) is the speed of light and \(B(\nu,T)\) is known as the irradiance or
 </figure> 
     
 <p>
-The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’ at a given temperature and as a function of wavelength or wavenumber (the inverse of wavelength). A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of light. By musical analogy, a ‘blackbody instrument’ would be a hypothetical musical instrument that could play every possible note, instead of a small range like normal instruments. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
+The Plank function shows you the distribution of radiation that is emitted for a perfect ‘blackbody’ at a given temperature, plotted above as a function of wavenumber (the inverse of wavelength, \(1/\nu\)). A perfect blackbody is an object with a rich energy spectrum that can radiate all frequencies of radiation. By musical analogy, a ‘blackbody instrument’ would be a hypothetical musical instrument that could play every possible note, instead of a small range like normal instruments. A ‘black’-body is named that way for historical reasons related to the theoretical idea behind how it was mathematically derived. In reality many things behave very similarly to blackbodies but aren’t very black at all, such as planets and stars. Below is a figure showing that the sun’s emission spectrum (yellow) compares fairly well to a perfect blackbody Planck function (gray).
 </p>
     
 <figure>
@@ -328,7 +347,7 @@ The Plank function shows you the distribution of radiation that is emitted for a
 </figure>
     
 <p>
-Nearly all objects radiate photons, but not all objects emit them according to a blackbody distribution. One example is the emission spectra of many galaxies. Take for example the emission spectra of the irregular galaxy NGC 6052, composed of a group of stars and gas (Sloan Digital Sky Survey III Science Archive Server, accessed Feb 2022). 
+Nearly all objects radiate photons, but not all objects emit them according to a blackbody distribution. One example is the emission spectra of many galaxies. Take for example the emission spectrum of the irregular galaxy NGC 6052, composed of a group of stars and gas (Sloan Digital Sky Survey III Science Archive Server, accessed Feb 2022). 
 </p>
       
 <figure class="fullwidth">
