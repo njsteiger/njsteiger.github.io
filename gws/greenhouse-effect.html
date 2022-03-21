@@ -149,7 +149,7 @@ If \(\epsilon = 1\), we recover our most recent greenhouse effect result with \(
 <h2 id="absorb-emit-physics">Physics of Radiation Absorption and Emission</h2> 
     
 <p>
-So far we’ve used the physics of blackbody radiation to explain and model the greenhouse effect. Insofar as the atmosphere behaves as a perfect blackbody with a smooth Planck emission spectrum, this level of description is enough. But the real atmosphere is more complicated, with big gaps missing in its emission spectrum. To illustrate this, let’s first look at the atmosphere of Mars. Mars’ atmosphere is 95% \(\text{CO}_2\) and nearly all of the remaining gases do not really absorb much radiation at all. Mars is therefore a relatively simple atmosphere in which to see radiative effects. Here is how the emission spectrum of Mars (red line) compares to two Planck blackbody emission spectra shown for reference (black dashed lines):
+So far we’ve used the physics of blackbody radiation to explain and model the greenhouse effect. Insofar as the atmosphere behaves as a blackbody with a smooth Planck emission spectrum, this level of description is enough. But the real atmosphere is more complicated, with big gaps missing in its emission spectrum. To illustrate this, let’s first look at the atmosphere of Mars. Mars’ atmosphere is 95% \(\text{CO}_2\) and nearly all of the remaining gases do not really absorb much radiation at all. Mars is therefore a relatively simple atmosphere in which to see radiative effects. Here is how the emission spectrum of Mars (red line) compares to two Planck blackbody emission spectra shown for reference (black dashed lines):
 </p>
     
 <figure>
@@ -165,15 +165,53 @@ We can see that compared to the emission spectrum of a perfect blackbody, Mars i
 Let’s look now at the more complex emission spectrum of Earth (satellite observations in red, a complex atmospheric radiation model in blue):
 </p>
 
-<p>
+
 <figure>
     <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">This figure compares a computed global-mean, annual-mean emission spectrum for Earth (blue) with observations from the satellite-borne AIRS instrument (red); both are superimposed over four Planck distributions. Arrows point to emission spikes in the middle of the main \(\text{CO}_2\) and \(\text{O}_3\) bands. Pierrehumbert, <em>Infrared radiation and planetary temperature</em>, (2011).</span>
 <img src="img/IR-flux-Earth.png" alt="1-layer atmospheric model" />
 </figure>
-</p>
       
 <p>
-Like Mars, Earth is missing a chunk of its spectrum centered at \(667 \text{cm}^{-1}\) due to \(\text{CO}_2\). Yet Earth is missing additional chunks (relative to the Planck spectrum at 285 K), with the primary atmospheric gases at fault labeled at the top of the graph (\(\text{H}_2\text{O}, \text{CO}_2, \text{O}_3\)).
+Like Mars, Earth is missing a chunk of its spectrum centered at \(667 \text{cm}^{-1}\) due to \(\text{CO}_2\). Yet Earth is missing additional chunks, relative to the Planck spectrum at 285 K, with the primary atmospheric gases at fault labeled at the top of the graph (\(\text{H}_2\text{O}, \text{CO}_2, \text{O}_3\)).
+</p> 
+    
+<p>
+How physically are gases like \(\text{H}_2\text{O}\) and \(\text{CO}_2\) removing chunks of the emission spectrum? Let’s start by looking at individual atoms, using the simple element Helium in particular. Like all atoms Helium is composed of a nucleus and electrons that orbit the nucleus. It looks something like this:
+</p>
+      
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Bohr model of the Helium atom. Helium is composed of two neutrons (n), two protons (p), and two electrons (e). The electrons have a negative electric charge, the protons have a positive electric charge, and the neutrons are neutral with no electric charge. This illustrates only five representative energy levels.</span>
+<img src="img/He-atom-bohr.png" alt="Helium Bohr model" />
+</figure>
+    
+<p>
+The nucleus of Helium contains two protons and two neutrons, which account for nearly all the mass of the atom. The two electrons of Helium are moving around the nucleus in very particular orbits. It turns out, due to the laws of quantum mechanics, that there are only a few specific orbits allowed around the atom. The orbits closer in are lower energy levels and orbits further out are higher energy levels. I have to note that I’ve drawn Helium using what’s called the Bohr model of the atom that looks like planets orbiting a star. In truth the electrons aren’t hard balls that zip around the nucleus but are more like a wavy cloud that shifts its density around the nucleus. Yet the Bohr model is useful for illustrating how photons are absorbed and emitted by atoms:
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Helium atom absorbing and emitting photons, which are depicted by a squiggly wave packet arrow. Only five representative energy levels are depicted.</span>
+<img src="img/He-emission-absorption.png" alt="Absorption and Emission" />
+</figure>    
+
+<p>
+We learned in the previous chapter that photons are packets of energy, the amount of which is determined by the frequency, \(\nu\), of the photon \(E=h\nu\). As we see in this above figure, if an electron absorbs a photon, the energy of the photon goes into jumping the electron into a higher energy level. A little strangely, the photon energy must be <em>precisely<sup>*</sup></em><label for="mn-demo" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-demo" class="margin-toggle"/>
+<span class="marginnote">
+<sup>*</sup>Technically not <em>absolutely</em> precisely. Very small differences are allowed via the laws of quantum mechanics.
+</span> the energy required for the jump. This implies that only photons of relatively few specific frequencies can be absorbed by a given atom; for this jump from energy level 1 to energy level 3 in the illustration, \(E_3-E_1=h\nu_{1\rightarrow 3}\), where \(\nu_{1\rightarrow 3}\) is the specific frequency of the photon for this situation. It’s a very similar process for photon <em>emission</em>: electrons move from a high energy level to a lower energy level by emitting a photon of precisely the right frequency to make up the difference in energy for the jump. Electrons prefer to be in the lowest energy level they can and will spontaneously emit photons to get there. But once an electron is in the lowest energy level surrounding the nucleus, an electron can’t emit photons anymore and it can only move up again by absorbing them. Notice also from the figure that electrons can jump up or down multiple energy levels as long as the right frequency of photon is involved.<label for="mn-demo" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-demo" class="margin-toggle"/>
+<span class="marginnote">
+Note: Quantum mechanics does technically forbid very specific kinds of photon energy level transitions, but that’s not important for our purposes here.
+</span> This whole process explains why we only saw a few radiation peaks in the emission spectrum of galaxy NGC 6052 in the previous chapter (reproduced below); the emission was coming from primarily Hydrogen and Helium gases and they can only emit particular frequencies of photons.
+</p>
+      
+<figure class="fullwidth">
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/galaxy-emission-spectra.png" alt="Galaxy spectra" />
+</figure>
+    
+<p>
+
 </p> 
     
 <p>
@@ -188,22 +226,11 @@ Like Mars, Earth is missing a chunk of its spectrum centered at \(667 \text{cm}^
 
 </p>
       
-<p>
-
-</p> 
+</section>
     
-<p>
-
-</p>
-      
-<p>
-
-</p>
-
-<p>
-
-</p>
-      
+<section>      
+<h2 id="greenhouse-effect">The Greenhouse Effect</h2> 
+    
 <p>
 
 </p> 
