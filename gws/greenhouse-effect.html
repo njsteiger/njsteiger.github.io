@@ -34,6 +34,10 @@ HERE is the code for a figure:
 <img src="img/filenameofFig.jpg" alt="Alternate Title" />
 </figure>
 
+HERE is code for a margin figure (needs to be within a <p></p> paragraph)
+
+<label for="mn-figure-1" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-figure-1" class="margin-toggle"/><span class="marginnote"><img src="img/nameoffig.png" alt="Alternate Title"/>Caption here.</span>
+
 HERE is the code for Orbit questions, both cloze and regular
 can use either of these for images associated with the question or answer:
 question-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
@@ -135,7 +139,7 @@ Instead of assuming that the atmosphere absorbs all the infrared radiation emitt
 
 Solving these two equations for \(T_s\) we obtain
 
-\[T_s=\left[\frac{S(1-\alpha)}{2\sigma(2-\epsilon)}\right]^{1/4} \; . \]
+\[T_s=\left[\frac{S(1-\alpha)}{2\sigma(2-\epsilon)}\right]^{1/4} \; . \tag{5}\]
 </p>    
     
 <p>
@@ -149,16 +153,16 @@ If \(\epsilon = 1\), we recover our most recent greenhouse effect result with \(
 <h2 id="absorb-emit-physics">Physics of Radiation Absorption and Emission</h2> 
     
 <p>
-So far we’ve used the physics of blackbody radiation to explain and model the greenhouse effect. Insofar as the atmosphere behaves as a blackbody with a smooth Planck emission spectrum, this level of description is enough. But the real atmosphere is more complicated, with big gaps missing in its emission spectrum. To illustrate this, let’s first look at the atmosphere of Mars. Mars’ atmosphere is 95% \(\text{CO}_2\) and nearly all of the remaining gases do not really absorb much radiation at all. Mars is therefore a relatively simple atmosphere in which to see radiative effects. Here is how the emission spectrum of Mars (red line) compares to two Planck blackbody emission spectra shown for reference (black dashed lines):
+So far we’ve used the physics of blackbody radiation to explain and model the greenhouse effect. Insofar as the atmosphere behaves as a blackbody with a smooth Planck emission spectrum, this level of description is enough. But the real atmosphere is more complicated, with big gaps missing in the distribution of radiation emitted to space (known as its emission spectrum). To illustrate this, let’s first look at the atmosphere of Mars. Mars’ atmosphere is 95% \(\text{CO}_2\) and nearly all of the remaining gases do not really absorb much radiation at all. Mars is therefore a relatively simple atmosphere in which to see radiative effects. Below I show how the emission spectrum of Mars (red line) compares to two Planck blackbody emission spectra shown for reference (black dashed lines):
 </p>
     
 <figure>
-    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">This figure shows a summer-afternoon emission spectrum for Mars observed by the TES instrument on the <em>Mars Global Surveyor</em>. Pierrehumbert, <em>Infrared radiation and planetary temperature</em>, (2011).</span>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">This figure shows a summer-afternoon emission spectrum for Mars observed by the TES instrument on the <em>Mars Global Surveyor</em>. An ‘Emission spectrum’ refers to the distribution of radiation a satellite would measure outside the atmosphere, analogous to the arrows going out of the top of the atmosphere in the first figure of this chapter. Pierrehumbert, <em>Infrared radiation and planetary temperature</em>, (2011).</span>
 <img src="img/IR-flux-Mars.png" alt="1-layer atmospheric model" />
 </figure>
     
 <p>
-We can see that compared to the emission spectrum of a perfect blackbody, Mars is missing a big chunk of its emission centered at \(667 \text{cm}^{-1}\) (corresponding to a wavelength of \(15 \mu m\)). Because of Mars’ simple atmosphere we know this has to be due to the absorption of \(\text{CO}_2\). So the Sun is shining on the surface of Mars, which we know from observations is then emitting radiation like an almost perfect blackbody, but then as that radiation tries to escape to space, a big chunk is absorbed by \(\text{CO}_2\) and is re-emitted back down to the surface. Much of this re-emitted radiation will bounce around or be absorbed within the surface and atmosphere of Mars, warming the planet and giving it a small greenhouse effect. This process is somewhat different than changing the bulk emissivity in our one-layer energy balance model; changing \(\epsilon\) so that \(0 \lt \epsilon \lt 1\) is like simply squashing down the whole Planck emission spectrum instead of removing a chunk of the spectrum like what actually happens. 
+We can see that compared to the emission spectrum of a perfect blackbody, Mars is missing a big chunk of its emission centered at \(667 \text{cm}^{-1}\) (corresponding to a wavelength of \(15 \mu \text{m}\)). Because of Mars’ simple atmosphere we know this has to be due to the absorption of \(\text{CO}_2\). So the Sun is shining on the surface of Mars, which we know from observations is then emitting radiation like an almost perfect blackbody, but then as that radiation tries to escape to space, a big chunk is absorbed by \(\text{CO}_2\) and is re-emitted back down to the surface. Much of this re-emitted radiation will bounce around or be absorbed within the surface and atmosphere of Mars, warming the planet and giving it a small greenhouse effect. This process is somewhat different than changing the bulk emissivity in our one-layer energy balance model; changing \(\epsilon\) so that \(0 \lt \epsilon \lt 1\) is like simply squashing down the whole Planck emission spectrum instead of removing a chunk of the spectrum like what actually happens. 
 </p>
       
 <p>
@@ -198,7 +202,7 @@ We learned in the previous chapter that photons are packets of energy, the amoun
 <input type="checkbox" id="mn-demo" class="margin-toggle"/>
 <span class="marginnote">
 <sup>*</sup>Technically not <em>absolutely</em> precisely. Very small differences are allowed via the laws of quantum mechanics.
-</span> the energy required for the jump. This implies that only photons of relatively few specific frequencies can be absorbed by a given atom; for this jump from energy level 1 to energy level 3 in the illustration, \(E_3-E_1=h\nu_{1\rightarrow 3}\), where \(\nu_{1\rightarrow 3}\) is the specific frequency of the photon for this situation. It’s a very similar process for photon <em>emission</em>: electrons move from a high energy level to a lower energy level by emitting a photon of precisely the right frequency to make up the difference in energy for the jump. Electrons prefer to be in the lowest energy level they can and will spontaneously emit photons to get there. But once an electron is in the lowest energy level surrounding the nucleus, an electron can’t emit photons anymore and it can only move up again by absorbing them. Notice also from the figure that electrons can jump up or down multiple energy levels as long as the right frequency of photon is involved.<label for="mn-demo" class="margin-toggle">&#8853;</label>
+</span> the energy required for the jump. This implies that only photons of relatively few specific frequencies can be absorbed by a given atom; for this jump from energy level 1 to energy level 3 in the illustration, the energy required is \(E_3-E_1=h\nu_{1\rightarrow 3}\), where \(\nu_{1\rightarrow 3}\) is the specific frequency of the photon for this situation. It’s a very similar process for photon <em>emission</em>: electrons move from a high energy level to a lower energy level by emitting a photon of precisely the right frequency to make up the difference in energy for the jump. Electrons prefer to be in the lowest energy level they can and will spontaneously emit photons to get there. But once an electron is in the lowest energy level surrounding the nucleus, an electron can’t emit photons anymore and it can only move up again by absorbing them. Notice also from the figure that electrons can jump up or down multiple energy levels as long as the right frequency of photon is involved.<label for="mn-demo" class="margin-toggle">&#8853;</label>
 <input type="checkbox" id="mn-demo" class="margin-toggle"/>
 <span class="marginnote">
 Note: Quantum mechanics does technically forbid very specific kinds of photon energy level transitions, but that’s not important for our purposes here.
@@ -211,6 +215,27 @@ Note: Quantum mechanics does technically forbid very specific kinds of photon en
 </figure>
     
 <p>
+Besides absorption and emission of photons within individual atoms, it’s also possible for groups of atoms, called molecules, to collectively absorb and emit photons. The large majority of atmospheric gases are groups of either two or three atoms, called diatomic molecules and triatomic molecules; examples include \(\text{O}_2\), diatomic, and \(\text{CO}_2\), triatomic. Like in atoms, the electrons in molecules shift around in a wavy cloud of negative charge. In order for this electron cloud to absorb and emit photons its charge distribution needs change speed or change direction. A molecule’s electron cloud can do this if the molecule as a whole rotates or vibrates in particular ways. Let’s look at some examples for diatomic and triatomic molecules:
+</p> 
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Molecular rotation and vibration modes. Protons are depicted using the symbol +. Electrons are illustrated with a ‘cloud’ surrounding the protons and by the symbol -. Photons being absorbed are illustrated by squiggly wave packet arrows. Non-squiggly arrows indicate the molecule stretching, rotating, or bending. Note that the triatomic rotation modes illustrated here also include a vibrational bending. Modified from Pierrehumbert, <em>Principles of Planetary Climate</em>, 2010.</span>
+<img src="img/molecular-emission-vibration-rotation.jpeg" alt="Absorption and Emission" />
+</figure> 
+    
+<p>
+The top row of both the diatomic and triatomic molecules is the lowest energy state of the molecules. This is similar to when electrons are in the lowest energy level in an atom. The rows below that show the molecules absorbing photons and subsequently vibrating and rotating. Molecules are also able to vibrate and rotate at the same time, illustrated with the bending vibration in the triatomic ‘rotation’ column of the figure. 
+</p>
+      
+<p>
+Just like for atoms, a molecule <em>absorbs</em> a photon to go from a low energy state to a higher energy state and <em>emits</em> a photon to go from a high energy state to a lower energy state. For example, a triatomic molecule will emit a photon when it goes from a stretched-out high energy state to its lowest energy state. And also just like for atomic emission and absorption, the photon energy needs to be just the right amount for the molecule to vibrate or rotate in one of the limited number of ways that it is able to. For example, \(\text{CO}_2\) is a triatomic molecule and its bending mode, illustrated in the ‘rotation’ column in the figure, absorbs photons with a wavelength of \(15 \mu \text{m}\), corresponding to the missing emission chunk centered on the \(667 \text{cm}^{-1}\) wavenumber  in the spectra of Mars and Earth that we saw previously; this particular bending of \(\text{CO}_2\) is therefore responsible for almost the entire greenhouse effect on Mars and a large portion of the greenhouse effect on Earth (approximately 20%).
+</p>
+
+<p>
+The bending vibration mode of \(\text{CO}_2\) is so important because it just so happens to overlap with an important section the blackbody emission spectrum of Earth. \(\text{CO}_2\) has many atomic and molecular absorption energies, but just one of them really matters for Earth’s greenhouse effect. Whether a gas is radiatively important or not is entirely determined by this overlap between a gas’ photon absorption energies and a planet’s emission spectra. <label for="mn-figure-1" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-figure-1" class="margin-toggle"/><span class="marginnote"><img src="img/table-radiation-type-and-wavelength.png" alt="Types of radiation transitions"/>Types of radiation absorbed by atomic or molecular transition type. An ‘electronic’ transition is equivalent to what I’ve been calling in this chapter ‘atomic’. Increasing wavelength corresponds to decreasing energy, according to the equation for photon energy \(E=hc/\lambda\). Catling and Kasting, <em>Atmospheric Evolution on Inhabited and Lifeless Worlds</em>, (2017).</span>In general, atomic absorption requires the highest energy photons, followed by molecular vibration, followed by molecular rotation, see side table. Since Earth, as well as many other planets, emits primarily infrared radiation, it turns out that vibrational and rotational modes of atmospheric gases dominate the greenhouse effect, see side table.
+</p>
+     
+<p>
 
 </p> 
     
@@ -221,11 +246,31 @@ Note: Quantum mechanics does technically forbid very specific kinds of photon en
 <p>
 
 </p>
+    
+<p>
 
+</p> 
+    
 <p>
 
 </p>
       
+<p>
+
+</p>
+    
+<p>
+
+</p> 
+    
+<p>
+
+</p>
+      
+<p>
+
+</p>
+    
 </section>
     
 <section>      
