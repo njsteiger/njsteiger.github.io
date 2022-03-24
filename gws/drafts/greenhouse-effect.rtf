@@ -1,8 +1,8 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2638
+{\rtf1\ansi\ansicpg1252\cocoartf2636
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 FiraSans-Regular;\f1\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww18600\viewh12980\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww16400\viewh12980\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs36 \cf0 \
@@ -49,6 +49,8 @@ We can now solve these equations for \\(T_a\\) and \\(T_s\\). We can use equatio
 \\[T_s=(\\frac\{S\}\{2\\sigma\}(1-\\alpha))^\{1/4\} \\; .\\]\
 \
 Using \\(S=1361 \\text\{W\}/\\text\{m\}^2\\) and \\(\\alpha = 0.31\\) we get \\(T_a=254\\, \\text\{K\}\\) and \\(T_s=302\\, \\text\{K\}\\). Our atmospheric temperature is the same as before but the surface temperature is now warmer: we now have a greenhouse effect! Though \\(302\\, \\text\{K\}\\) is too warm compared to the actual average temperature of the Earth \\(288\\, \\text\{K\}\\). The surface temperature is too warm because we are assuming with \\(\\epsilon=1\\) that the Earth\'92s atmosphere is a perfect blackbody, absorbing all the infrared radiation that hits it. In fact we know from observations that some of the infrared radiation emitted by the surface escapes to space, so let\'92s account for that. \
+\
+\'91Bohr model\'92 \
 \
 Instead of assuming that the atmosphere absorbs all the infrared radiation emitted by the ground, let\'92s assume that it absorbs just a fraction, \\(\\epsilon\\), of it, where \\(0 < \\epsilon < 1\\); thus, an amount \\((1-\\epsilon)\\sigma T^4_s\\) of surface radiation escapes to space (see the figure above). Similarly, we also assume that the atmosphere only emits an \\(\\epsilon\\) fraction of the amount it would do as a perfect blackbody. In all other ways the model is the same as above. If we follow the same process of balancing energy in with energy out for the surface and the atmosphere we get the following equations:\
 \
@@ -103,11 +105,52 @@ FIG: side note fig: Types of radiation absorbed by atomic or molecular transitio
 \
 =============================================\
 \
-One feature of the emission spectra we saw of Mars and Earth that we\'92ve explained yet is why the missing emission chunks are so wide. So far all the explanations given for photon absorption\
+One feature of the emission spectra we saw of Mars and Earth that we have not explained yet is why the missing emission chunks are so wide? All the explanations given so far for photon absorption have said that the physics of atoms and molecules allows only particular, individual electron energy states to exist. If atoms and molecules can only absorb photons of a few particular energies or frequencies, why do we see wide gaps in the emission spectra instead of narrow lines? Why doesn\'92t the emission spectra of Mars look like the green line I\'92ve drawn over the top of this figure?\
 \
-Explain why emission and absorption aren\'92t symmetric: why doesn\'92t CO2 just re-emit whatever it absorbs leaving the spectrum unchanged? After photon absorption, the molecule or atom can emit a photon at a different wavelength or convert the energy into speeding up the molecule or vibrating and rotating in a way that doesn\'92t just re-emit the same frequency of photon it absorbed.\
+FIG: emission line of Mars\
 \
-These phenomena an explain narrow spectral lines, but how do we get the wide ditches in the emission spectra of Mars and Earth? \
+Photon absorption is broadened over a wider range of energies due to two processes: Doppler broadening and pressure (or collision) broadening. Doppler broadening happens when gas molecules move relative to the source of radiation. Like the changing sound of a fast-moving car that passes us, the sound of the car has a higher pitch or frequency as it approaches us and then a lower pitch or frequency as it moves away. Similarly, the frequency of radiation that hits a moving molecule will be \'91Doppler shifted\'92: if the molecule is moving toward the photon that hits it, the frequency and energy will be increased by a small amount and if it\'92s moving away from the photon, the frequency and energy will be decreased. Pressure (or collision) broadening happens when collisions between molecules happen at the same time as photon absorption and some of the energy of the collision adds to or subtracts from the energy required for the photon absorption. \
+\
+The shape of the broadening from these two processes that we see in emission spectra (as in our Mars example above) follow what are called the Doppler and Lorentz line shapes:\
+\
+FIG: Doppler and Lorentz figure from Catling and Kasting caption: Doppler and Lorentz line shapes for equal widths and strengths, plotted as frequency change \\((\\nu-\\nu_0)\\) per width \\(\\alpha\\).\
+\
+Doppler and pressure broadening are absolutely essential for the greenhouse effect. Without these processes only a tiny fraction of the radiation energy could be absorbed by the atmosphere. Therefore the greenhouse effect wouldn\'92t exist at all(cite Catling and Kasting) and Earth would be a frozen and uninhabitable \\(T=254\\, \\text\{K\} \\approx -20 ^\{\\circ\}\\text\{C\}\\), as we calculated. \
+\
+Another fundamental question is why do we even have gaps in the emission spectra of planets at all? If an atmosphere can emit photons at the same energies that it absorbs them, why can\'92t the atmosphere just pass along the photons to outer space? Part of the answer has to do with the direction of emission: photon emission in a gas occurs in random directions (as shown in the illustrations), so it\'92s not possible to just convey the photons directly out to space. The other part of the answer is that there is a fundamental asymmetry between absorption and emission. If I shine the right kind of infrared photons on gas molecules, those molecules will readily absorb the photons. But then the gas molecules could use that energy to zoom around faster or they could end up transferring that energy to another molecule in a collision. This energy that goes into molecular movement not only heats up the gas but it also indirectly steals chunks out of the overall emission spectra of the atmosphere. This process is the greenhouse effect at work.\
+\
+=============================================\
+\
+So far we\'92ve discussed many of the physical pieces of the greenhouse effect. In this section we\'92ll put them together to see how the greenhouse effect changes the atmosphere and warms the surface. The energy balance model we developed at the beginning of this chapter showed us that an atmosphere that could absorb infrared radiation would end up warming the surface. This happens in the model because there\'92s an additional amount of radiation that goes to the surface that wouldn\'92t occur without the atmosphere; this is circled in orange:\
+\
+FIG: highlighted 1-layer model\
+\
+It\'92s fundamentally the same idea as what happens in the real atmosphere. To explore this, we\'92ll run a series of experiments using a complex model of atmospheric radiation called MODTRAN; this model compares very well to what we observe in the real atmosphere. \
+\
+If we start out with Earth\'92s atmosphere but no greenhouse gases (no carbon dioxide, no water vapor, no methane, etc.), its emission spectrum is just a smooth Planck spectrum originating from the surface of the Earth and left unchanged by the atmosphere.\
+\
+MAKE FIGURES THAT PROGRESSIVELY ADD ON EACH TIME SERIES UNTIL WE ARE LEFT WITH THE FINAL RESULT. MAYBE GRAY OUT PREVIOUS TIME SERIES? OR MUTE THEIR COLORS?\
+\
+FIG: Earth emission spectrum\
+\
+Notice that in this scenario the Earth\'92s surface is a cold 259 K. If we add CO2 into the atmosphere at 415 ppm (the average 2022 level) and no other greenhouse gases, we see the missing emission chunk at 667 cm-1 and a large reduction in the radiation emitted to space:\
+\
+FIG: only CO2 added\
+\
+Since the energy input from the Sun stays the same, the reduction in energy going out means energy will build up within the planet\'92s surface and atmosphere. This build up of energy can\'92t go on for very long since it would violate physics\'92 second law of thermodynamics. So the atmosphere warms and thus emits more radiation until it comes back into energy balance with what is coming in:\
+\
+FIG: CO2 + temperature adjustment to increase radiation\
+\
+Notice that this warming has shifted the emission distribution upward, reflective of its warmer blackbody temperature. If we now add in all of the greenhouse gases currently present in Earth\'92s atmosphere and let the temperature and outgoing radiation adjust, this is what we get:\
+\
+FIG: All GHG\
+\
+With the addition of even more greenhouse gases, we get an even larger increase in surface temperature in order to balance energy coming in to the Earth system with energy going out. This is the radiative impact of Earth\'92s greenhouse effect.\
+\
+Is it possible to completely saturate Earth\'92s atmosphere with greenhouse gases such that adding more won\'92t heat the surface of Earth? In these experiments we\'92ve progressively added more greenhouse gases to the atmosphere and we\'92ve seen that it simply radiatively adjusts: radiation in must balance radiation out and the temperature of the atmosphere warms to accomplish that. The atmosphere of Venus is 96.5% CO2 and has a mass 94 times greater than Earth\'92s atmosphere. It\'92s surface temperature is an unbearable 737 K = 464 C. Adding even more CO2 to Venus\'92 atmosphere would just make it hotter.\
+\
+ \
+\
 \
 DISCUSS PHYSICS OF PHOTON ABSORPTION AND EMISSION: ELECTRON ORBIT, VIBRATION, ROTATION. USE CATLING AND PIERREHUMBERT CH 4 TEXTS FOR GUIDANCE. USE ARCHER FIGURES TO EXPLAIN THE BAND SATURATION EFFECT AND LINE BROADENING. CATLING HAS FIGS FOR WHAT DOPPLER AND PRESSURE FUNCTIONS LOOK LIKE. THEN USE ARCHER FIG 4.8 FOR A SUMMARY OF THE GREENHOUSE EFFECT. MAYBE ALSO INCLUDE MANABE OR PIERREHUMBERT FIGS SHOWING GREENHOUSE EFFECT FROM A TEMPERATURE PROFILE PERSPECTIVE.\
 \
@@ -116,7 +159,6 @@ Applet for molecular absorption (only vibrational modes): https://phet.colorado.
 \
 \
 \
-Doppler and Lorentz figure from Catling and Kasting caption: Lorentz and Doppler line shapes for equal widths and strengths, plotted as frequency change \\((\\nu-\\nu_0)\\) per width \\(\\alpha\\).\
 \
 \
 \

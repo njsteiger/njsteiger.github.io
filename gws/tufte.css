@@ -102,17 +102,17 @@ body {
     margin-right: auto;
     padding-left: 12.5%;
     font-family: "IBMPlexSerif", serif;
-    background-color: #fffff8;
-    color: #111;
+    background-color: #151515;
+    color: #ddd;
     max-width: 1400px;
     counter-reset: sidenote-counter;
 }
 
-/* Adds dark mode */
-@media (prefers-color-scheme: dark) {
+/* Dark is default, light theme if user prefers it */
+@media (prefers-color-scheme: light) {
     body {
-        background-color: #151515;
-        color: #ddd;
+        background-color: #fffff8;
+        color: #111;
     }
 }
 
