@@ -280,37 +280,61 @@ Another fundamental question is why do we even have gaps in the emission spectra
 <section>      
 <h2 id="greenhouse-effect">The Greenhouse Effect</h2> 
     
-  
 <p>
-
+So far we’ve discussed many of the physical pieces of the greenhouse effect. In this section we’ll put them together to see how the greenhouse effect changes the atmosphere and warms the surface. The energy balance model we developed at the beginning of this chapter showed us that an atmosphere that could absorb infrared radiation would end up warming the surface. This happens in the model because there’s an additional amount of radiation that goes to the surface that wouldn’t occur without the atmosphere&mdash;this is circled in orange:
 </p>
+  
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/energy-balance-model-1layer-highlighted.jpeg" alt="Energy balance model" />
+</figure>
     
 <p>
-
+It’s fundamentally the same idea as what happens in the real atmosphere. To explore this, we’ll run a series of experiments using a complex model of atmospheric radiation called <a href="http://modtran.spectral.com">MODTRAN</a>; this model compares very well to what we observe in the real atmosphere. 
 </p> 
     
 <p>
-
+If we start out with Earth’s atmosphere but no greenhouse gases (no carbon dioxide, no water vapor, no methane, etc.), its emission spectrum is just a smooth Planck spectrum originating from the surface of the Earth and left unchanged by the atmosphere.
 </p>
       
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/noGHG.png" alt="Planck spectra" />
+</figure>
+    
 <p>
-
+Notice that in this scenario the Earth’s surface is a frozen 259 K. If we add \(\text{CO}_2\) into the atmosphere at 415 ppm (the average 2022 level) and no other greenhouse gases, we see the missing emission chunk at the 667 \(\text{cm}^{-1}\) wavenumber and a large reduction in the radiation emitted to space, 221 \(\text{W}/\text{m}^2\), down from the original 249 \(\text{W}/\text{m}^2\):
 </p>    
     
-<p>
-
-</p> 
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/415CO2_noGHG.png" alt="Planck spectra" />
+</figure>
     
 <p>
-
-</p>
-      
+Since the energy input from the Sun stays the same, the reduction in energy going out means energy will build up within the planet’s surface and atmosphere. This build up of energy can’t go on for very long since it would violate physics’ second law of thermodynamics. So the atmosphere warms and thus emits more blackbody radiation until it comes back into energy balance with what is coming in, 249 \(\text{W}/\text{m}^2\):
+</p> 
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/415CO2En_415CO2_noGHG.png" alt="Planck spectra" />
+</figure>    
+    
 <p>
-
+Notice that this warming has shifted the emission distribution upward, reflective of Earth's warmer temperature (267 K instead of 259 K). If we now add in all of the greenhouse gases currently present in Earth’s atmosphere and let the temperature and outgoing radiation adjust to energy balance, we get:
+</p>
+     
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/allGHG_415CO2En_415CO2_noGHG.png" alt="Planck spectra" />
+</figure>    
+    
+<p>
+With the addition of even more greenhouse gases, we get an even larger increase in surface temperature (up to the present-day 288 K) in order to balance energy coming in to the Earth system with energy going out. This is the radiative impact of Earth’s greenhouse effect.
 </p>
 
 <p>
-
+Is it possible to completely saturate Earth’s atmosphere with greenhouse gases such that adding more won’t heat the surface of Earth? In these experiments we’ve progressively added more greenhouse gases to the atmosphere and we’ve seen that it simply radiatively adjusts: radiation in must balance radiation out and the temperature of the atmosphere warms to accomplish that. The atmosphere of Venus is 96.5% \(\text{CO}_2\) and has a mass 94 times greater than Earth’s atmosphere. It’s surface temperature is an unbearable 737 K = 464°C. Adding even more \(\text{CO}_2\) to Venus’ atmosphere would just make it hotter.
 </p>
       
 <p>
