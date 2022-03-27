@@ -46,23 +46,23 @@ answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
 <p>
 <orbit-reviewarea>
     <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
     cloze=""
-    ></orbit-prompt>
-    <orbit-prompt
-    question=""
-    answer=""
-    ></orbit-prompt>
-    <orbit-prompt
-    question=""
-    answer=""
-    ></orbit-prompt>
-    <orbit-prompt
-    question=""
-    answer=""
-    ></orbit-prompt>
-    <orbit-prompt
-    question=""
-    answer=""
     ></orbit-prompt>
 </orbit-reviewarea>
 </p>
@@ -423,14 +423,14 @@ Another fundamental question is why do we even have gaps in the emission spectra
     <orbit-prompt
     question="Describe the kind of radiation absorption from H$_2$O, CO$_2$, and O$_3$ in this figure"
     question-attachments="https://njsteiger.github.io/gws/img/IR-flux-Earth.png"
-    answer="H$_2$O: continuum absorption, CO$_2$ & O$_3$: band absorption"
+    answer="H$_2$O: continuum absorption, CO$_2$ and O$_3$: band absorption"
     ></orbit-prompt>
     <orbit-prompt
     question="What do gaps in planetary emission spectra indicate?"
     answer="That some radiation is being absorbed by the atmosphere and isn't making it out to space"
     ></orbit-prompt>
     <orbit-prompt
-    cloze="What can a gas molecule do if it doesn't emit a photon after absorbing one?"
+    question="What can a gas molecule do if it doesn't emit a photon after absorbing one?"
     answer="The molecule can move faster"
     ></orbit-prompt>
     <orbit-prompt
@@ -486,7 +486,7 @@ Since the energy input from the Sun stays the same, the reduction in energy goin
 </figure>    
     
 <p>
-Notice that this warming has shifted the emission distribution upward, reflective of Earth's warmer temperature (267 K instead of 259 K). If we now add in all of the greenhouse gases currently present in Earth’s atmosphere and let the temperature and outgoing radiation adjust to energy balance, we get:
+Notice that this warming has shifted the emission distribution upward, reflective of Earth's warmer temperature (267 K instead of 259 K). Mathematically, coming into energy balance means that the integrated area under the spectrum curve remains the same, so if we remove some of the area in one location we have to add more area in another. If we now put in all of the greenhouse gases currently present in Earth’s atmosphere and let the temperature and outgoing radiation adjust to energy balance, we get:
 </p>
      
 <figure>
@@ -506,13 +506,21 @@ Is it possible to completely saturate Earth’s atmosphere with greenhouse gases
 <p>
 <orbit-reviewarea>
     <orbit-prompt
-    question="In this energy balance model with $\epsilon > 0$, why does the surface warm?"
-    question-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer.jpeg"
-    answer="Because the surface receives additional radiation from the atmosphere"
-    answer-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer-highlighted.jpeg"
+    question="If you increase greenhouse gases in the atmosphere but don't let the planet warm, how does the total amount of infrared radiation going out to space change?"
+    answer="It decreases"
+    answer-attachments="https://njsteiger.github.io/gws/img/415CO2_noGHG.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How does the emission spectrum of a planet change in response to warming the surface?"
+    answer="It increases or shifts upward where there is no absorption"
+    answer-attachments="https://njsteiger.github.io/gws/img/415CO2En_415CO2_noGHG.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How does adding greenhouse gases to an atmosphere change the amount of radiation going down to the surface?"
+    answer="It increases the downward radiation"
     ></orbit-prompt>
 </orbit-reviewarea>
-</p>     
+</p>   
     
      
     
