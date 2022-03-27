@@ -146,6 +146,31 @@ Solving these two equations for \(T_s\) we obtain
 If \(\epsilon = 1\), we recover our most recent greenhouse effect result with \(T_s = 302 \text{K}\).  If \(\epsilon = 0\), then the atmosphere has no radiative effect and, as in equation (1), we obtain \(T_s = 255 \text{K}\). The real atmosphere is somewhere between these two extremes, and for \(\epsilon = 0.8\), approximately similar to observations, we find \(T_s = 288 \text{K}\). The real emissivity on Earth actually varies by location and to model Earth more accurately we would want spatial details and even more layers in our model atmosphere, but for such a simple model it does remarkably well. Global warming is analogous to increasing Earth’s emissivity in this model: by adding more greenhouse gases to the atmosphere we increase the amount of infrared radiation the atmosphere absorbs.
 </p>
      
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="In this energy balance model, what is $\epsilon$?"
+    question-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer.jpeg"
+    answer="The emissivity"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="In the context of atmospheric radiation, what does 'emissivity' mean?"
+    answer="It represents the fraction of infrared radiation that is absorbed by the atmosphere"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="In this energy balance model, how would you need to change the value of $\epsilon$ to mimic global warming?"
+    question-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer.jpeg"
+    answer="Increase $\epsilon$ (the emissivity)"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="In this energy balance model with $\epsilon > 0$, why does the surface warm?"
+    question-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer.jpeg"
+    answer="Because the surface receives additional radiation from the atmosphere"
+    answer-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer-highlighted.jpeg"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
+    
     
 </section>
     
@@ -162,7 +187,7 @@ So far we’ve used the physics of blackbody radiation to explain and model the 
 </figure>
     
 <p>
-We can see that compared to the emission spectrum of a perfect blackbody, Mars is missing a big chunk of its emission centered at \(667 \text{cm}^{-1}\) (corresponding to a wavelength of \(15 \mu \text{m}\)). Because of Mars’ simple atmosphere we know this has to be due to \(\text{CO}_2\) absorbing radiation. So the Sun is shining on the surface of Mars, which we know from observations is then emitting radiation like an almost perfect blackbody. But then as that radiation tries to escape to space, a big chunk is absorbed by \(\text{CO}_2\) and is re-emitted back down to the surface. Much of this re-emitted radiation will be absorbed within the surface and atmosphere of Mars, warming the planet and giving it a small greenhouse effect. This process is somewhat different than changing the bulk emissivity in our one-layer energy balance model; changing \(\epsilon\) so that \(0 \lt \epsilon \lt 1\) is like shifting up or down the whole Planck emission spectrum instead of absorbing a chunk of the spectrum like what actually happens. 
+We can see that compared to the emission spectrum of a perfect blackbody, Mars is missing a big chunk of its emission centered at \(667 \text{cm}^{-1}\) (corresponding to a wavelength of \(15 \mu \text{m}\)). Because of Mars’ simple atmosphere we know this has to be due to \(\text{CO}_2\) absorbing radiation. So the Sun is shining on the surface of Mars, which we know from observations is then emitting radiation like an almost perfect blackbody. But then as that radiation tries to escape to space, a big chunk is absorbed by \(\text{CO}_2\) and is re-emitted back down to the surface. Much of this re-emitted radiation will be absorbed within the surface and atmosphere of Mars, warming the planet and giving it a small greenhouse effect. This process is somewhat different than changing the bulk emissivity in our one-layer energy balance model; changing \(\epsilon\) is like shifting the whole Planck emission spectrum instead of absorbing a chunk of the spectrum like what actually happens. 
 </p>
       
 <p>
@@ -206,13 +231,44 @@ We learned in the previous chapter that photons are packets of energy, the amoun
 <input type="checkbox" id="mn-demo" class="margin-toggle"/>
 <span class="marginnote">
 Note: Quantum mechanics does technically forbid very specific kinds of photon energy level transitions, but that’s not important for our purposes here.
-</span> This whole process explains why we only saw a few radiation peaks in the emission spectrum of galaxy NGC 6052 in the previous chapter (reproduced below); the emission was coming from primarily Hydrogen and Helium gases and they can only emit particular frequencies of photons.
+</span> This whole process explains why we only saw a few radiation peaks in the emission spectrum of galaxy NGC 6052 in the previous chapter (reproduced below); the emission was coming from primarily Hydrogen and Helium gases (what galaxies are primarily made of) and they can only emit particular frequencies of photons.
 </p>
       
 <figure class="fullwidth">
 <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
 <img src="img/galaxy-emission-spectra.png" alt="Galaxy spectra" />
 </figure>
+    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="Why are Mars and Earth missing chunks of their emission spectra at $667 \text{cm}^{-1}$ wavenumber/$15 \mu \text{m}$ wavelength?"
+    question-attachments="https://njsteiger.github.io/gws/img/IR-flux-Mars.png"              
+    answer="Because of absorption of radiation by $\text{CO}_2$"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How does an atom emit a photon?"
+    answer="An atom's electron jumps to a lower energy level, using the energy difference to emit a photon"
+    answer-attachments="https://njsteiger.github.io/gws/img/He-emission-absorption.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How does an atom absorb a photon?"
+    answer="An atom's electron absorbs the energy of the photon and jumps to a higher energy level"
+    answer-attachments="https://njsteiger.github.io/gws/img/He-emission-absorption.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How can electrons be moved to different energy levels in an atom?"
+    answer="By absorbing or emitting photons"
+    answer-attachments="https://njsteiger.github.io/gws/img/He-emission-absorption.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why does the Hydrogen and Helium gas of forming galaxies have only emission lines and not a complete Planck spectrum?"
+    question-attachments="https://njsteiger.github.io/gws/img/galaxy-emission-spectra.png"  
+    answer="The gases can only emit specific photon energies/frequencies"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
+    
     
 <p>
 Besides absorption and emission of photons within individual atoms, it’s also possible for groups of atoms, called molecules, to collectively absorb and emit photons. The large majority of atmospheric gases are groups of either two or three atoms, called diatomic molecules and triatomic molecules; examples include \(\text{O}_2\), diatomic, and \(\text{CO}_2\), triatomic. Like in atoms, the electrons in molecules shift around in a wavy cloud of negative charge. The laws of physics dictate that in order for this electron cloud to absorb and emit photons its charge distribution needs <em>change</em> speed or <em>change</em> direction (moving at a constant speed will do nothing). A molecule’s electron cloud can do this if the molecule as a whole rotates or vibrates in particular ways. Let’s look at some examples for diatomic and triatomic molecules:
@@ -236,7 +292,7 @@ The bending vibration mode of \(\text{CO}_2\) is so important because it just so
 </p>
      
 <p>
-One feature of the emission spectra we saw of Mars and Earth that we have not explained yet is why the missing emission chunks are so wide? All the explanations given so far for photon absorption have said that the physics of atoms and molecules allows only particular, individual electron energy states to exist. If atoms and molecules can only absorb photons of a few particular energies or frequencies, why do we see wide bands in the emission spectra instead of narrow lines? Why doesn’t the emission spectra of Mars look like the green line I’ve drawn over the top of this figure?
+One feature of the emission spectra we saw of Mars and Earth that we have not explained yet is why the missing emission chunks are so wide? All the explanations given so far for photon absorption have said that the physics of atoms and molecules allows only particular, individual electron energy states to exist. If atoms and molecules can only absorb photons of a few particular energies or frequencies, why do we see wide bands in the emission spectra instead of narrow lines? Why doesn’t the emission spectrum of Mars look like the green line I’ve drawn over the top of this figure?
 </p> 
     
 <figure>
@@ -281,14 +337,61 @@ If we go back to the emission spectrum of Earth we saw above and we compare the 
 <p>
 \(\text{CO}_2\) and \(\text{O}_3\) are absorbing radiation in broadened lines or bands, while \(\text{H}_2\text{O}\) is absorbing radiation over wide ranges of the spectrum. This kind of absorption is called ‘continuum absorption’ and is due to \(\text{H}_2\text{O}\) being a particularly good absorber of many kinds of infrared radiation. The ability of \(\text{H}_2\text{O}\) to absorb radiation across wide continuums is what makes it the most important greenhouse gas in Earth’s atmosphere. Water vapor alone is responsible for approximately 50% of the greenhouse effect and water-based clouds another 25%.<label for="ref1" class="margin-toggle sidenote-number"></label>
 <input type="checkbox" id="ref1" class="margin-toggle"/>
-<span class="sidenote">Schmidt et al., <em>The attribution of the present-day total greenhouse effect</em>, 2010.</span>
+<span class="sidenote">Schmidt et al., <em>The attribution of the present-day total greenhouse effect</em>, 2010.</span> Such large values for \(\text{H}_2\text{O}\) may cause you to wonder why we focus so much attention on \(\text{CO}_2\), which contributes approximately 20% of the greenhouse effect. As we will discuss in Chapter 8, it is \(\text{CO}_2\) that is largely responsible for the amount of \(\text{H}_2\text{O}\) in the atmosphere, thus \(\text{CO}_2\) is actually the gas that is radiatively in charge even though \(\text{H}_2\text{O}\) has a much bigger greenhouse effect.
 </p>    
     
 <p>
 Another fundamental question is why do we even have gaps in the emission spectra of planets at all? If an atmosphere can emit photons at the same energies that it absorbs them, why can’t the atmosphere just pass along the photons to outer space? Part of the answer has to do with the direction of emission: photon emission in a gas occurs in random directions (as shown in the illustrations), so it’s not possible to just convey the photons directly out to space. The other part of the answer is that there is a fundamental asymmetry between absorption and emission. If I shine the right kind of infrared photons on gas molecules, those molecules will readily absorb the photons. But then the gas molecules could use that energy to zoom around faster or they could end up transferring that energy to another molecule in a collision. This energy that goes into molecular movement not only heats up the gas but it also steals chunks out of the overall emission spectra of the atmosphere. This process is the greenhouse effect at work.
 </p>
     
-    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="What is a molecule?"
+    answer="A group of 2 or more atoms"
+    answer-attachments="https://njsteiger.github.io/gws/img/diatomic-triatomic-molecules.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="A molecule can {absorb or emit photons} by changing the speed or direction of its charge distribution."
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="A molecule can absorb or emit photons by {changing the speed or direction} of its charge distribution."
+    answer-attachments="https://njsteiger.github.io/gws/img/molecular-charge-dist-change.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="A molecule can absorb or emit photons by changing the speed or direction of its {charge distribution}."
+    answer-attachments="https://njsteiger.github.io/gws/img/molecular-charge-dist-change.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is the name for a group of two or more atoms?"
+    answer="molecule"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
     
 </section>
     
@@ -327,7 +430,7 @@ Notice that in this scenario the Earth’s surface is a frozen 259 K. If we add 
 </figure>
     
 <p>
-Since the energy input from the Sun stays the same, the reduction in energy going out means energy will build up within the planet’s surface and atmosphere. This build up of energy can’t go on for very long since it would violate physics’ second law of thermodynamics. So the atmosphere warms and thus emits more blackbody radiation until it comes back into energy balance with what is coming in, 249 \(\text{W}/\text{m}^2\):
+Since the energy input from the Sun stays the same, the reduction in energy going out means energy will build up within the planet’s surface and atmosphere. However, this build up of energy can’t go on forever since that would violate physics’ second law of thermodynamics. So the atmosphere warms and thus emits more blackbody radiation just until it comes back into energy balance with what is coming in, 249 \(\text{W}/\text{m}^2\):
 </p> 
     
 <figure>
@@ -345,16 +448,24 @@ Notice that this warming has shifted the emission distribution upward, reflectiv
 </figure>    
     
 <p>
-With the addition of even more greenhouse gases, we get an even larger increase in surface temperature (up to the present-day 288 K) in order to balance energy coming in to the Earth system with energy going out. This is the radiative impact of Earth’s greenhouse effect.
+With the addition of even more greenhouse gases, we get even more radiation going down to the surface and a larger increase in surface temperature (up to the present-day 288 K) in order to balance energy coming in to the Earth system with energy going out. This is the radiative impact of Earth’s greenhouse effect.
 </p>
 
 <p>
 Is it possible to completely saturate Earth’s atmosphere with greenhouse gases such that adding more won’t heat the surface of Earth? In these experiments we’ve progressively added more greenhouse gases to the atmosphere and we’ve seen that it simply radiatively adjusts: radiation in must balance radiation out and the temperature of the atmosphere warms to accomplish that. The atmosphere of Venus is 96.5% \(\text{CO}_2\) and has a mass 94 times greater than Earth’s atmosphere. It’s surface temperature is an unbearable 737 K = 464°C. Adding even more \(\text{CO}_2\) to Venus’ atmosphere would just make it hotter.
 </p>
-      
+     
+    
 <p>
-
-</p> 
+<orbit-reviewarea>
+    <orbit-prompt
+    question="In this energy balance model with $\epsilon > 0$, why does the surface warm?"
+    question-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer.jpeg"
+    answer="Because the surface receives additional radiation from the atmosphere"
+    answer-attachments="https://njsteiger.github.io/gws/img/energy-balance-model-1layer-highlighted.jpeg"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>     
     
      
     
