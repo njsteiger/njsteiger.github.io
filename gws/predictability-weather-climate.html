@@ -206,21 +206,25 @@ This example shows that after about a week, very small differences in the initia
 <p>
 <orbit-reviewarea>
     <orbit-prompt
-    cloze="The three sources of weather forecast error are: {the initial conditions}, model imperfections, and fundamental predictability limits."
+    cloze="The three sources of weather forecast error are: {imperfect initial conditions}, model imperfections, and fundamental predictability limits."
     ></orbit-prompt>
     <orbit-prompt
     question="How does a system evolve if it has 'sensitive dependence on initial conditions'?"
     answer="Very small changes in the initial state can lead to large differences in a later state"
     ></orbit-prompt>
     <orbit-prompt
-    cloze="The three sources of weather forecast error are: the initial conditions, {model imperfections}, and fundamental predictability limits."
+    cloze="The three sources of weather forecast error are: imperfect initial conditions, {model imperfections}, and fundamental predictability limits."
     ></orbit-prompt>
     <orbit-prompt
     question="What characteristic does a physical system need to have for small initial state differences to amplify with time?"
     answer="Instability"
     ></orbit-prompt>
     <orbit-prompt
-    cloze="The three sources of weather forecast error are: the initial conditions, model imperfections, and {fundamental predictability limits}."
+    cloze="The three sources of weather forecast error are: imperfect initial conditions, model imperfections, and {fundamental predictability limits}."
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What does it mean for a model or system to be unstable?"
+    answer="It allows for small initial state differences to be amplified with time"
     ></orbit-prompt>
 </orbit-reviewarea>
 </p>
@@ -238,7 +242,7 @@ Lorenz (1963) analyzed an idealized set of equations, loosely derived from a ver
 </p>
     
 <p>
-The equations of the Lorenz’s toy model are remarkably simple:
+The equations of Lorenz’s model are remarkably simple:
 
 \[
 \displaylines{
@@ -252,7 +256,7 @@ The unknown variables are \(X\), \(Y\), and \(Z\) and the parameters \(\sigma\),
 </p>
     
 <p>
-The terms of these equations that involve products of the unknowns lead to interactions among time scales (\(XZ\) and \(XY\)). Mathematically speaking, those terms are said to be ‘nonlinear’ because the product of two unknowns is a nonlinear expression. The model itself, as represented by the three equations, is also said to be nonlinear. A nonlinear model permits scale interactions. Realistic models of the atmosphere, such as weather forecast models, are highly nonlinear.
+The terms of these equations that involve products of the unknowns lead to interactions among timescales (\(XZ\) and \(XY\)). Mathematically speaking, those terms are said to be ‘nonlinear’ because the product of two unknowns is a nonlinear expression. The model itself, as represented by the three equations, is also said to be nonlinear. A nonlinear model permits scale interactions. Realistic models of the atmosphere, such as weather forecast models, are highly nonlinear.
 </p>
     
 <p>
@@ -273,7 +277,7 @@ Here’s a three-dimensional plot of the ‘Lorenz attractor’:
 </figure> 
     
 <p>
-The system traces out a path that looks like two butterfly wings. The wings are called ‘attractors’ because the solution tends to stay close to them, while the rest of the domain is avoided. At a randomly chosen time, the probability of finding the solution near one of the attractors is high. Occasionally the solution jumps from one attractor to the other. These transitions between attractors occur somewhat randomly. Lorenz demonstrated that this simple system exhibits sensitive dependence on initial conditions, analogous to the behavior of the forecasts we saw previously. 
+The solution of the Lorenz equations traces out a path that looks like two butterfly wings. The wings are called ‘attractors’ because the solution tends to stay close to them, while the rest of the domain is avoided. At a randomly chosen time, the probability of finding the solution near one of the attractors is high. Occasionally the solution jumps from one attractor to the other. These transitions between attractors occur somewhat randomly. Lorenz demonstrated that this simple system exhibits sensitive dependence on initial conditions, analogous to the behavior of the forecasts we saw previously. 
 </p>
     
 <p>
@@ -295,33 +299,41 @@ We can say that sensitive dependence on past history imposes a ‘predictability
 </p>
     
 <p>
-Errors on smaller scales double (grow proportionately) faster than errors on larger scales, simply because the intrinsic time scales of smaller-scale circulations are shorter. For example, the intrinsic time scale of a buoyant thermal in the boundary layer might be on the order of 20 minutes, that of a thunderstorm circulation might be on the order of an hour, that of a winter storm might be two or three days, and that of a larger atmospheric wave that just fits on the Earth might be two weeks. Weather systems with longer intrinsic time scales are more predictable. As a result, the predictability limit is a function of scale; larger scales are generally more predictable than smaller scales.
+Errors on smaller scales double (grow proportionately) faster than errors on larger scales, simply because the intrinsic timescales of smaller-scale circulations are shorter. For example, the intrinsic timescale of a buoyant thermal in the boundary layer might be on the order of 20 minutes, that of a thunderstorm circulation might be on the order of an hour, that of a winter storm might be two or three days, and that of a larger atmospheric wave that just fits on the Earth might be two weeks. Weather systems with longer intrinsic timescales are more predictable. As a result, the predictability limit is a function of scale; larger scales are generally more predictable than smaller scales.
 </p>
     
 <p>
-When we reduce the errors in the initial conditions on small spatial scales by adding more observations, the range of our skillful forecasts is increased by a time increment that is approximately equal to the predictability time of the newly resolved small scales. For example, suppose that we are able to observe weather systems with intrinsic time scales of two days or longer and that we have models able to model  such weather systems. By spending a lot of money, we can improve the observing system and the forecast model to permit prediction of weather systems with shorter intrinsic time scales—say, one day. This will lead to a one-day improvement in our forecast skill. Pushing the initial error down to smaller and smaller spatial scales is, therefore, a strategy for forecast improvement, but it is subject to a law of diminishing returns. Each successive refinement of the observing system and the models gives a smaller increase in the predictability time. At some point, we may choose to forego the improvement that would come from more accurate initial conditions and higher resolution models on the grounds that the benefit would be too small to justify the cost.
+When we reduce the errors in the initial conditions on small spatial scales by adding more observations, the range of our skillful forecasts is increased by a time increment that is approximately equal to the predictability time of the newly resolved small scales. For example, suppose that we are able to observe weather systems with intrinsic timescales of two days or longer and that we have models able to model  such weather systems. By spending a lot of money, we can improve the observing system and the forecast model to permit prediction of weather systems with shorter intrinsic timescales—say, one day. This will lead to a one-day improvement in our forecast skill. Pushing the initial error down to smaller and smaller spatial scales is, therefore, a strategy for forecast improvement, but it is subject to a law of diminishing returns. Each successive refinement of the observing system and the models gives a smaller increase in the predictability time. At some point, we may choose to forego the improvement that would come from more accurate initial conditions and higher resolution models on the grounds that the benefit would be too small to justify the cost.
 </p>
      
  <p>
 <orbit-reviewarea>
     <orbit-prompt
-    question="What is a 'scale interaction'?"
-    answer=""
+    question="What are 'scale interactions'?"
+    answer="When processes of different sizes interact with each other"
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    question="How do 'scale interactions' lead to nonperiodic or chaotic behavior?"
+    answer="It allows small errors on small scales to grow to be large errors on large scales"
+    answer-attachments="https://njsteiger.github.io/gws/img/error-growth-forecasts.png"
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    cloze="'Sensitive dependence on initial conditions' comes from the combination of {instability} and scale interactions."
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    answer="Scale interactions"
+    question="What is the term for when processes of different sizes interact with each other?"
     ></orbit-prompt>
     <orbit-prompt
-    cloze=""
+    cloze="'Sensitive dependence on initial conditions' comes from the combination of instability and {scale interactions}."
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What does the weather forecast 'predictability limit' mean?"
+    answer="A time limit beyond which the weather is fundamentally unpredictable"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why does a weather forecast 'predictability limit' exist?"
+    answer="The atmosphere's time evolution has a sensitive dependence on initial conditions"
     ></orbit-prompt>
 </orbit-reviewarea>
 </p>   
@@ -344,11 +356,11 @@ In 1969 Lorenz outlined three distinct approaches to determine the limits of pre
        
     
 <p>
-The predictability limit exists because small errors on the smallest spatial scales can grow in both amplitude and scale until they significantly contaminate the largest scales<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Lorenz, <i>The predictability of a flow which possess many scales of motion</i>, 1969.</span> (comparable to the radius of the Earth) in about two to three weeks. Likewise small errors on large scales can propagate down to smaller scales,<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Durran and Gingrich, <i>Atmospheric predictability: Why butterflies are not of practical importance</i>, 2014.</span> also limiting the predictability on a similar time scale. 
+The predictability limit exists because small errors on the smallest spatial scales can grow in both amplitude and scale until they significantly contaminate the largest scales<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Lorenz, <i>The predictability of a flow which possess many scales of motion</i>, 1969.</span> (comparable to the radius of the Earth) in about two to three weeks. Likewise small errors on large scales can propagate down to smaller scales,<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Durran and Gingrich, <i>Atmospheric predictability: Why butterflies are not of practical importance</i>, 2014.</span> also limiting the predictability on a similar timescale. 
 </p>
     
 <p>
-Some aspects of atmospheric behavior may nevertheless be predictable on longer time scales. This is particularly true if they are forced by slowly changing external influences. An obvious example is the seasonal cycle. Another example is anomalies of the average weather that are associated with long-lasting sea surface temperature fluctuations, such as those due to the El Niño–Southern Oscillation. 
+Some aspects of atmospheric behavior may nevertheless be predictable on longer timescales. This is particularly true if they are forced by slowly changing external influences. An obvious example is the seasonal cycle. Another example is anomalies of the average weather that are associated with long-lasting sea surface temperature fluctuations, such as those due to the El Niño–Southern Oscillation. 
 </p>
 
     
@@ -358,7 +370,7 @@ Some aspects of atmospheric behavior may nevertheless be predictable on longer t
 <h2 id="climate-prediction">Climate Prediction</h2>     
     
 <p>
-If weather prediction is impossible beyond about two weeks, how can climate prediction be contemplated at all? Two factors make climate change prediction possible. First, the climate system has components with very long memories, including especially the ocean. Second, the climate system responds in systematic and predictable ways to changes in the external forcing.
+If weather prediction is impossible beyond about two weeks, how can climate prediction be contemplated at all? Two factors make climate change prediction possible. First, the timescales of weather and climate are very different. Forecasting multiyear average climate conditions is therefore fundamentally different than forecasting the weather. Second, the climate system responds in systematic and predictable ways to changes in the external forcing and the future external forcing can be reasonably predicted (global warming forecasts are made for several plausible future forcing scenarios).
 </p>
     
 <p>
@@ -377,6 +389,25 @@ Climate prediction is possible when there is a strong, predictable change in the
 Weather prediction is very different from climate prediction because changes in the day-to-day weather are not due to changes in the external forcing, while changes in climate are. Weather prediction is limited by sensitive dependence on past history while climate prediction is not.
 </p>
     
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="How long is the predictability limit for midlatitude weather forecasts?"
+    answer="About two weeks"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why is the seasonal cycle predictable every year?"
+    answer="The seasonal change in sunlight (Earth's orbit) is predictable"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why are global warming forecasts meaningful when they are beyond the weather predictability limit?"
+    answer="Earth has a predictable long-term response to external forcing"
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="Climate prediction is possible when {there is a strong, predictable change in the external forcing}."
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p> 
     
 <p>\(\Uparrow\) <a href="#top">To the top</a></p>
 <!--<p>\(\Rightarrow\) <a href="atmosphere-energy-balance.html">Next chapter</a></p>-->
