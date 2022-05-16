@@ -80,11 +80,19 @@ Consider a simple example. Suppose that the brightness of the Sun were to change
     
 \[\lambda \Delta R = \Delta T \; , \tag{1}\]
 
-where \(\lambda\) is called the climate sensitivity parameter, which determines how strong the temperature response is for a given climate system.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">It turns out that Earth now, Earth during an ice age, Mars now, Venus now, etc., all have different climate sensitivity parameters.</span> This equation is a ‘linear’ equation and assumes that the change in forcing, \(\Delta R\), is relatively small (the current energy imbalance due to global warming is about 1 \(\text{W}/\text{m}^2\), compared to the total energy flux of about 340 \(\text{W}/\text{m}^2\)). 
+where \(\lambda\) is called the climate sensitivity parameter, which determines how strong the temperature response is for a given climate system.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">It turns out that Earth now, Earth during an ice age, Mars now, Venus now, etc., all have different climate sensitivity parameters.</span> This equation is a ‘linear’ equation and assumes that the change in forcing, \(\Delta R\), is relatively small (the current energy imbalance due to global warming is about 1 \(\text{W}/\text{m}^2\), compared to the total energy flux of about 340 \(\text{W}/\text{m}^2\)).
+</p>    
+
+<p>
+The most fundamental planetary energy balance we can use in calculating the climate sensitivity parameter, \(\lambda\), is the Stefan-Boltzman law, \(\mathcal{F}=\sigma T^4\), that we learned about in Chapter 2. We can write Eq. (1) in differential form and plug in the Stefan-Boltzman law to derive the following,
+    
+\[\lambda = \frac{\Delta T}{\Delta R } = \frac{dT}{dF} = \frac{1}{dF/dT} = \frac{1}{4\sigma T^3} \; .\]
+
+In Chapter 2 we calculated that the Earth without an atmosphere would be 253.7 K, so this implies that \(\lambda = 0.27 \text{W}/\text{m}^2\) for the most fundamental energy balance model of Earth.
 </p>    
     
 <p>
-This equation works well for a planet with no atmosphere. But what if by changing the solar radiative forcing, the Earth’s atmosphere were to respond in some way? What if the atmosphere could counteract or damp the forcing? If the Sun were to put out more energy, perhaps the Earth’s atmosphere could change somehow to cool itself down so that it wouldn’t warm as much as it might otherwise do without an atmosphere? Alternatively, perhaps it’s possible for Earth’s atmosphere to amplify the increase in solar radiation, making Earth even hotter than it might otherwise be? These effects are called ‘feedbacks’ and they occur widely in many technical fields and even in daily life. ‘Positive feedbacks’ amplify and ‘negative feedbacks’ counteract or damp.
+So Eq. (1) works for a planet with no atmosphere. But what if by changing the solar radiative forcing, the Earth’s atmosphere were to respond in some way? What if the atmosphere could counteract or damp the forcing? If the Sun were to put out more energy, perhaps the Earth’s atmosphere could change somehow to cool itself down so that it wouldn’t warm as much as it might otherwise do without an atmosphere? Alternatively, perhaps it’s possible for Earth’s atmosphere to amplify the increase in solar radiation, making Earth even hotter than it might otherwise be? These effects are called ‘feedbacks’ and they occur widely in many technical fields and even in daily life. ‘Positive feedbacks’ amplify and ‘negative feedbacks’ counteract or damp.
 </p>
     
 <p>
@@ -96,7 +104,7 @@ A familiar example of a negative feedback is temperature control by a thermostat
 </p>
     
 <p>
-How then can we add feedbacks into our mathematical description of climate forcing, Eq. (1)? Adding in a feedback means that some part of the temperature response gets added back into the radiative forcing; some of the temperature ‘output’ is fed back into the radiative ‘input’, so that it can increase or reduce the initial forcing. The simplest representation of this small radiative addition is linear, \(c_1 \Delta T\), where \(c_1\) is the proportion of the temperature response that affects the radiative forcing. So we can modify Eq. (1) so that we have 
+How then can we add feedbacks into our mathematical description of climate forcing, Eq. (1)? Adding in a feedback means that some part of the temperature response gets added back into the radiative forcing; some of the temperature ‘output’ is fed back into the radiative ‘input’, so that it can increase or reduce the effect of the initial forcing. The simplest representation of this small radiative addition is linear, \(c_1 \Delta T\), where \(c_1\) is the proportion of the temperature response that affects the radiative forcing. So we can modify Eq. (1) so that we have 
 
 \[\Delta T = \lambda (\Delta R + c_1 \Delta T )\; ,\]
 
