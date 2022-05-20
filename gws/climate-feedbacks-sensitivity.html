@@ -458,17 +458,14 @@ The figure below summarizes the numeric values of all these categories of feedba
     answer="Clouds are complex: they have many processes and many interactions across spatial scales"
     ></orbit-prompt>
     <orbit-prompt
-    question="Cloud feedbacks can be either positive or negative"
-    answer="Cool"
+    question="Are specific cloud feedbacks all positive, all negative, or both positive and negative?"
+    answer="Both positive and negative"
+    answer-attachments="https://njsteiger.github.io/gws/img/cloud-feedback-values.png"
     ></orbit-prompt>
     <orbit-prompt
     question="Is the total cloud feedback positive or negative?"
     answer="Positive"
     answer-attachments="https://njsteiger.github.io/gws/img/cloud-feedback-values-positive-total.png"
-    ></orbit-prompt>
-    <orbit-prompt
-    question="Do high clouds tend to cool or warm Earth?"
-    answer="Warm"
     ></orbit-prompt>
 </orbit-reviewarea>
 </p>    
@@ -480,7 +477,7 @@ The figure below summarizes the numeric values of all these categories of feedba
 <h2 id="climate-sensitivity">Climate Sensitivity</h2>       
       
 <p>
-In this chapter we have discussed the four most important climate feedbacks: albedo, water vapor, lapse rate, and cloud. While there are other feedbacks, they are small compared to these four and don’t contribute significantly to the overall feedback of the climate system. With both positive and negative feedback processes in the climate system, it’s not clear at first glance what the overall response to global warming will be. For example, we saw that tropical convection could lead to both a negative lapse-rate feedback and also a positive high-cloud feedback. How do all of these combine and which are most important? 
+In this chapter we have discussed the four most important climate feedbacks: albedo, water vapor, lapse rate, and cloud. While there are other feedbacks, they are small compared to these four and don’t contribute significantly to the overall feedback of the climate system. With both positive and negative feedback processes in the climate system, it’s not clear at first glance what the overall response to global warming will be. For example, we saw that tropical convection could lead to both a negative lapse-rate feedback and also a positive high-cloud altitude feedback. How do all of these combine and which are most important? 
 </p>
     
 <p>
@@ -488,8 +485,9 @@ To explore this, let’s return to the equations from the first part of this cha
 
 \[\Delta T = \frac{\lambda \Delta R}{1-f} \; .\]
     
-We computed that a no-atmosphere planet would have a climate sensitivity parameter of \(\lambda = 0.27\,\text{m}^2\text{K}/\text{W}\). For Earth with a realistic atmosphere, but with feedbacks turned off, it turns out that \(\lambda = 0.31\,\text{m}^2\text{K}/\text{W}\). We know that the feedbacks \(f\) are going to have to be calculated based on what the climate system is like. Though we should note that for a stable climate system \(-\infty &lt; f &lt; 1\). But what value should we use for \(\Delta R\), the change in radiative forcing? There have been many different radiative forcings that the Earth has experienced and because we don’t know for sure how humans will act in the future, we don’t know what the cumulative radiative forcing will be due to global warming once it is all done. A useful experimental framework that makes this easier and more unified is to use a \(\Delta R\) that represents a doubling of \(\text{CO}_2\) from preindustrial levels. As you may recall from a previous assignment, the total radiative forcing from any doubling of \(\text{CO}_2\) in Earth’s atmosphere is approximately the same (e.g., going from 10 ppm to 20 ppm or 400 ppm to 800 ppm). In a realistic Earth atmosphere this works out to be \(\Delta R = 4\, \text{W}/\text{m}^2\). 
+We computed that a no-atmosphere planet would have a climate sensitivity parameter of \(\lambda = 0.27\,\text{m}^2\text{K}/\text{W}\). For Earth with a realistic atmosphere, but with feedbacks turned off, it turns out that \(\lambda = 0.31\,\text{m}^2\text{K}/\text{W}\). We know that the feedbacks \(f\) are going to have to be calculated based on what the climate system is like. Though we should note that for a stable climate system \(-\infty &lt; f &lt; 1\). But what value should we use for \(\Delta R\), the change in radiative forcing? There have been many different radiative forcings that the Earth has experienced and because we don’t know for sure how humans will act in the future, we don’t know what the cumulative radiative forcing will be due to global warming once it is all done. A useful experimental framework that makes this easier and more unified is to use a \(\Delta R\) that represents a doubling of \(\text{CO}_2\). It turns out that the total radiative forcing from any doubling of \(\text{CO}_2\) in Earth’s atmosphere is approximately the same, no matter the starting value (e.g., \(\Delta R\) is the same going from 10 ppm to 20 ppm or 400 ppm to 800 ppm).<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">If you are reading this as part of my course, you may recall this fact from a previous assignment!</span> In a realistic Earth atmosphere this works out to be \(\Delta R = 4\, \text{W}/\text{m}^2\). 
 </p>
+
     
 <p>
 The annual- and global-mean surface air temperature response to a doubling of \(\text{CO}_2\) is known as the ‘climate sensitivity’. Climate sensitivity is a central topic in the science of global warming. In fact many debates about global warming are often debates about the numeric value of Earth’s climate sensitivity because it is the theoretical concept that explains how much warming we can expect to see. 
@@ -500,11 +498,11 @@ If there were no feedbacks, what would Earth’s climate sensitivity be (denoted
 </p>
     
 <p>
-What if we put them all together? The total feedback factor is equal to the sum of the albedo, water vapor, lapse rate, and cloud feedback factors, so \(f=f_a+f_w+f_\Gamma+f_c=0.59\), a value based on recent estimates.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Sherwood, et al., <i>An Assessment of Earth’s Climate Sensitivity Using Multiple Lines of Evidence</i>, (2020).</span> The climate sensitivity including all these feedbacks comes out to \(\Delta T_{2xCO2} = 3.05\, \text{K}\). So a doubling of \(\text{CO}_2\) is estimated to result in about 3 degrees of global-mean warming. If we compare this value with the no-feedbacks case, we see that feedbacks amplify the warming and contribute about 2 degrees for a \(\text{CO}_2\) doubling. This is a big difference. The global warming we’ve experienced thus far since the 1800s is about 1.3 K. If there were no climate feedbacks, keeping global warming in check would be much easier.
+What if we put them all together? The total feedback factor is equal to the sum of the albedo, water vapor, lapse rate, and cloud feedback factors, so \[f=f_a+f_w+f_\Gamma+f_c=0.59\;,\] a value based on recent estimates.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Sherwood, et al., <i>An Assessment of Earth’s Climate Sensitivity Using Multiple Lines of Evidence</i>, (2020).</span> The climate sensitivity including all these feedbacks comes out to \(\Delta T_{2xCO2} = 3.05\, \text{K}\). So a doubling of \(\text{CO}_2\) is estimated to result in about 3 degrees of global-mean warming. If we compare this value with the no-feedbacks case, we see that feedbacks amplify the warming and contribute about 2 degrees for a \(\text{CO}_2\) doubling. This is a big difference. The global warming we’ve experienced thus far since the 1800s is about 1.3 K. If there were no climate feedbacks, keeping global warming in check would be much easier.
 </p>
     
 <p>
-A very important issue we’ve so far neglected in this discussion about climate sensitivity is the uncertainties involved. The calculations we’ve made here are for the average estimates of \(\Delta R\), \(\lambda\), and \(f\). If you include the uncertainties in each, climate sensitivity is not a single value but actually a distribution of values. And then if you include different kinds of calculations, that can produce different distributions! One ambitious study<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Sherwood, et al., <i>An Assessment of Earth’s Climate Sensitivity Using Multiple Lines of Evidence</i>, (2020).</span> set out to include as much information as reasonably possible to estimate climate sensitivity. The most important distribution to look at is the black ‘Baseline PDF’ plotted below. 
+A very important issue we’ve so far neglected in this discussion about climate sensitivity is the uncertainties involved. The calculations we’ve made here are for the average estimates of \(\Delta R\), \(\lambda\), and \(f\). If you include the uncertainties in each, climate sensitivity is not a single value but actually a distribution of values. And then if you include or exclude certain kinds of information or calculations, you can even produce different distributions. One ambitious study<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Sherwood, et al., <i>An Assessment of Earth’s Climate Sensitivity Using Multiple Lines of Evidence</i>, (2020).</span> set out to include as much information as reasonably possible to estimate climate sensitivity, see below. The most important distribution to look at is the black ‘Baseline PDF’ plotted below. 
 </p>
     
 <figure>
@@ -520,23 +518,24 @@ You can see that the most likely value of climate sensitivity is about 3 K. But 
 <p>
 <orbit-reviewarea>
     <orbit-prompt
-    question=""
-    answer=""
+    question="How is 'climate sensitivity' defined?"
+    answer="The annual- and global-mean surface air temperature response to a doubling of CO2"
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    question="How do all climate feedbacks together change Earth's temperature response to the increasing CO2 emissions?"
+    answer="The feedbacks amplify the warming"
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    cloze="The most likely value of Earth's climate sensitivity is about {3}K."
     ></orbit-prompt>
     <orbit-prompt
-    question=""
-    answer=""
+    question="What does the following refer to: 'The annual- and global-mean surface air temperature response to a doubling of CO2'?"
+    answer="Climate sensitivity"
     ></orbit-prompt>
     <orbit-prompt
-    cloze=""
+    question="Sketch the approximate shape of an uncertainties-included climate sensitivity distribution"
+    answer=""
+    answer-attachments="https://njsteiger.github.io/gws/img/climate-sensitivity-sherwood2020-mod.png"
     ></orbit-prompt>
 </orbit-reviewarea>
 </p>    
