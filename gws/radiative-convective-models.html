@@ -23,9 +23,7 @@
           <!--
 HERE is the code for a side citation:
 
-<label for="ref1" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="ref1" class="margin-toggle"/>
-<span class="sidenote">CONTENT HERE</span>
+<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">CONTENT HERE</span>
 
 HERE is the code for a figure:
 
@@ -70,54 +68,82 @@ answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
           -->
           
 <section>
-<h2 id="greenhouse-energy-balance-model">Energy Balance Model of Earth’s Greenhouse Effect</h2>    
+<h2 id="simple-climate-models">Simple Climate Models</h2>    
     
 <p>
-
+The climate models that we have learned about so far are of the simplest kind: energy balance models. In Chapter 3 we learned about a model that had only a single layer of atmosphere in it, reproduced below.
+</p>
+    
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+<img src="img/energy-balance-model-1layer.jpeg" alt="1-layer atmospheric model" />
+</figure>    
+    
+<p>
+Even though we could get a lot of insight about the climate of Earth from this model, it isn’t suited to asking all sorts of questions we might like to answer. The model doesn’t have clouds, it doesn’t rain, it doesn’t have an ocean or land plants. The atmosphere doesn’t move around and it doesn’t model radiation in a very sophisticated way. There are a lot of things it doesn’t have. Because it’s missing all these kinds of parts we can’t even properly ask questions like: How much does temperature change by doubling \(\text{CO}_2\)?
 </p>
     
 <p>
-
+The next level up in complexity is what’s known as a one-dimensional (1-D) vertical column model of the atmosphere. To visualize these models, imagine taking a 1 meter-squared column of atmosphere from the surface to the top and making a mathematical model of that with about 20 layers. The simplest versions of these models assume that that column of air is even isolated from any air around it, sort of like if it were placed inside a very tall tube. 
 </p>
     
 <p>
-
+1-D column models were first developed in the 1960s and some fundamental climate science work was done using these models. In fact, the primary scientist who developed them, Syukuro Manabe, won the Nobel Prize in Physics in 2021, mostly for his work using 1-D atmospheric column models (as well as 3-D climate models in later decades).<label for="mn-demo" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-demo" class="margin-toggle"/><span class="marginnote">
+This was the first time that a climate scientist was ever awarded the Nobel Prize in Physics. Another climate scientist, Klaus Hasselmann, was co-awarded the Nobel this same year for his fundamental work on modeling the ocean.</span> Such 1-D models are sufficiently realistic that you can ask questions like what the climate sensitivity is, but they are also simple enough that they aren’t hard to understand. So before we get to learning about the massively complex atmosphere-ocean-land climate models in the next chapter, we’ll start here with the simpler 1-D models.
 </p>
     
 <p>
-
+Our journey into the world of 1-D models will consist of understanding the key results from experiments that Manabe and colleagues performed and published in the 1960s. These have been called <a href="https://theconversation.com/the-most-influential-climate-science-paper-of-all-time-169382">‘the most influential climate science papers of all time’</a>.
+</p>
+    
+    
+</section>
+    
+<section>      
+<h2 id="radiative-convective-equil">Radiative-Convective Equilibrium</h2>     
+    
+<p>
+Manabe and colleagues at the ‘Geophysical Fluid Dynamical Laboratory’ of what was then the United States Weather Bureau, developed the first 1-D atmospheric column model. It had 18 layers in it. They called their model a ‘radiative-convective’ model because it could transfer energy up and down by ‘radiating’ it (like in our energy balance model) and by ‘convecting’ or moving air up and down. The model also included clouds in a basic way. It calculated the solar and infrared radiation exchanges using a method that accounted for the radiative characteristics of all the major greenhouse gases; the model could therefore account for changes in different gas concentrations. 
 </p>
     
 <p>
-
+In the model, convection was represented by a procedure called ‘convective adjustment’. In the atmosphere convection normally happens in the atmosphere when its unstable: high energy air below low energy air. Like how heating the air inside a hot air balloon makes it rise, so will a chunk of air rise up if it has higher energy than the air around it. So in the model when the lapse rate became physically unstable, the lapse rate was ‘adjusted’ or changed back to a stable lapse rate of 6.5°C/km (which is the global average lapse rate value). This adjustment was performed such that the total energy of the column was conserved.
 </p>
     
 <p>
-
+Manabe initialized the model with initial conditions reflective of the average observed concentrations of greenhouse gases and clouds, but with an atmosphere that had the same temperature from top to bottom. The model was solved numerically in small time steps (similar to how weather forecast models are run today) and the vertical temperature profile adjusted over time until it reached a steady ‘equilibrium’ state. The figure below shows how the vertical temperature profile adjusted from two different hot and cold conditions over time. The temperature converges over time until it gets to the equilibrium temperature profile shown by the thick solid black line.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">The vertical profile of temperature as it approaches radiative-convective equilibrium from cold and warm isothermal initial conditions. The dashed and solid lines show the approaches from cold and warm isothermal atmospheres with temperatures of 170 K and 360 K, respectively; the thick solid line indicates the final profile. The thin quasi-horizontal solid line between 9 and 16 km altitude denotes the position of the tropopause. Manabe and Strickler, <i>Thermal Equilibrium of the Atmosphere with a Convective Adjustment</i>, (1964).</span>
+<img src="img/manabe-profile-goingto-equilibrium.png" alt="Going to equilibrium" />
+</figure>    
+    
+<p>
+This thick black line shows a troposphere that cools with height, following the 6.5°C/km lapse rate, and a stratosphere that warms with height. The general shape of the profile compares well with the observed ‘US standard atmosphere’, both plotted together below.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Manabe and Strickler, <i>Thermal Equilibrium of the Atmosphere with a Convective Adjustment</i>, (1964).</span>
+<img src="img/manabe-rad-convec-vs-us-standard.png" alt="Verification of profiles" />
+</figure>    
+    
+<p>
+Previous models of the atmosphere were basically just energy balance models (some with many layers) that could only radiate energy. So how does the addition of convection change the temperature of the atmosphere? To explore this, Manabe ran an additional simulation that turned off the convection, so that energy balance could only happen through radiation. Results comparing the radiative-convective equilibrium with the radiative-only calculation are shown below.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Manabe and Strickler, <i>Thermal Equilibrium of the Atmosphere with a Convective Adjustment</i>, (1964).</span>
+<img src="img/manabe-radiative-vs-convective-equil.png" alt="Radiative vs Radiative-Convective Equilibrium" />
+</figure>    
+    
+<p>
+In this figure we can clearly see that convection has a big impact on the lapse rate and surface temperature. Without convection, Earth’s surface temperature would be about 333 K or 60°C, compared to 300 K or 27°C in the experiment with convection. Also, with no convection, the lapse rate would be much larger than 6.5°C/km. Convection therefore evens out the troposphere’s temperature: it cools down the surface and warms up the upper troposphere. 
 </p>
     
 <p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
+The stratospheres aren’t very different from each other in these two experiments because there’s no convection in the stratosphere; the only way it can transport energy up and down is through radiation. 
 </p>
   
 
