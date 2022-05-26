@@ -2,7 +2,7 @@
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 IBMPlexSans-Regular;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww16360\viewh16580\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww16360\viewh14380\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs36 \cf0 \
@@ -48,17 +48,27 @@ The stratospheres aren\'92t very different from each other in these two experime
 \
 \
 \
-Another way of looking at the influence of convection is to plot how the atmosphere is heated and cooled by radiation and convection at different heights. \
+How is the atmosphere heated and cooled? And is radiation or convection more important for transporting energy? We can see this by looking at how each process heats or cools the atmosphere with height, below.\
 \
+FIG: manabe-energy-balance-kinds.png\
+Caption: The vertical distributions of the rates of temperature change (\'b0C) due to convection, solar radiation, and longwave radiation in a cloud-free atmosphere. Manabe and Strickler, <i>Thermal Equilibrium of the Atmosphere with a Convective Adjustment</i>, (1964).\
 \
+In this figure we can see that infrared radiation, called \'91Longwave radiation\'92, is what cools the atmosphere at all levels; note that it does also heat parts of the lower atmosphere, but its cooling rate is larger than its heating rate when added together. What heats the atmosphere is solar radiation and also convection. Surprisingly, convection does more of the heating in the troposphere than solar radiation does; what it\'92s doing is transporting heat from the surface to the middle and upper portions of the troposphere. We can see, from this figure combined with the previous figure, that convection is a more efficient heat transport mechanism in the atmosphere than radiation.  \
 \
-Figure 3.3a shows how the heat balance is maintained in the cloud-free at- mosphere that satisfies the condition of radiative-convective equilibrium. In the troposphere, heat balance is maintained between heating due to convec- tion and absorption of solar radiation and cooling due to longwave radiation. As described in chapter 1, water vapor and carbon dioxide emit and absorb longwave radiation over a wide range of the terrestrial longwave spectrum and are responsible for the net longwave cooling of the troposphere shown in figure 3.3a. On the other hand, water vapor has strong absorption bands of solar radiation between 0.8 and 4 \uc0\u956 m (figure 1.6d) and is responsible for the solar heating of the troposphere shown in both panels of figure 3.3.\
+What gases in the atmosphere are doing the radiative cooling and heating? The figure below shows the heating and cooling contributions of each gas as a function of height.\
 \
-In the stratosphere, where convective heating is absent, the heat balance is maintained between the heating due to absorption of solar radiation and the net cooling due to longwave radiation, as shown in figure 3.3a. The solar heating is attributable mainly to ozone, which absorbs ultraviolet radiation very intensely at the short end of solar spectrum, at wavelengths shorter than 0.3 \uc0\u956 m (figure 1.6d). On the other hand, carbon dioxide emits and absorbs longwave radiation very intensely around the wavelength of 15 \u956 m (figure 1.6d) and is mainly responsible for the net longwave cooling of the stratosphere shown in figure 3.3a. Although water vapor also contributes to the cooling, its magnitude is smaller than that of carbon dioxide, as shown in figure 3.3b. In summary, the heat balance of the stratosphere is maintained essentially between the heating due to absorption of solar radiation by ozone and net cooling due to the emission and absorption of longwave radiation by carbon dioxide.\
+FIG: manabe-energy-balance-gases.png\
+Caption: Solid lines indicate the vertical profiles of the rate of temperature change (\'b0C) due to the absorption of solar radiation by water vapor (S \\(\\text\{H\}_2\\text\{O\}\\)), carbon dioxide (S \\(\\text\{CO\}_2\\)), and ozone (S \\(\\text\{O\}_3\\)); dashed lines indicate the rates of net temperature change due to the emission and absorption of longwave radiation by water vapor (L \\(\\text\{H\}_2\\text\{O\}\\)), carbon dioxide (L \\(\\text\{CO\}_2\\)), and ozone (L \\(\\text\{O\}_3\\)), respectively. Manabe and Strickler, <i>Thermal Equilibrium of the Atmosphere with a Convective Adjustment</i>, (1964).\
 \
-The state of radiative-convective equilibrium discussed above was ob- tained for the cloud-free atmosphere. In the actual atmosphere, however, clouds cover about half of the globe. As noted in chapter 1, clouds exert a greenhouse effect that warms the Earth\'92s surface through the absorption of longwave radiation. On the other hand, clouds reflect incoming solar radiation, exerting a cooling effect. Because the latter is larger than the former, clouds have a net cooling effect upon the heat budget of the planet. In order to simulate realistically the temperature of the Earth\'92s surface, Manabe and Strickler repeated the computation, prescribing cloudiness based upon observed data compiled by London (1957). The equilibrium temperature thus obtained was 287 K (14\'b0C) at the Earth\'92s surface and is similar to the observed global mean temperature. It is, however, about 13\'b0C colder than the 300 K (27\'b0C) temperature obtained for the cloud- free case, indicating the net cooling effect of clouds upon the global mean temperature at the Earth\'92s surface.\
+Let\'92s start by looking at the solar radiation heating side of the graph. At the top we see solar absorption by ozone, \\(\\text\{O\}_3\\), is the reason we have a warm stratosphere (as we learned in Chapter 2). There are also small contributions to heating the stratosphere from water vapor and carbon dioxide. \
 \
-In figure 3.4, the vertical distribution of temperature in radiative- convective equilibrium thus obtained is compared with the US standard atmosphere, which represents schematically the profile of the annual mean temperature over the mainland of the United States in middle latitudes. The model reproduces the temperature of the closely coupled surface- troposphere system quite well, although it underestimates the temperature of the lower stratosphere by several degrees.\
+In the troposphere the only non-convective net heating is from water vapor absorbing solar radiation. Why doesn\'92t \\(\\text\{CO\}_2\\) show up as heating the troposphere? It does heat the troposphere but only in the longwave and it also cools in the longwave too; if you add these together, the cooling impact has a larger magnitude than the warming impact and so the \'91L \\(\\text\{CO\}_2\\)\'92 line is shown to be negative. This might seem counter-intuitive, but keep in mind that what we are looking at here is what is happening in the atmosphere and not the surface. \\(\\text\{CO\}_2\\) and other greenhouse gases heat the surface, which makes it warmer than it otherwise would have been without them. And if you increase the greenhouse gases, it warms the surface further. But when you look only at the atmosphere by itself, their net impact is to cool the atmosphere.\
+\
+The left hand side of the graph above shows us which gases cool the atmosphere. In the stratosphere the largest one is \\(\\text\{CO\}_2\\), followed by water vapor. But this is reversed in the troposphere, with water vapor doing the largest amount of cooling and \\(\\text\{CO\}_2\\) in second place. This is because the vertical distributions of \\(\\text\{CO\}_2\\) and water vapor are very different: \\(\\text\{CO\}_2\\) is relatively consistent with height while water vapor is in large amounts only at the surface, see below.\
+\
+FIG: vertical-distribution-gases.png\
+Caption: Concentration profiles of radiatively active gases in the atmosphere. The volume mixing ratio indicates the number of air molecules of the specified gas as a fraction of the total number of air molecules. Haigh and Cargill, <i>The Sun\'92s Influence on Climate</i>, (2015).\
+\
 \
 The Response to CO2 Change\
 \
