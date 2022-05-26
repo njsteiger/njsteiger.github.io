@@ -128,6 +128,7 @@ This thick black line shows a troposphere that cools with height, following the 
 <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Manabe and Strickler, <i>Thermal Equilibrium of the Atmosphere with a Convective Adjustment</i>, (1964).</span>
 <img src="img/manabe-rad-convec-vs-us-standard.png" alt="Verification of profiles" />
 </figure>    
+       
     
 <p>
 Previous models of the atmosphere were basically just energy balance models (some with many layers) that could only radiate energy. So how does the addition of convection change the temperature of the atmosphere? To explore this, Manabe ran an additional simulation that turned off the convection, so that energy balance could only happen through radiation. Results comparing the radiative-convective equilibrium with the radiative-only calculation are shown below.
@@ -139,12 +140,32 @@ Previous models of the atmosphere were basically just energy balance models (som
 </figure>    
     
 <p>
-In this figure we can clearly see that convection has a big impact on the lapse rate and near-surface air temperature. Without convection, Earth’s near-surface air temperature would be about 333 K or 60°C, compared to 300 K or 27°C in the experiment with convection. Also, with no convection, the lapse rate would be much larger than 6.5°C/km. Convection therefore evens out the troposphere’s temperature: it cools down the surface and warms up the upper troposphere. 
+In this figure we can clearly see that convection has a big impact on the lapse rate and surface air temperature. Without convection, Earth’s surface air temperature would be about 333 K or 60°C, compared to 300 K or 27°C in the experiment with convection. Also, with no convection, the lapse rate would be much larger than 6.5°C/km. Convection therefore evens out the troposphere’s temperature: it cools the surface and warms the upper troposphere. 
 </p>
     
 <p>
 The stratospheres aren’t very different from each other in these two experiments because there’s no convection in the stratosphere; the only way it can transport energy up and down is through radiation. 
 </p>
+    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="What is a 1-D atmospheric model?"
+    answer="A mathematical model of a column of atmosphere"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="If convection were turned off in the atmosphere, how would the surface temperature change?"
+    answer="The surface would warm"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-radiative-vs-convective-equil.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How is energy transported in the stratosphere?"
+    answer="Through radiation"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-radiative-vs-convective-equil.png"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>     
+    
     
 </section>
     
@@ -178,7 +199,7 @@ Let’s start by looking at the solar radiation heating side of the graph. At th
 </p>
     
 <p>
-In the troposphere the only non-convective net heating is from water vapor absorbing solar radiation. Why doesn’t \(\text{CO}_2\) show up as heating the troposphere? It does heat the troposphere but only in the longwave and it also cools in the longwave too; if you add these together, the cooling impact has a larger magnitude than the warming impact and so the ‘L \(\text{CO}_2\)’ line is shown to be negative. This might seem counter-intuitive, but keep in mind that what we are looking at here is what is happening in the atmosphere and not the surface. \(\text{CO}_2\) and other greenhouse gases heat the surface, which makes it warmer than it otherwise would have been without them. And if you increase the greenhouse gases, it warms the surface further. But when you look only at the atmosphere by itself, the net impact of \(\text{CO}_2\) is to cool the atmosphere.
+In the troposphere the only non-convective net heating is from water vapor absorbing solar radiation. Why doesn’t \(\text{CO}_2\) show up as heating the troposphere? It does heat the troposphere but only in the longwave and it also cools in the longwave too; if you add these together, the cooling impact has a larger magnitude than the warming impact and so the ‘L \(\text{CO}_2\)’ line is shown to be negative. This might seem counter-intuitive, but keep in mind that what we are looking at here are the net <i>rates</i> of heating and cooling in the atmosphere and not the magnitude of how hot the surface is. The surface is heated by incoming solar radiation as well as infrared/longwave radiation from \(\text{CO}_2\) and other greenhouse gases. The presence of greenhouse gases makes the surface warmer than it otherwise would have been without them. And if you increase the greenhouse gases, it warms the surface further. But when you look only at the rates of heating and cooling in the atmosphere, \(\text{CO}_2\) provides a net longwave cooling of the atmosphere.
 </p>
     
 <p>
@@ -186,12 +207,39 @@ The left hand side of the graph above shows us which gases cool the atmosphere. 
 </p>
     
 <figure>
-<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Concentration profiles of radiatively active gases in the atmosphere. The volume mixing ratio indicates the number of air molecules of the specified gas as a fraction of the total number of air molecules. Haigh and Cargill, <i>The Sun’s Influence on Climate</i>, (2015).</span>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Concentration profiles of radiatively active gases in the atmosphere. The volume mixing ratio indicates the number of air molecules of the specified gas as a fraction of the total number of air molecules. Note that these are net rates of heating and cooling; a process could both heat and cool, but only the net effect is plotted here. Haigh and Cargill, <i>The Sun’s Influence on Climate</i>, (2015).</span>
 <img src="img/vertical-distribution-gases.png" alt="Fig" />
 </figure>     
     
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="What mechanism cools the atmosphere?"
+    answer="Emission of longwave/infrared radiation"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-energy-balance-kinds.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is the most efficient way to transport energy upwards in the atmosphere?"
+    answer="Through convection"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is the strongest mechanism for heating the troposphere?"
+    answer="Convection"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-energy-balance-kinds.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What gas is most responsible for cooling the stratosphere?"
+    answer="CO2"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-energy-balance-gases.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What gas is most responsible for cooling the troposphere?"
+    answer="H2O/water vapor"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-energy-balance-gases.png"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
     
-
     
 </section>
     
@@ -199,7 +247,7 @@ The left hand side of the graph above shows us which gases cool the atmosphere. 
 <h2 id="doubling-co2">Temperature Response to Doubling CO<sub>2</sub></h2> 
     
 <p>
-We learned in Chapter 1 that Svante Arrhenius was the first person to attempt a calculation of the effect of doubling \(\text{CO}_2\) in the atmosphere. But his data and methods were not really up to the challenge. It was therefore something of an accident that he got a climate sensitivity roughly consistent with current estimates. In order to calculate it properly one really needs good radiative absorption and emission data on atmospheric gases, a good mathematical model of the atmosphere, and a computer to run the calculations. Arrhenius didn’t have any of these. But Manabe and colleagues did, and they were the first to make a realistic calculation of what has come to be called Earth’s climate sensitivity.
+We learned in Chapter 1 that Svante Arrhenius was the first person to attempt a calculation of the effect of doubling \(\text{CO}_2\) in the atmosphere. But his data and methods were not really up to the challenge. It was therefore something of an accident that he got a climate sensitivity, 6°C, roughly consistent with current estimates. In order to calculate it properly one really needs good radiative absorption and emission data on atmospheric gases, a good mathematical model of the atmosphere, and a computer to run the calculations. Arrhenius didn’t have any of these. But Manabe and colleagues did, and they were the first to make a realistic calculation of what has come to be called Earth’s climate sensitivity.
 </p>
     
 <p>
@@ -216,11 +264,11 @@ For the control simulation with a \(\text{CO}_2\) concentration of 300 ppm, surf
 </p>    
 
 <p>
-So Manabe calculated a climate sensitivity of about 2.4°C. This is fairly close to the current best estimate of 3.0°C using far more sophisticated models.    
+So Manabe calculated a climate sensitivity of about 2.4°C. This is fairly close to the current best estimate of 3.0°C, derived from far more sophisticated models.    
 </p>    
     
 <p>
-You may have noticed from the figure above that as you increase \(\text{CO}_2\), the stratosphere actually cools, which is the opposite of the troposphere. We can explain this result by consulting the figure we saw before which shows the radiative heating and cooling effects of different gases:   
+You may have noticed from the figure above that as you increase \(\text{CO}_2\), the stratosphere actually cools, which is the opposite of the troposphere and the surface. We can explain this result by consulting the figure we saw before which shows the radiative heating and cooling effects of different gases:   
 </p>    
 
 <figure>
@@ -231,6 +279,31 @@ You may have noticed from the figure above that as you increase \(\text{CO}_2\),
 <p>
 We can see that the stratosphere is mostly heated by ozone’s absorption of solar radiation and cooled through the combined net longwave effect of \(\text{CO}_2\), ozone, and water vapor. So if \(\text{CO}_2\) is increased throughout the atmosphere, more \(\text{CO}_2\) in the stratosphere will lead to more cooling there.    
 </p>    
+    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="What scientist computed the first realistic estimate of climate sensitivity?"
+    answer="Syukuro Manabe (in 1967)"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="When CO2 is doubled, what happens to the temperature of the troposphere?"
+    answer="It warms"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-2xco2.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="When CO2 is doubled, what happens to the temperature of the stratosphere?"
+    answer="It cools"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-2xco2.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Why does adding more CO2 to the atmosphere cool the stratosphere?"
+    answer="CO2 is the dominant gas that cools the stratosphere, so adding more leads to more cooling"
+    answer-attachments="https://njsteiger.github.io/gws/img/manabe-energy-balance-gases.png"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
+    
     
 <p>\(\Uparrow\) <a href="#top">To the top</a></p>
 <!--<p>\(\Rightarrow\) <a href="atmosphere-energy-balance.html">Next chapter</a></p>-->
