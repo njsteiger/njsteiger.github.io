@@ -23,9 +23,7 @@
           <!--
 HERE is the code for a side citation:
 
-<label for="ref1" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="ref1" class="margin-toggle"/>
-<span class="sidenote">CONTENT HERE</span>
+<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">CONTENT HERE</span>
 
 HERE is the code for a figure:
 
@@ -70,64 +68,193 @@ answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
           -->
           
 <section>
-<h2 id="greenhouse-energy-balance-model">Energy Balance Model of Earth’s Greenhouse Effect</h2>    
+<h2 id="climate-model-comps">Climate Model Components</h2>    
     
 <p>
-
+We’ve so far learned about energy balance models, carbon cycle models, and 1-D atmospheric column models. Now we’re ready to learn about the big and complex 3-D global climate models. These are the workhorse models of climate science. Most of the climate science that relies on climate models uses these kinds of models. These are also the models that are used in nearly all of the projections of the impacts of global warming.
 </p>
     
 <p>
-
+The major goal of global climate modeling is to accurately represent how the major processes of the climate system work. To do this, the atmosphere, land, and ocean have to be divided up and approximated by a finite number of grid cells. Let’s see what this looks like for a some piece of ocean and land not very different from somewhere like the coast of California.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">A section of the grid for a typical atmospheric general circulation model. Neelin, <i>Climate Change and Climate Modeling</i>, 2011.</span>
+<img src="img/model-grid-neelin.png" alt="climate-model-grid" />
+</figure>    
+    
+<p>
+In panel (a) we see that the atmosphere overlaying the land is divided up into rectangular grid cells that follow the topography below them. In a climate model, this grid would continue globally. For each grid cell, there is a single value of each variable that the model uses, such as temperature, that represents the average over the area of the grid cell. Panel (b) shows what a level taken out of this larger grid looks like. Panel (c) indicates that climate quantities (for example, mass, energy, moisture) can move between grid cells. This kind of division of the atmosphere and ocean into grid cells means that the model can only approximate the continuous underlying motions of reality.
 </p>
     
 <p>
-
+Some details about the grid: the vertical coordinate is a pressure coordinate modified so that it follows the topography (so it’s not actually height); the grid spacing is not constant in the vertical direction and usually not constant in the horizontal either&mdash;this is because some locations need higher vertical or horizontal resolution in order to model them well. 
 </p>
     
 <p>
-
+However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built on it. A climate model is built out of a set of equations that describe the flow of the atmosphere and ocean, the absorption and emission of radiation, the formation and behavior of clouds, the falling of rain and snow, the growth of plants, the chemistry of the atmosphere and ocean, and the behavior of glaciers, ice sheets, and sea ice.
+</p>
+    
+<p>****Schematic of components of a climate model; mention that for many models it is possible to use only certain parts of the model or all together. Continuum of idealized to most realistic.</p>    
+    
+<p>
+To give you an idea of what these equations are like, written below are all the differential equations that are necessary to describe the flow of dry air (so not including water vapor or clouds), called the ‘Navier-Stokes equations’.
+</p>
+<p>    
+The mass continuity equation:
+\[ \frac{\partial \rho}{\partial t} +\nabla\cdot(\rho \vec{v})=0\]
+The momentum equation:
+\[\frac{\partial \vec{v}}{\partial t}+(\vec{v}\cdot\nabla)\vec{v} = -\frac{\nabla p}{\rho}+\nu\nabla^2\vec{v}+\mathcal{F}\]
+The thermodynamic equation:
+\[\frac{\partial \theta}{\partial t}+\vec{v}\cdot\nabla\theta=\frac{\theta}{c_pT}Q\]
+The equation of state:
+\[p = \rho\frac{R}{\overline{M}}T\]     
 </p>
     
 <p>
-
+It’s not important for our purposes here to understand these equations fully. Just notice that they include variables like velocity \(\vec{v}\), density \(\rho\), pressure \(p\), ‘potential temperature’ \(\theta\), and temperature \(T\) (among others) and that these variables are functions of time \(t\). There are a similar set of equations that describe the flow of ocean water. Such equations of motion can be derived from fundamental laws of physics and are universally used in all climate models. 
 </p>
     
 <p>
-
+There are different competing sets of equations used for phenomena like the formation of clouds, the growth of plants, and the formation of sea ice. People who develop climate models use slightly different equations for such phenomena depending on the level of detail they want to include or if they think certain equations better capture the phenomena they are working on. Many climate models have been developed over several decades and equations are added or modified over time.
 </p>
     
 <p>
+How are these equations actually put to use? The equations are linked together at each grid cell and solved numerically by a computer. For an example of this, consider a simple wave of pressure as a function of longitude (\(x\)), below.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Example of finite differencing of a pressure field as a function of longitude \(x\) and of the finite-difference pressure gradient at one of the points. Neelin, <i>Climate Change and Climate Modeling</i>, 2011.</span>
+<img src="img/finite-difference-pressure-field.png" alt="finite-differencing" />
+</figure>    
+    
+<p>
+The line represents the dimension of longitude and the dots represent grid cells. The value of pressure at each grid cell is the function \(p(x)\). If we needed to compute the momentum equation, which we saw above, for this pressure field, one part of that equation is \(\nabla p\) which is equal to \(\frac{\partial p}{\partial x}\) for this one dimensional example. So we need to know \(\frac{\partial p}{\partial x}\) for all of the grid cells. This can be calculated by finding the slope at each grid cell using neighboring grid cell values. One simple way of computing the slope would be to compute the following equation for a given grid point \(i\) and grid size \(\Delta x\),
 
+\[ \frac{\partial p}{\partial x} \approx \frac{p_{i+1}-p_{i-1}}{2\Delta x}\; .\]
+
+which approximates the pressure gradient at point \(i\). The other parts of the momentum equation, as well as other differential equations describing other variables, would be solved in a similar way. Also similar to this numerical solution technique, every climate model has a numerical method of moving the equations forward in time; this corresponds to computing the \(\frac{\partial}{\partial t}\) parts of the equations of motion listed above. Just like how the numerical solutions need to know the grid size, \(\Delta x\), so do they also need a specific ‘time step’ \(\Delta t\). Time steps are usually a few ‘model minutes’ in length.
 </p>
     
 <p>
-
+Again, it’s not important for our purposes to understand everything about this process. What’s important to know is that there are sets of connected equations that describe how the climate system works. These equations are solved numerically by a computer on a grid that represents Earth’s atmosphere, ocean, and land. And this numerical solution evolves in time.
 </p>
     
 <p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
+The numerical output of the model from the computer, when plotted, looks just like what you might see if you could watch Earth’s weather and ocean circulation from space. Here’s an example showing only the variable of atmospheric water vapor over time.
 </p>
   
-
+<figure class="iframe-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/btfg4szYGMo" frameborder="0" allowfullscreen></iframe><label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+</figure>    
+    
+<p>
+A single simulation from a modern climate model includes hundreds of variables, each of which could be plotted and turned into a little movie like this example.
+</p>
+    
+<p>If you are curious about what the code of global climate models looks like, here are two examples you can explore on GitHub: <a href="https://github.com/ESCOMP/CESM">The Community Earth System Model</a> and <a href="https://github.com/CliMA">The Climate Machine</a>.</p>
     
 </section>
     
 <section>      
-<h2 id="absorb-emit-physics">Physics of Radiation Absorption and Emission</h2> 
+<h2 id="resolution">Model Resolution</h2>    
     
-    <p>
+<p>
+As you may be able to intuitively guess from the figures above, having a smaller sized grid can significantly improve the climate model simulation. Higher resolution (smaller grid cells) allows you to resolve smaller scale processes. Relatedly, it allows you to have greater accuracy in the numerical solutions to the differential equations. The figure below compares two grid resolutions, the bottom resolution is typical of a global climate model from about 2010 while the top has a resolution that is 10 times higher. 
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">The topography of North America shown at two different resolutions. The main lower resolution is 2.0 degrees latitude by 2.0 degrees longitude. Two degrees of latitude corresponds to slightly over 200 km. The high resolution case at 0.2 degrees corresponds to slightly over 20 km in latitudinal grid size. Neelin, <i>Climate Change and Climate Modeling</i>, 2011.</span>
+<img src="img/model-resolution-neelin.png" alt="model-resolution" />
+</figure>     
+    
+<p>
+Given that the topography looks so much more impressive at high resolution, why aren’t climate models run at even higher resolution? The main reason is computational time (which is proportional to how much it costs), which increases dramatically for high resolution. Climate models can only be run on computer clusters or ‘supercomputers’, so you have to pay for all the computational time you use on the computer system. Computational time for a simulation can be broken down into the following parts:
+</p><p>
+Computational time = (computer time per operation) × (operations per equation)
+× (number of equations per grid box) × (number of grid boxes)
+× (number of time steps per simulation)
+</p><p>
+where an ‘operation’ is, for example, a single multiplication or addition; several operations have to occur in calculating each of the terms of each of the equations for each variable in each grid box. If you increase the horizontal resolution of the model you also have to increase the vertical resolution, as well as increase the time step of the calculations to keep things numerically accurate and stable. So increasing the resolution by, for example, a factor of 2, ends up increasing the total computational time by 2 for the number of grid cells in latitude multiplied by 2 in longitude, multiplied by 2 in the vertical, and multiplied by 2 in time, so 2<sup>4</sup>=16 times more computational time. 
+</p>
+    
+<p>
+If the computational time for a simulation is so long that a climate scientist cannot wait for it to be completed, the cost becomes irrelevant. To give you an idea of the time involved, if the climate model simulation is only for the atmosphere, about 20 years of climate can be simulated in about a day or two. Simulations that include both an atmosphere and ocean take about 2-3 times as long. It’s fairly common to run simulations that take a couple weeks or a month to complete. Simulations that take more than a couple months time are usually seen as impractical to carry out, though some people or organizations do run long simulations if they have a lot of time and computational resources at their command. Basically no one runs climate model simulations that take more than a year or so of computational time.
+</p>
+    
+</section>
+    
+<section>      
+<h2 id="parameterizations">Model Parameterizations</h2>    
+    
+<p>
+What happens if there are climate processes that are much smaller than the scale of the grid cells? Such as, for example, cloud formation and convection (below)?
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Tapio Schneider, CliMA.</span>
+<img src="img/cloud-parameterization-tapio-schneider.jpeg" alt="cloud-parameterization" />
+</figure>     
+    
+<p>
+Important physical processes that are too small to fit on a model’s grid are included by using statistical theories called ‘parameterizations’. Parameterizations represent, for example, the effects of radiation, turbulence, and cloud formation. They are physically based theories that predict statistics. For example, instead of trying to model individual clouds, a cloud parameterization determines the collective effect of many clouds that would live within the area of a grid cell.
+</p>
+    
+<p>
+Let’s look more closely at another example: the turbulent mixing of air and moisture at the boundary between the ocean and atmosphere. A schematic of this process is shown below.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Schematic of turbulent mixing of air and water vapor at the ocean surface. Small dots represent the amount of water vapor in the air, swirls and black arrows represent turbulent air motions, and the gray arrow indicates the average direction of the blowing surface wind. Neelin, <i>Climate Change and Climate Modeling</i>, 2011.</span>
+<img src="img/turbulent-mixing-neelin.png" alt="mixing-parameterization" />
+</figure>     
+    
+<p>
+Ideally, we could model this turbulence directly, modeling all the tiny turbulent eddies of air mixing moisture into the atmosphere from the ocean. This happens on very small scales though, and is impossible to model directly. Instead we can model the flux of moisture into the atmosphere by breaking the interface down into two layers (‘level k’ and ‘level k-1’), as in the zoomed-in figure below:
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Vertical mixing for specific humidity, \(q\), and of the surface flux of moisture by evaporation, showing the processes to be parameterized on a grid with \(k\) levels. Moisture at each level is denoted \(q_k\) . The net flux across the face of the grid box at level \(z_{k−1/2}\) that in reality would occur by smaller-scale motions acting on the gradient in \(q\) must be parameterized in numerical models. Neelin, <i>Climate Change and Climate Modeling</i>, 2011.</span>
+<img src="img/turbulent-mixing-detail-neelin.png" alt="mixing-parameterization" />
+</figure>     
+    
+<p>
+Using this two-layer model, we can then parameterize the moisture flux, \(F_q\), with a simple equation. The higher moisture air, ‘high q’, will mix with the lower moisture air, ‘lower q’, according to the difference in moisture between the two layers
+    
+\[ F_q=K\frac{q_k-q_{k-1}}{\Delta z}\; ,\]
+    
+where \(\Delta z\) is the height difference between the two layers and \(K\) is a numerical value that depends on the strength of the wind (the big gray arrows) and is determined by lab measurements.
+</p>
+    
+<p>
+Of necessity, climate models contain many parameterizations such as these. Some parameterizations are well-studied with quite a bit of confidence in their representation in models, while other parameterizations are less well understood (e.g., parameterizations of soils, plants, and clouds). Also, changing some parameterizations can have a bigger impact on climate than changing others. For example, changing cloud parameterizations tend to have bigger impacts on climate than changing soil parameterizations; the uncertainties involved in cloud parameterizations is mostly what causes the relatively large uncertainties in our estimates of cloud feedbacks.
+</p>
+    
+    
+</section>
+    
+<section>      
+<h2 id="evaluation">Model Evaluation</h2>     
+    
+<p>
+
+</p>
+    
+<p>
+
+</p>
+    
+<p>
+
+</p>
+    
+<p>
+
+</p>    
+    
+
+    
+<p>
 
 </p>
     
