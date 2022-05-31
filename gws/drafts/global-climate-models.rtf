@@ -8,6 +8,7 @@
 \f0\fs36 \cf0 \
 Global Climate Models\
 \
+\'91coupler\'92\
 \
 We\'92ve so far learned about energy balance models, carbon cycle models, and 1-D atmospheric column models. Now we\'92re ready to learn about the big and complex 3-D global climate models. These are the workhorse models of climate science. Most of the climate science that relies on climate models uses these kinds of models. These are also the models that are used in nearly all of the projections of the impacts of global warming. \
 \
@@ -20,9 +21,15 @@ In panel (a) we see that the atmosphere overlaying the land is divided up into r
 \
 Some details about the grid: the vertical coordinate is a pressure coordinate modified so that it follows the topography (so it\'92s not actually height); the grid spacing is not constant in the vertical direction and usually not constant in the horizontal either&mdash;this is because some locations need higher vertical or horizontal resolution in order to model them well. \
 \
-However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built on it. A climate model is built out of a set of equations that describe the flow of the atmosphere and ocean, the absorption and emission of radiation, the formation and behavior of clouds, the falling of rain and snow, the growth of plants, the chemistry of the atmosphere and ocean, and the behavior of glaciers, ice sheets, and sea ice.\
 \
-To give an idea of what these equations are like, written below are all the differential equations that are necessary to describe the flow of dry air (so not including water vapor or clouds), called the \'91Navier-Stokes equations\'92.\
+\
+However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built on it. A climate model is built out of equations that describe the phenomena of Earth\'92s four climate realms: atmosphere, ocean, cryosphere, and biosphere. Each realm has its own set of equations that describe the phenomena within that realm. For example, the atmosphere has equations that describe the motion of the air, the formation of clouds, precipitation, the absorption and emission of radiation, and the chemical reactions that take place in the air. And each realm is connected to the other realms through a \'91coupler\'92, see below. \
+\
+FIG: climate realms\
+\
+The computer code that climate models are written is modular: many of the pieces can be mixed and matched to run different kinds of simulations. For example, you can run a climate model simulation that only uses the atmosphere and its equations; or you could run a simulation that includes only the atmosphere and ocean, and no interactive biosphere or cryosphere.\
+\
+What do the equations of each realm look like? Written below are all the differential equations that are necessary to describe the flow of dry air (so not including water vapor or clouds), called the \'91Navier-Stokes equations\'92.\
 \
 The mass continuity equation:\
 \\[ \\frac\{\\partial \\rho\}\{\\partial t\} +\\nabla\\cdot(\\rho \\vec\{v\})=0\\]\
@@ -90,14 +97,37 @@ where \\(\\Delta z\\) is the height difference between the two layers and \\(K\\
 Of necessity, climate models contain many parameterizations such as these. Some parameterizations are very well-studied with quite a bit of confidence in their representation in models, while other parameterizations are less well understood (e.g., parameterizations of soils, plants, and clouds). Also, changing some parameterizations can have a bigger impact on climate than changing others. For example, changing cloud parameterizations tend to have bigger impacts on climate than changing soil parameterizations; the uncertainties involved in cloud parameterizations is mostly what causes the relatively large uncertainties in cloud feedbacks.\
 \
 Model Evaluation\
--Evaluation of ITCZ precipitation biases\
--Global mean evaluation from CMIP5\
--Projection evaluations after publication\
+All climate models are evaluated for their accuracy. Most major models are also continuously in development, with climate model developers seeking to improve the models in different ways. Just like in the development of computer operating systems, climate models are given version numbers as they evolve, along with short names useful for identifying them in papers, conferences, and model inter-comparison projects (for example, one of the models linked to above, the Community Earth System Model, is known as CESM). Model versions are evaluated internally by the group of developers and also evaluated externally by users of the models. \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Models are evaluated in many different ways. For example, they are tested for their ability to maintain energy balance over time and their ability to simulate precipitation and global mean temperature. The figure below evaluates the tropical precipitation of climate models that were a part of the Coupled Model Intercomparison Project Phase 6 (CMIP6). The top panel shows observed precipitation based on satellite measurements, the middle panel shows the average of all models in CMIP6, and the bottom panel shows the difference between the models and observations, called the \'91bias\'92.\
 \
-Model Uses\
+FIG: ITCZ bias\
+Caption: Long-term annual mean precipitation (units of mm/day) over the tropics in observations (top), climate models (middle), and the climate model bias (bottom).\
+\
+We can see that the models get the general pattern of precipitation right: it is high in a narrow band near the equator and it has a horseshoe shape over the western Pacific ocean.  However the models\'92 precipitation tends to be too symmetric around the equator and a little too far away from the equator in the Pacific and Atlantic oceans; this shows up as the red-colored biases in the bottom panel. In particular, the bias highlighted by the dashed black lines over the Pacific and Atlantic oceans is known as the \'91double intertropical convergence zone bias\'92. This is one of the largest and most stubbornly persistent biases in climate models.\
+\
+Another of many tests often performed is an evaluation of the models\'92 global mean temperature over time. The figure below shows how a very wide range of climate models do in following the observed global mean temperature from 1850 to 2020. The observed estimates of global mean temperature are in black in both panels and each model simulation is given a different colored line; the average of all models is shown with a thick red line in the top panel and thick red and blue lines in the bottom panel.\
+\
+FIG: IPCC Chapter 3\
+Eyring, et al., <i>Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change</i>, (2021).\
+\
+However, given that the people who develop the climate models know what the historical global mean temperature has been and that they test their models against it internally, the figure above isn\'92t really an independent test of the models.(cite: Hourdin, et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).)\
+\
+An independent test is to evaluate temperature projections that were made in the past. Hausfather et al., (2019) did this for every major projection of global mean temperature made by models since 1970. In the figure below they show global mean temperature projections (colored lines) versus the observed global mean temperature (black line), where the projections are plotted starting in the year after their publication.\
+\
+FIG: Hausfather et al., <i>Evaluating the Performance of Past Climate Model Projections</i>, (2019).\
+\
+We can see that the models are generally quite accurate in their projections of global mean temperature.\
+\
+If your climate model has a problem, how do you fix it? You\'92ll need to modify the equations, either using fundamentally new equations or by adjusting the numerical values in the parameterizations (e.g., the value of \\(K\\) in the parameterization we discussed in the previous section). Adjusting the parameterizations is called model \'91tuning\'92 and is necessary for any statistical or complex model in any field of science. The size and complexity of climate models means that there are many parameterizations that could be tuned, but in practice a relatively small subset are usually adjusted. The most frequently tuned parameterizations are those dealing with clouds. The values are adjusted within the uncertainty ranges of the parameter values and the results of the tuning are evaluated against a wide range of observed climate quantities.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>\
+\
+\
+\pard\pardeftab720\sa420\partightenfactor0
+\cf0 Model Uses\
 -General climate science questions\
 -Detection and attribution\
 -Global warming projections\
+Climate models are used for understanding a huge variety of climate-related phenomena, not just those directly connected to global warming. Scientists use climate models to understand things like: the circulation of the atmosphere and ocean, the behavior of ice sheets, the nature of chemical reactions in the atmosphere and ocean, the interaction of plants with climate, the character of climates in the geologic past, and what climates might be like on planets and moons in our solar system or elsewhere in our galaxy.\
 \
 \
 \

@@ -75,7 +75,7 @@ We’ve so far learned about energy balance models, carbon cycle models, and 1-D
 </p>
     
 <p>
-The major goal of global climate modeling is to accurately represent how the major processes of the climate system work. To do this, the atmosphere, land, and ocean have to be divided up and approximated by a finite number of grid cells. Let’s see what this looks like for a some piece of ocean and land not very different from somewhere like the coast of California.
+The major goal of global climate modeling is to accurately represent on a computer how the major processes of the climate system work. To do this, the atmosphere, land, and ocean have to be divided up and approximated by a finite number of grid cells. Let’s see what this looks like for a some piece of ocean and land not very different from somewhere like the coast of California.
 </p>
     
 <figure>
@@ -92,13 +92,20 @@ Some details about the grid: the vertical coordinate is a pressure coordinate mo
 </p>
     
 <p>
-However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built on it. A climate model is built out of a set of equations that describe the flow of the atmosphere and ocean, the absorption and emission of radiation, the formation and behavior of clouds, the falling of rain and snow, the growth of plants, the chemistry of the atmosphere and ocean, and the behavior of glaciers, ice sheets, and sea ice.
+However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built into it. A climate model is built with equations that describe the phenomena of Earth’s four climate realms: atmosphere, ocean, cryosphere, and biosphere. Each realm has its own set of equations that describe the phenomena within that realm. For example, the atmosphere has equations that describe the motions of the air, the formation of clouds, precipitation, the absorption and emission of radiation, and the chemical reactions that take place in the air. And each realm is connected to the other realms through a special piece of computer code called a ‘coupler’, see below. 
 </p>
     
-<p>****Schematic of components of a climate model; mention that for many models it is possible to use only certain parts of the model or all together. Continuum of idealized to most realistic.</p>    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">The four realms of the climate system and how they are connected within a climate model.</span>
+<img src="img/climate-model-realms.png" alt="climate-model-realms" />
+</figure>     
     
 <p>
-To give you an idea of what these equations are like, written below are all the differential equations that are necessary to describe the flow of dry air (so not including water vapor or clouds), called the ‘Navier-Stokes equations’.
+The computer code that climate models are written in is modular: many of the components can be mixed and matched to run different kinds of simulations. For example, you can run a climate model simulation that only uses the atmosphere and its equations; or you could run a simulation that includes only the atmosphere and ocean components, and no interactive biosphere or cryosphere.
+</p>    
+    
+<p>
+What do the equations of each realm or component look like? Written below are all the differential equations that are necessary to describe the flow of dry air (so not including water vapor or clouds), which are called the ‘Navier-Stokes equations’.
 </p>
 <p>    
 The mass continuity equation:
@@ -129,15 +136,15 @@ How are these equations actually put to use? The equations are linked together a
 </figure>    
     
 <p>
-The line represents the dimension of longitude and the dots represent grid cells. The value of pressure at each grid cell is the function \(p(x)\). If we needed to compute the momentum equation, which we saw above, for this pressure field, one part of that equation is \(\nabla p\) which is equal to \(\frac{\partial p}{\partial x}\) for this one dimensional example. So we need to know \(\frac{\partial p}{\partial x}\) for all of the grid cells. This can be calculated by finding the slope at each grid cell using neighboring grid cell values. One simple way of computing the slope would be to compute the following equation for a given grid point \(i\) and grid size \(\Delta x\),
+The line represents the dimension of longitude and the dots represent grid cells. The value of pressure at each grid cell is the function \(p(x)\). If we needed to compute the momentum equation, which we saw above, for this pressure field, one part of that equation is \(\nabla p\) which is equal to \(\frac{\partial p}{\partial x}\) for this one dimensional example. So we need to know \(\frac{\partial p}{\partial x}\) for all of the grid cells. This can be calculated by finding the slope at each grid cell using neighboring grid cell values. One simple way of computing the slope would be to calculate the following equation for a given grid point \(i\) and grid size \(\Delta x\),
 
 \[ \frac{\partial p}{\partial x} \approx \frac{p_{i+1}-p_{i-1}}{2\Delta x}\; .\]
 
-which approximates the pressure gradient at point \(i\). The other parts of the momentum equation, as well as other differential equations describing other variables, would be solved in a similar way. Also similar to this numerical solution technique, every climate model has a numerical method of moving the equations forward in time; this corresponds to computing the \(\frac{\partial}{\partial t}\) parts of the equations of motion listed above. Just like how the numerical solutions need to know the grid size, \(\Delta x\), so do they also need a specific ‘time step’ \(\Delta t\). Time steps are usually a few ‘model minutes’ in length.
+This approximates the pressure gradient at point \(i\). The other parts of the momentum equation, as well as other differential equations describing other variables, would be solved in a similar way. Also similar to this numerical solution technique, every climate model has a numerical method of moving the equations forward in time; this corresponds to computing the \(\frac{\partial}{\partial t}\) parts of the equations of motion listed above. Just like how the numerical solutions need to know the grid size, \(\Delta x\), so do they also need a specific ‘time step’ \(\Delta t\). Time steps are usually a few ‘model minutes’ in length.
 </p>
     
 <p>
-Again, it’s not important for our purposes to understand everything about this process. What’s important to know is that there are sets of connected equations that describe how the climate system works. These equations are solved numerically by a computer on a grid that represents Earth’s atmosphere, ocean, and land. And this numerical solution evolves in time.
+Again, it’s not important for our purposes to understand everything about this process. What’s important to know is that there are sets of connected equations that describe how the climate realms work. These equations are solved numerically by a computer on a grid that represents Earth’s atmosphere, ocean, and land. And this numerical solution evolves in time.
 </p>
     
 <p>
@@ -152,7 +159,7 @@ The numerical output of the model from the computer, when plotted, looks just li
 A single simulation from a modern climate model includes hundreds of variables, each of which could be plotted and turned into a little movie like this example.
 </p>
     
-<p>If you are curious about what the code of global climate models looks like, here are two examples you can explore on GitHub: <a href="https://github.com/ESCOMP/CESM">The Community Earth System Model</a> and <a href="https://github.com/CliMA">The Climate Machine</a>.</p>
+<p>If you are curious about what the code of global climate models looks like, here are two examples you can explore on GitHub: the <a href="https://github.com/ESCOMP/CESM">Community Earth System Model</a> and the <a href="https://github.com/CliMA">Climate Machine</a>.</p>
     
 </section>
     
@@ -175,11 +182,11 @@ Computational time = (computer time per operation) × (operations per equation)
 × (number of equations per grid box) × (number of grid boxes)
 × (number of time steps per simulation)
 </p><p>
-where an ‘operation’ is, for example, a single multiplication or addition; several operations have to occur in calculating each of the terms of each of the equations for each variable in each grid box. If you increase the horizontal resolution of the model you also have to increase the vertical resolution, as well as increase the time step of the calculations to keep things numerically accurate and stable. So increasing the resolution by, for example, a factor of 2, ends up increasing the total computational time by 2 for the number of grid cells in latitude multiplied by 2 in longitude, multiplied by 2 in the vertical, and multiplied by 2 in time, so 2<sup>4</sup>=16 times more computational time. 
+where an ‘operation’ is, for example, a single multiplication or addition; several operations have to occur in calculating each of the terms of each of the equations for each variable in each grid box. If you increase the horizontal resolution of the model you also have to increase the vertical resolution, as well as shorten the time step of the calculations to keep things numerically accurate and stable. So increasing the resolution by, for example, a factor of 2, ends up increasing the total computational time by a factor of 16: 2 for the number of grid cells in latitude, multiplied by 2 in longitude, multiplied by 2 in the vertical, and multiplied by 2 in time, so 2<sup>4</sup>=16. 
 </p>
     
 <p>
-If the computational time for a simulation is so long that a climate scientist cannot wait for it to be completed, the cost becomes irrelevant. To give you an idea of the time involved, if the climate model simulation is only for the atmosphere, about 20 years of climate can be simulated in about a day or two. Simulations that include both an atmosphere and ocean take about 2-3 times as long. It’s fairly common to run simulations that take a couple weeks or a month to complete. Simulations that take more than a couple months time are usually seen as impractical to carry out, though some people or organizations do run long simulations if they have a lot of time and computational resources at their command. Basically no one runs climate model simulations that take more than a year or so of computational time.
+If the computational time for a simulation is so long that a climate scientist cannot wait for it to be completed, the cost becomes irrelevant. To give you an idea of the time involved, if the climate model simulation is only for the atmosphere, about 20 years of climate can be simulated in about a day or two. Simulations that include both an atmosphere and ocean take about 2-3 times as long. It’s fairly common to run simulations that take a couple weeks or a month to complete. Simulations that take more than a couple months time are usually seen as impractical to carry out, though some people or organizations do run long simulations if they have a lot of time and computational resources at their command. Almost no one runs climate model simulations that take more than a year or so of computational time.
 </p>
     
 </section>
@@ -237,34 +244,55 @@ Of necessity, climate models contain many parameterizations such as these. Some 
 <h2 id="evaluation">Model Evaluation</h2>     
     
 <p>
-
+All climate models are evaluated for their accuracy. Most major models are also continuously in development, with climate model developers seeking to improve the models in different ways. Just like in the development of computer operating systems, climate models are given version numbers as they evolve, along with short names useful for identifying them in papers, conferences, and model inter-comparison projects (for example, one of the models linked to above, the Community Earth System Model, is known as CESM). Model versions are evaluated internally by the group of developers and also evaluated externally by users of the models. 
 </p>
     
 <p>
-
+Models are evaluated in many different ways. For example, they are tested for their ability to maintain energy balance over time and their ability to simulate precipitation and global mean temperature. The figure below evaluates the tropical precipitation of climate models that were a part of the Coupled Model Intercomparison Project Phase 6 (CMIP6). The top panel shows observed precipitation based on satellite measurements, the middle panel shows the average of all models in CMIP6, and the bottom panel shows the difference between the models and observations, called the ‘bias’.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Long-term annual mean precipitation (units of mm/day) over the tropics in observations (top), climate models (middle), and the climate model bias (bottom).</span>
+<img src="img/double-itcz-bias.png" alt="itcz-bias" />
+</figure>     
+    
+<p>
+We can see that the models get the general pattern of precipitation right: it is high in a narrow band near the equator and it has a horseshoe shape over the western Pacific ocean.  However the models’ precipitation tends to be too symmetric around the equator and a little too far away from the equator in the Pacific and Atlantic oceans; this shows up as the red-colored biases in the bottom panel. In particular, the bias highlighted by the dashed black lines over the Pacific and Atlantic oceans is known as the ‘double intertropical convergence zone bias’. This is one of the largest and most stubbornly persistent biases in climate models.
 </p>
     
 <p>
-
-</p>
-    
-<p>
-
+Another of many tests often performed is an evaluation of the models’ global mean temperature over time. The figure below shows how a very wide range of climate models do in following the observed global mean temperature from 1850 to 2020. The observed estimates of global mean temperature are in black in both panels and each model simulation is given a different colored line; the average of all models is shown with a thick red line in the top panel and in thick red and blue lines in the bottom panel.
 </p>    
     
-
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"><b>(Top)</b> Single simulations from CMIP6 models (thin lines) and the multi-model mean (thick red line). Observational data (thick black lines) are from the Met Office Hadley Centre/Climatic Research Unit dataset (HadCRUT5). Vertical lines indicate large historical volcanic eruptions. CMIP6 models which are marked with an asterisk are either tuned to reproduce observed warming directly, or indirectly by tuning equilibrium climate sensitivity. <b>(Bottom)</b> Multi-model means of CMIP5 (blue line) and CMIP6 (red line) ensembles and associated 5th to 95th percentile ranges (shaded regions). Observational data are HadCRUT5, Berkeley Earth, National Oceanic and Atmospheric Administration NOAAGlobalTemp-Interim and Kadow et al. (2020). Eyring, et al., <i>Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change</i>, (2021).</span>
+<img src="img/ipcc-gmt-eval.png" alt="IPCC-gmt" />
+</figure>  
     
 <p>
-
+However, given that the people who develop the climate models know what the historical global mean temperature has been and that some of them test their models against it internally, the figure above isn’t really an independent test of the models.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>
 </p>
     
 <p>
-
+A truely independent test is to evaluate temperature projections that were made in the past. Hausfather et al., (2019) did this for every major projection of global mean temperature made by models since 1970. In the figure below they show global mean temperature projections (colored lines) versus the observed global mean temperature (black line), where the projections are plotted starting in the year after their publication.
 </p>
     
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Hausfather et al., <i>Evaluating the Performance of Past Climate Model Projections</i>, (2019).</span>
+<img src="img/hausfather-gmt-predictions.png" alt="Hausfather-model-evaluation" />
+</figure>    
+    
 <p>
-
+We can see that the models are generally quite accurate in their projections of global mean temperature.
 </p>
+    
+<p>    
+If your climate model has a problem, how do you fix it? You’ll need to modify the equations, either using fundamentally new equations or by adjusting the numerical values in the parameterizations (e.g., the value of \(K\) in the parameterization we discussed in the previous section). Adjusting the parameterizations is called model ‘tuning’ and is necessary for any statistical or complex model in any field of science. The size and complexity of climate models means that there are many parameterizations that could be tuned, but in practice a relatively small subset are usually adjusted. The most frequently tuned parameterizations are those dealing with clouds. The values are adjusted within the uncertainty ranges of the parameter values and the results of the tuning are evaluated against a wide range of observed climate quantities.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>   </p> 
+    
+</section>
+    
+<section>      
+<h2 id="model-uses">Climate Model Uses</h2>     
     
 <p>
 
