@@ -248,7 +248,7 @@ All climate models are evaluated for their accuracy. Most major models are also 
 </p>
     
 <p>
-Models are evaluated in many different ways. For example, they are tested for their ability to maintain energy balance over time and their ability to simulate precipitation and global mean temperature. The figure below evaluates the tropical precipitation of climate models that were a part of the Coupled Model Intercomparison Project Phase 6 (CMIP6). The top panel shows observed precipitation based on satellite measurements, the middle panel shows the average of all models in CMIP6, and the bottom panel shows the difference between the models and observations, called the ‘bias’.
+Models are evaluated in many different ways. For example, they are tested for their ability to simulate precipitation and temperature. The figure below evaluates the tropical precipitation of climate models that were a part of the Coupled Model Intercomparison Project Phase 6 (CMIP6). The top panel shows observed precipitation based on satellite measurements, the middle panel shows the average of all models in CMIP6, and the bottom panel shows the difference between the models and observations, called the ‘bias’.
 </p>
     
 <figure>
@@ -266,28 +266,28 @@ Another of many tests often performed is an evaluation of the models’ global m
     
 <figure>
 <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"><b>(Top)</b> Single simulations from CMIP6 models (thin lines) and the multi-model mean (thick red line). Observational data (thick black lines) are from the Met Office Hadley Centre/Climatic Research Unit dataset (HadCRUT5). Vertical lines indicate large historical volcanic eruptions. CMIP6 models which are marked with an asterisk are either tuned to reproduce observed warming directly, or indirectly by tuning equilibrium climate sensitivity. <b>(Bottom)</b> Multi-model means of CMIP5 (blue line) and CMIP6 (red line) ensembles and associated 5th to 95th percentile ranges (shaded regions). Observational data are HadCRUT5, Berkeley Earth, National Oceanic and Atmospheric Administration NOAAGlobalTemp-Interim and Kadow et al. (2020). Eyring, et al., <i>Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change</i>, (2021).</span>
-<img src="img/ipcc-gmt-eval.png" alt="IPCC-gmt" />
+<img src="img/ipcc-ar6-gmt-eval.png" alt="IPCC-gmt" />
 </figure>  
     
 <p>
-However, given that the people who develop the climate models know what the historical global mean temperature has been and that some of them test their models against it internally, the figure above isn’t really an independent test of the models.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>
+However, given that the people who develop the climate models know what the historical global mean temperature has been and that some of them test their models against it internally, the figure above isn’t entirely an independent test of the models.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>
 </p>
     
 <p>
-A truely independent test is to evaluate temperature projections that were made in the past. Hausfather et al., (2019) did this for every major projection of global mean temperature made by models since 1970. In the figure below they show global mean temperature projections (colored lines) versus the observed global mean temperature (black line), where the projections are plotted starting in the year after their publication.
+A truely independent test is to evaluate temperature projections that were made in the past. Hausfather et al., (2020) did this for every major projection of global mean temperature made by models since 1970. In the figure below they show global mean temperature projections (colored lines) versus the observed global mean temperature (black line), where the projections are plotted starting in the year after their publication.
 </p>
     
 <figure>
-<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Hausfather et al., <i>Evaluating the Performance of Past Climate Model Projections</i>, (2019).</span>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Hausfather et al., <i>Evaluating the Performance of Past Climate Model Projections</i>, (2020).</span>
 <img src="img/hausfather-gmt-predictions.png" alt="Hausfather-model-evaluation" />
 </figure>    
     
 <p>
-We can see that the models are generally quite accurate in their projections of global mean temperature.
+We can see that the models are generally quite accurate in their projections of global mean temperature. It’s impossible to know things like the state of ENSO in any future year or when major volcanic eruptions will occur, so the fact that they have generally been able to predict the long-term warming trend is impressive.
 </p>
     
 <p>    
-If your climate model has a problem, how do you fix it? You’ll need to modify the equations, either using fundamentally new equations or by adjusting the numerical values in the parameterizations (e.g., the value of \(K\) in the parameterization we discussed in the previous section). Adjusting the parameterizations is called model ‘tuning’ and is necessary for any statistical or complex model in any field of science. The size and complexity of climate models means that there are many parameterizations that could be tuned, but in practice a relatively small subset are usually adjusted. The most frequently tuned parameterizations are those dealing with clouds. The values are adjusted within the uncertainty ranges of the parameter values and the results of the tuning are evaluated against a wide range of observed climate quantities.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>   </p> 
+If your climate model has a problem, how do you fix it? You’ll need to modify the equations, either using fundamentally new equations or by adjusting the numerical values in the parameterizations (e.g., the value of \(K\) in the parameterization we discussed in the previous section). Adjusting the parameterizations is called model ‘tuning’ and it is necessary for any statistical or complex model in any field of science. The size and complexity of climate models means that there are many parameterizations that could be tuned, but in practice a relatively small subset are usually adjusted. The most frequently tuned parameterizations are those dealing with clouds. The values are adjusted within the uncertainty ranges of the parameter values and the results of the tuning are evaluated against a wide range of observed climate quantities.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>   </p> 
     
 </section>
     
@@ -295,95 +295,35 @@ If your climate model has a problem, how do you fix it? You’ll need to modify 
 <h2 id="model-uses">Climate Model Uses</h2>     
     
 <p>
-
+Climate models are used for understanding a huge variety of climate-related phenomena, not just those directly connected to global warming. Scientists use climate models to understand things such as: the circulation of the atmosphere and ocean, the behavior of ice sheets, the nature of chemical reactions in the atmosphere and ocean, the interaction of plants with climate, the character of climates in the geologic past, and what climates might be like on planets and moons in our solar system or elsewhere in our galaxy.
 </p>
     
 <p>
-
+Related to global warming, climate models are very useful for understanding the causes of global warming as well as its impacts. Let’s walk through an analysis using climate models that attributes observed climate changes to either human activities or natural factors. The figure below shows the global mean temperature from thermometer observations (solid black line) along with many climate model simulations that were run from the years 1850 to 2020 using different estimated radiative forcings.
+</p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Eyring, et al., <i>Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change</i>, (2021).</span>
+<img src="img/global-warming-attribution-ipcc-ar6.png" alt="Global-Warming-Attribution" />
+</figure>     
+    
+<p>
+The simulations were run as an experiment testing the influence of only one particular kind of radiative forcing at a time (colors) and then all radiative forcings together (gray). The red ‘Greenhouse gases’ simulations only included greenhouse gases; the green ‘Natural causes’ simulations included only variability related to ENSO and the radiative forcings from solar variability and volcanic eruptions; and the blue ‘Aerosols’ simulations included only human emissions of soot and pollution, etc. We can see that only greenhouse gases can explain the global warming trend. But human causes alone are not enough to explain much of the year-to-year variability, which we’ve learned is caused mostly by ENSO and major volcanic eruptions. Combined, both human and natural causes can best explain the observed historical temperature variability.
 </p>
     
 <p>
-
+There are many projected impacts of global warming and the next chapter will discuss some of the major projections and risks. Climate model simulations are particularly useful for projections because they’re really our only way to quantitatively predict what may occur in the future. But because we don’t know how humans will act in the future, climate modelers use a range of possible futures, each with its own storyline. These range from scenarios with very high greenhouse gas emissions to scenarios where emissions are rapidly reduced followed by net-negative emissions. The figure below shows how these different projections of global mean temperature and greenhouse gas emissions compare to what they have been over the past 2000 years. 
 </p>
+    
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Historical and projected future concentrations of carbon dioxide, methane, and nitrous oxide along with global mean temperatures. Chen et al., <i>Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change</i>, (2021).</span>
+<img src="img/gmt-pages2k-cmip6-ipcc-ar6.png" alt="Global-mean-projections" />
+</figure>    
     
 <p>
-
+The blue global mean temperature line is based on paleoclimate proxy data (like the rings of trees), and there are model projections plotted here that go out to 2100 and some that go out to 2300. The red projections correspond to scenarios where we burn as many of the fossil fuels as we can while the blue and purple projections are scenarios where we take a lot of action to reduce fossil fuel emissions. Perhaps the future will turn out to be somewhere in the middle of these extremes? We’ll discuss these projections in much greater detail in the last two chapters. For now let’s just notice one big idea from this figure: the future is up to us. Our actions will determine whether the world will remain about the same as it is now or if it will become far warmer.
 </p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-    
-    
-</section>
-    
-<section>      
-<h2 id="greenhouse-effect">The Greenhouse Effect</h2> 
-      
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
-    
-<p>
-
-</p>
+  
     
     
 <p>\(\Uparrow\) <a href="#top">To the top</a></p>
