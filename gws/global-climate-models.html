@@ -71,11 +71,11 @@ answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
 <h2 id="climate-model-comps">Climate Model Components</h2>    
     
 <p>
-We’ve so far learned about energy balance models, carbon cycle models, and 1-D atmospheric column models. Now we’re ready to learn about the big and complex 3-D global climate models. These are the workhorse models of climate science. Most of the climate science that relies on climate models uses these kinds of models. These are also the models that are used in nearly all of the projections of the impacts of global warming.
+We’ve so far learned about energy balance models, carbon cycle models, and 1-D atmospheric column models. Now we’re ready to learn about the big and complex 3-D global climate models. These are the workhorse models of climate science. Most of contemporary climate science relies on these kinds of models. These are also the models that are used in nearly all of the projections of the impacts of global warming.
 </p>
     
 <p>
-The major goal of global climate modeling is to accurately represent on a computer how the major processes of the climate system work. To do this, the atmosphere, land, and ocean have to be divided up and approximated by a finite number of grid cells. Let’s see what this looks like for a some piece of ocean and land not very different from somewhere like the coast of California.
+The major goal of global climate modeling is to accurately represent on a computer how the major processes of the climate system work. To do this, the atmosphere, land, and ocean have to be divided up and approximated by a finite number of grid cells. Let’s see what this looks like for some piece of ocean and land not very different from somewhere like the coast of California.
 </p>
     
 <figure>
@@ -92,11 +92,11 @@ Some details about the grid: the vertical coordinate is a pressure coordinate mo
 </p>
     
 <p>
-However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built into it. A climate model is built with equations that describe the phenomena of Earth’s four climate realms: atmosphere, ocean, cryosphere, and biosphere. Each realm has its own set of equations that describe the phenomena within that realm. For example, the atmosphere has equations that describe the motions of the air, the formation of clouds, precipitation, the absorption and emission of radiation, and the chemical reactions that take place in the air. And each realm is connected to the other realms through a special piece of computer code called a ‘coupler’, see below. 
+However, the grid is only the scaffolding of a climate model. More important than the scaffolding is what is built into it. A climate model is built with equations that describe the phenomena of Earth’s four climate realms: atmosphere, ocean, cryosphere, and biosphere. Each realm has its own set of equations that describe the phenomena within that realm. For example, the atmosphere has equations that describe the motions of the air, the formation of clouds, precipitation, the absorption and emission of radiation, and the chemical reactions that take place in the air. Each climate realm is connected to the other realms through a special piece of computer code called a ‘coupler’, see below. 
 </p>
     
 <figure>
-<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">The four realms of the climate system and how they are connected within a climate model.</span>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">The four realms/components of the climate system and how they are connected within a climate model.</span>
 <img src="img/climate-model-realms.png" alt="climate-model-realms" />
 </figure>     
     
@@ -160,6 +160,31 @@ A single simulation from a modern climate model includes hundreds of variables, 
 </p>
     
 <p>If you are curious about what the code of global climate models looks like, here are two examples you can explore on GitHub: the <a href="https://github.com/ESCOMP/CESM">Community Earth System Model</a> and the <a href="https://github.com/CliMA">Climate Machine</a>.</p>
+    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    cloze="Climate models are composed of {linked equations} that are solved by a computer on a grid that approximates Earth's atmosphere and ocean"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What does a climate model grid look like?"
+    answer=""
+    answer-attachments="https://njsteiger.github.io/gws/img/model-grid-neelin-topgrid.png" 
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="Climate models are composed of linked equations that are solved by a computer on a {grid} that approximates Earth's atmosphere and ocean"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What does this figure illustrate about climate models?"
+    question-attachments="https://njsteiger.github.io/gws/img/climate-model-realms.png"              
+    answer="They have separate components (or climate realms) that are connected by a coupler"
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="{Climate models} are composed of linked equations that are solved by a computer on a grid that approximates Earth's atmosphere and ocean"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
+    
     
 </section>
     
