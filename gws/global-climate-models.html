@@ -211,8 +211,25 @@ where an ‘operation’ is, for example, a single multiplication or addition; s
 </p>
     
 <p>
-If the computational time for a simulation is so long that a climate scientist cannot wait for it to be completed, the cost becomes irrelevant. To give you an idea of the time involved, if the climate model simulation is only for the atmosphere, about 20 years of climate can be simulated in about a day or two. Simulations that include both an atmosphere and ocean take about 2-3 times as long. It’s fairly common to run simulations that take a couple weeks or a month to complete. Simulations that take more than a couple months time are usually seen as impractical to carry out, though some people or organizations do run long simulations if they have a lot of time and computational resources at their command. Almost no one runs climate model simulations that take more than a year or so of computational time.
+If the computational time for a simulation is so long that a climate scientist cannot wait for it to be completed, the cost becomes irrelevant. To give you an idea of the time involved, if the climate model simulation is only for the atmosphere, about 20 years of climate can be simulated in about a day or two. Simulations that include both an atmosphere and ocean take about 2-3 times as long. It’s fairly common to run simulations that take a couple weeks or a month to complete. Simulations that take more than a couple months time are usually seen as impractical to carry out, though some people or organizations do run long simulations if they have a lot of time and computational resources at their command. Very few people run climate model simulations that take more than a year or so of computational time.
 </p>
+    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="Why aren’t climate models run at the highest possible resolution?"
+    answer="It would take too much computational time and resources"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="If the resolution of a climate model is increased, how does its quality change?"
+    answer="The quality usually improves"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What's the range of time that it takes typical climate model simulations to run on computer clusters or supercomputers?"
+    answer="About a day to about a month"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
     
 </section>
     
@@ -229,7 +246,7 @@ What happens if there are climate processes that are much smaller than the scale
 </figure>     
     
 <p>
-Important physical processes that are too small to fit on a model’s grid are included by using statistical theories called ‘parameterizations’. Parameterizations represent, for example, the effects of radiation, turbulence, and cloud formation. They are physically based theories that predict statistics. For example, instead of trying to model individual clouds, a cloud parameterization determines the collective effect of many clouds that would live within the area of a grid cell.
+Important physical processes that are too small to fit on a model’s grid are included by using statistical theories called ‘parameterizations’. Parameterizations represent, for example, the effects of radiation, turbulence, and cloud formation. They are physically-based equations that predict statistics. For example, instead of trying to model individual clouds, a cloud parameterization determines the collective effect of many clouds that would live within the area of a grid cell.
 </p>
     
 <p>
@@ -262,6 +279,18 @@ where \(\Delta z\) is the height difference between the two layers and \(K\) is 
 Of necessity, climate models contain many parameterizations such as these. Some parameterizations are well-studied with quite a bit of confidence in their representation in models, while other parameterizations are less well understood (e.g., parameterizations of soils, plants, and clouds). Also, changing some parameterizations can have a bigger impact on climate than changing others. For example, changing cloud parameterizations tend to have bigger impacts on climate than changing soil parameterizations; the uncertainties involved in cloud parameterizations is mostly what causes the relatively large uncertainties in our estimates of cloud feedbacks.
 </p>
     
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="What is a climate model paramaterization?"
+    answer="Equations that approximate a phenomena that can't be captured on the model grid"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="How are climate processes captured that are much smaller than the scale of the grid cells?"
+    answer="Through parameterizations"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
     
 </section>
     
@@ -312,7 +341,30 @@ We can see that the models are generally quite accurate in their projections of 
 </p>
     
 <p>    
-If your climate model has a problem, how do you fix it? You’ll need to modify the equations, either using fundamentally new equations or by adjusting the numerical values in the parameterizations (e.g., the value of \(K\) in the parameterization we discussed in the previous section). Adjusting the parameterizations is called model ‘tuning’ and it is necessary for any statistical or complex model in any field of science. The size and complexity of climate models means that there are many parameterizations that could be tuned, but in practice a relatively small subset are usually adjusted. The most frequently tuned parameterizations are those dealing with clouds. The values are adjusted within the uncertainty ranges of the parameter values and the results of the tuning are evaluated against a wide range of observed climate quantities.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>   </p> 
+If your climate model has a problem, how do you fix it? Sometimes simply increasing the resolution will fix model biases. If that doesn't work, then you’ll need to modify the equations, either using fundamentally new equations or by adjusting the numerical values in the parameterizations (e.g., the value of \(K\) in the parameterization we discussed in the previous section). Adjusting the parameterizations is called model ‘tuning’ and it is necessary for any statistical or complex model in any field of science. The size and complexity of climate models means that there are many parameterizations that could be tuned, but in practice a relatively small subset are usually adjusted. The most frequently tuned parameterizations are those dealing with clouds. The values are adjusted within the uncertainty ranges of the parameter values and the results of the tuning are evaluated against a wide range of observed climate quantities.<label for="ref1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="ref1" class="margin-toggle"/><span class="sidenote">Hourdin et al., <i>The Art and Science of Climate Model Tuning</i>, (2017).</span>   </p> 
+        
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="How are climate models evaluated?"
+    answer="By comparing the results of their simulations to climate observations"
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="Scientists try to improve climate models by increasing their resolution and by {improving their equations}."
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is a completely independent way to evaluate a climate model's performance?"
+    answer="Test its predictions well after the year that it made them"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What is climate model 'tuning'?"
+    answer="Adjusting the numerical values in the parameterizations within their uncertainties"
+    ></orbit-prompt>
+    <orbit-prompt
+    cloze="Scientists try to improve climate models by {increasing their resolution} and by improving their equations."
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
     
 </section>
     
@@ -349,7 +401,24 @@ There are many projected impacts of global warming and the next chapter will dis
 The blue global mean temperature line is based on paleoclimate proxy data (like the rings of trees), and there are model projections plotted here that go out to 2100 and some that go out to 2300. The red projections correspond to scenarios where we burn as many of the fossil fuels as we can while the blue and purple projections are scenarios where we take a lot of action to reduce fossil fuel emissions. Perhaps the future will turn out to be somewhere in the middle of these extremes? We’ll discuss these projections in much greater detail in the last two chapters. For now let’s just notice one big idea from this figure: the future is up to us. Our actions will determine whether the world will remain about the same as it is now or if it will become far warmer.
 </p>
   
-    
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    question="How are climate models used to attribute climate changes to human or natural factors?"
+    answer="By running climate simulations that test each factor independently"
+    answer-attachments="https://njsteiger.github.io/gws/img/global-warming-attribution-ipcc-ar6.png"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="Are climate models used only for studying global warming?"
+    answer="No, they are used for almost any kind of climate research"
+    ></orbit-prompt>
+    <orbit-prompt
+    question="What does this figure show about past global mean temperature?"
+    question-attachments="https://njsteiger.github.io/gws/img/global-warming-attribution-ipcc-ar6.png"
+    answer="That the global warming trend is caused by humans and the year-to-year variability is due to natural causes"
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>    
     
 <p>\(\Uparrow\) <a href="#top">To the top</a></p>
 <!--<p>\(\Rightarrow\) <a href="atmosphere-energy-balance.html">Next chapter</a></p>-->
