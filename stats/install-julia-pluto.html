@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Installing Julia and Pluto</title>
+    <meta property="og:title" content="Installing Julia and Pluto">
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!--Mathjax for equations-->
+  </head>
+
+  <body>
+  <a name="top"></a>
+        
+  <article>
+  <h1 id="install">First-time setup: Install Julia &amp; Pluto</h1>
+
+    
+      
+          <!--
+HERE is the code for a side citation:
+
+<label for="ref1" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="ref1" class="margin-toggle"/>
+<span class="sidenote">CONTENT HERE</span>
+
+HERE is the code for a margin note without citation number
+
+<label for="mn-demo" class="margin-toggle">&#8853;</label>
+<input type="checkbox" id="mn-demo" class="margin-toggle"/>
+<span class="marginnote">
+This is a margin note. Notice there isn’t a number preceding the note.
+</span>
+
+HERE is the code for a figure:
+
+<figure>
+<label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">Caption here</span>
+<img src="img/filenameofFig.jpg" alt="Alternate Title" />
+</figure>
+
+HERE is the code for Orbit questions, both cloze and regular
+can use either of these for images associated with the question or answer:
+question-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
+answer-attachments="https://njsteiger.github.io/gws/img/mlo_record.png"
+
+<p>
+<orbit-reviewarea>
+    <orbit-prompt
+    cloze=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+    <orbit-prompt
+    question=""
+    answer=""
+    ></orbit-prompt>
+</orbit-reviewarea>
+</p>
+
+          -->
+          
+<section>
+    <p>Below are two sets of instructions for installing Julia and Pluto, one is a video recording and the other is written out in text with accompanying figures.</p>
+    
+<h2 id="video">Video Version </h2>    
+    
+<p>(From an MIT course)</p> 
+<figure class="iframe-wrapper">
+  <iframe src="https://www.youtube-nocookie.com/embed/OOjKEgbt8AI" frameborder="0" allowfullscreen></iframe><label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote"></span>
+</figure>    
+    
+<h2 id="text">Text and Pictures Version</h2>    
+    
+<h3>Step 1: Install Julia</h3>    
+    
+<p>
+Go to <a href="https://julialang.org/downloads">https://julialang.org/downloads</a> and download the current stable release of Julia, using the correct version for your operating system (Linux x86, Mac, Windows, etc). Then run the installation as you normally would do for any other software program/application.
+</p>
+ 
+<h3>Step 2: Run Julia</h3>    
+    
+<p>After installing, make sure that you can run Julia. On some systems, this means searching for the ‘Julia X.X.X’ program installed on your computer (where X.X.X are numbers that refer to the current version of Julia that you downloaded); in others, it means running the command ‘julia’ in a terminal. Make sure that you can execute 1 + 1:</p>    
+
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/>
+<img src="img/launch-julia.png" alt="Run Julia" />
+</figure>
+
+<h3>Step 3: Install Pluto</h3>    
+    
+<p>Next we will install <a href="https://github.com/fonsp/Pluto.jl">Pluto</a>, the notebook environment that we will be using during the course. Pluto is a Julia programming environment designed for interactivity and quick experiments.</p>
+
+<p>Open the Julia REPL. This is the command-line interface to Julia, similar to the previous screenshot. Here you type Julia commands, and when you press ENTER, it runs, and you see the result.</p>
+
+<p>To install Pluto, we want to run a package manager command. To switch from Julia mode to Pkg mode, type ] (closing square bracket) at the julia> prompt. It will look like the image below, where the Julia mode switches into the Pkg mode.
+</p>
+    
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/>
+<img src="img/launch-julia-package.jpg" alt="Run Julia Package" />
+</figure>    
+    
+<p>
+The line turns another color and the prompt changes to pkg>, telling you that you are now in package manager mode. This mode allows you to do operations on packages (also called libraries).
+
+To install Pluto, run the following (case sensitive) command to add (install) the package to your system by downloading it from the internet: ‘add Pluto’. You should only need to do this once for each installation of Julia:
+</p>
+
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/>
+<img src="img/add-pluto.jpg" alt="Add Pluto" />
+</figure>    
+    
+<p>
+This might take a couple of minutes to finish installing. Once this has finished, you will then exit out of the package manager by pressing the Delete key. This will bring you back to the REPL. At this point you will exit out of Julia by typing the command ‘exit()’ and pressing enter.
+</p>
+    
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/>
+<img src="img/exit-julia.jpg" alt="Exit Julia" />
+</figure>    
+    
+<p>Now both Julia and Pluto are installed!</p>    
+    
+<h2 id="Running">Running Julia + Pluto and opening a notebook</h2>    
+
+<p>Repeat these steps anytime that you need to run Pluto and work on a notebook.</p> 
+    
+<h3>Step 1: Start Pluto</h3>   
+    
+<p>Start the Julia REPL, like you did during the setup by either running the command ‘julia’ in a terminal or by finding and starting the Julia application/program. Once Julia has started, in the REPL, type: ‘import Pluto; Pluto.run()’</p>    
+    
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/>
+<img src="img/start-julia-and-pluto.jpg" alt="Runing Pluto" />
+</figure> 
+    
+<p>This will open a browswer window located at http://localhost:1234/ with a unique identifying number after this that is generated randomly every time that you run Pluto. It should look something like the following:</p>
+    
+<figure>
+    <label for="mn-exports-imports" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-exports-imports" class="margin-toggle"/><span class="marginnote">If you’re curious about what a Pluto notebook looks like, have a look at the Featured Notebooks. These notebooks are useful for learning some basics of Julia programming. If you want to hear the story behind Pluto, have a look at the <a href="https://www.youtube.com/watch?v=IAF8DjrQSSk" >JuliaCon presentation</a>.</span>
+<img src="img/pluto-browser.png" alt="Runing Pluto 2" />
+</figure>    
+    
+<p>If nothing happens in the browser the first time, close Julia and try again.</p>
+    
+<h3>Step 3: Opening a notebook from the web</h3>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+    
+</section>      
+</article>      
+      
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
