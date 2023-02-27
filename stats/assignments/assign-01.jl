@@ -13,19 +13,9 @@
 using Markdown
 using InteractiveUtils
 
-# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
-macro bind(def, element)
-    quote
-        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
-        local el = $(esc(element))
-        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
-        el
-    end
-end
-
 # ╔═╡ af595218-7692-446f-b9db-06555efbe95f
 begin
-	using Plots
+	using StatsPlots
 	using HTTP
 	using CSV
 end
@@ -34,7 +24,7 @@ end
 md"""
 
 # **Assignment 1**
-_**Statistical Methods for Earth Sciences**_
+### _Statistical Methods for Earth Sciences_
 """
 
 # ╔═╡ b6009e10-a175-4a61-99ee-a6e2fb80f0c4
@@ -42,6 +32,13 @@ md"""
 #### Intializing Packages
 
 Julia (like Python) does not automatically allow every feature that is possible to use in Julia, but you must specify which 'packages' you'd like to use that are beyond the basic features that are available anytime you start up Julia/Pluto. Every assignment will begin with a list of packages that must be loaded in order to complete the assignment. Note that when you run the initialization for the first time, it could take up to 15 minutes to load everything if there are big packages that must be loaded.
+"""
+
+# ╔═╡ ba41f596-2e21-4603-8c8c-bbcc1f80866b
+md"""
+### Saving Your Notebook
+
+Pluto notebooks are autosaved whenever you change something. The default location for new notebooks on your computer is $(joinpath(first(DEPOT_PATH), "pluto_notebooks")), you can find it using your file explorer. To change the name or the directory of a notebook, scroll to the top of this page and enter the notebook's path and name next to the Pluto logo.
 """
 
 # ╔═╡ 4237e22e-2ff3-4901-a273-600383dcdff8
@@ -65,17 +62,6 @@ md"Fix the value of `c` below to make it `c = a * b`"
 # ╔═╡ cdfb5f53-80a9-413c-8260-cf2f016af833
 c=18
 
-# ╔═╡ 11794cad-c79c-4d86-8fcc-6ecbff167761
-if c == a * b
-	println(md"""Great! The value of c = $c.  So you now have a simple computer!
-	
-	Now go back above and change the value of a = $a to a = $(a + 3) and press `Shift-Enter`.
-	What is the new value of c?  Notice how all the values get updated in this notebook!
-	""")
-else
-	println("That's not right, keep working on it!")
-end
-
 # ╔═╡ f112b662-9543-11ea-3dcb-2906a99b2188
 html"""<p>Notice that a cell is a container for code & output. To add one, click on the plus icon, <img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/add-outline.svg" style="width: 1em; height: 1em; margin-bottom: -.2em;">, above or below another cell. You can do it wherever you like. After you're done writing code in your cell, remember to run it!</p>"""
 
@@ -91,13 +77,37 @@ html"""<p>Above we saw that variables in Julia can take single values, but they 
 # ╔═╡ 49e72a0d-ee59-4512-b3d3-2994b11c89a9
 x=randn(3)
 
+# ╔═╡ aa4e7779-f5af-41ae-be58-0f59f530e57e
+md"Uh oh! Pluto doesn't support multiple expressions per cell. This is a conscious choice - this restriction helps you write less buggy code once you get used to it. To fix the code, you can either split the above cell, or wrap it in a `begin ... end` block. Both work."
+
+# ╔═╡ a9dcb823-0b9f-4c1b-8b30-b213814ae61a
+md"""
+> ### Getting Help
+>You can find out more about any function (like `rand`) by clicking on the Live Docs in the bottom right of this Pluto window, and typing a function name in the top.
+>
+>![image](https://user-images.githubusercontent.com/6933510/107848812-c934df80-6df6-11eb-8a32-663d802f5d11.png)
+>
+>
+>![image](https://user-images.githubusercontent.com/6933510/107848846-0f8a3e80-6df7-11eb-818a-7271ecb9e127.png)
+>
+>We recommend that you leave the window open while you work on Julia code. It will continually look up documentation for anything you type!
+>
+>#### Help, I don't see the Live Docs!
+>
+>Try the following:
+>
+>🙋 **Are you viewing a static preview?** The Live Docs only work if you _run_ the notebook. If you are reading this on our course website, then click the button in the top right to run the notebook.
+>
+>🙋 **Is your screen too small?** Try resizing your window or zooming out.
+"""
+
 # ╔═╡ 6d99ed80-b56e-44c6-a095-3bea1a3df62e
 md"## Loading and plotting data
 
 Let's now look at some real data. Below is the URL for temperature data from London, UK, from 1948 to the present."
 
 # ╔═╡ 0141a685-f45d-4a1e-8053-5421661a2a48
-url="https://data.giss.nasa.gov/tmp/gistemp/STATIONS/tmp_UKM00003772_14_0_1/station.csv"
+url="https://njsteiger.github.io/stats/data/london_heathrow.csv"
 
 # ╔═╡ fd351a54-464c-4048-9bd0-faf1146f5ab2
 html"""<p>Now let's load the data from this URL using the following commands and display the resulting table of data.</p>"""
@@ -112,70 +122,53 @@ file = CSV.File(http_response.body)
 end
 
 # ╔═╡ b6c35b5f-7098-4838-8308-8e11bfc84786
-html"""<p>Notice that the table contains data for each month as well as averages for different three month seasons (DJF, MAM, JJA, SON) and also the annual average, which is indicated by the variable name 'metANN'.</p>"""
+html"""<p>Notice that the table contains data for each month. If you click on 'more' at the top of the table above, then you can see that the table also contains averages for different three month seasons (DJF, MAM, JJA, SON) and also the annual average, which is indicated by the variable name 'metANN'.</p>"""
 
 # ╔═╡ 243757e6-f553-41fc-b0ec-64ccf6ee1fe8
+file.YEAR
+
+# ╔═╡ 0dc02846-4762-4832-8608-042838bd6721
+file.metANN
+
+# ╔═╡ 73050088-3845-4ea0-bd01-b55baaa84135
+histogram(file.metANN)
+
+# ╔═╡ 5a99d620-2958-43ba-9c3c-f60bfe8fc155
+Tann=file.metANN
+
+# ╔═╡ 171c4752-8131-4860-83a6-3b3fb61e37f5
+london_ann=Tann[Tann .< 990]
+
+# ╔═╡ f9694c36-c39a-4a47-8648-0d6c4b605d16
+histogram(london_ann,label="Mean Ann. Temp.")
+
+# ╔═╡ 941ca951-a77a-4373-900a-ec370b8d8621
+md"## Exercise 1
+
+Following the example we've worked through above, plot histograms of London's January and July temperatures. Be sure to accurately label the data that is plotted."
+
+# ╔═╡ 156988a0-b5d9-412b-8a0e-96a222ea2149
 
 
-# ╔═╡ 9da8a362-1588-4647-b7d8-13118505ec5f
-md"## Getting Help"
+# ╔═╡ 75e45d81-b520-41d1-90ae-de4544b3de61
+md"## Exercise 2
 
-# ╔═╡ 270ac49e-9549-11ea-3ffd-71ddaee9f134
-md"But what does `confusing_function` do? If you ever need help, click on 📚 **Live docs** in the lower right, and then place your cursor on the code you need help with. 
+Plot histograms of London's January and July temperatures."
 
-If you don't see it, then your screen is too small! Maybe you need to zoom out?"
-
-# ╔═╡ 745a4584-954a-11ea-028e-59011f268ec6
-cans_in_stock = "🥫🥫🥫🥫"
-
-# ╔═╡ 55ad7422-954e-11ea-0a33-a3b03febb56e
-if @isdefined cans_in_stock
-	md"Actually, I have a hunch there will be another cat coming. Uncomment the code below (remove the #) to add one more can. Remember to run it after making the change!"
-else
-	md"**Whoopsie!** Because Pluto figures out execution order for you, it doesn't really make sense to assign to the same variable twice. A smarter way to plan ahead is to write `cans_in_stock = consumption` — Pluto will take care of updating everything."
+# ╔═╡ 7d7492c2-5ef7-48a9-9831-5356581518bd
+begin
+	histogram(london_ann,label="Mean Ann. Temp.",normalize=true)
+	density!(london_ann,linewidth=3,label="Kernel Density")
 end
 
-# ╔═╡ eac62fea-954e-11ea-2768-39ce6f4059ab
-# cans_in_stock = "🥫🥫🥫🥫🥫"
+# ╔═╡ 90aa8597-6fd9-4d4d-96cb-8383734957d4
+ldjf=file."metAnn"
 
-# ╔═╡ 6c8e2108-9550-11ea-014d-235770ed4771
-md"## Saving cats and notebooks
-Alright, we have a neighborhood full of well-fed cats. But oh no, here comes..."
-
-# ╔═╡ 9e89fc9a-9550-11ea-14b4-7f0e96225ec0
-scary_dog = "Piesio"
-
-# ╔═╡ bdd5d268-9550-11ea-1046-31efedc36872
-if @isdefined scary_dog
-	md" $scary_dog is terrorizing the neighborhood! We must do something about it!"
-else
-	md"You saved the neighborhood! Referencing `scary_dog` leads to an `UndefVarError`, as if it never even existed."
-end
-
-# ╔═╡ 36cd006a-9551-11ea-3c0c-df8b7f2843c1
-HTML("""<p>To delete a cell like the one defining $scary_dog, click on the <img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/close-circle-outline.svg" style="width: 1em; height: 1em; margin-bottom: -.2em;"> on the right of its code.</p>""")
-
-# ╔═╡ fb4e471c-9551-11ea-1ab5-41bbd5de76b8
+# ╔═╡ 960f4286-5126-4856-bafa-3a29c1554c12
 md"""
-Speaking of saving, this notebook is autosaved whenever you change something. The default location for new notebooks is $(joinpath(first(DEPOT_PATH), "pluto_notebooks")), you can find it using your file explorer. To change the name or the directory of a notebook, scroll to the top - you enter the notebook's path next to the Pluto logo.
+!!! danger "Checkpoint"
+	Before you continue further, have the TA or professor check off your work up to this point.
 """
-
-# ╔═╡ 9d3af596-9554-11ea-21bd-bf427c91c424
-md"## ⚡ Pluto power ⚡
-Oof, that dog situation was intense. Let's give our cats superpowers to make sure it never happens again!"
-
-# ╔═╡ 3150bf1a-9555-11ea-306f-0fd4d9229a51
-md"Remember learning HTML in junior high? Now you can use it for something! Pluto lets you `@bind` variables to HTML elements. As always, every time you change something, Pluto knows what to update!"
-
-# ╔═╡ f2c79746-9554-11ea-39ca-298fd09248ad
-@bind power_level html"<input type='range'>"
-
-# ╔═╡ 0b094cea-9556-11ea-268e-0d270fd04d56
-md"The power level is $power_level, but we should do more than just say it - let's equip our cats with $power_level emoji!"
-
-# ╔═╡ 1908f9f2-9557-11ea-2abd-dd52f8d776f4
-power_emoji = "⚡"
-power = repeat(power_emoji, power_level)
 
 # ╔═╡ 784b1774-9557-11ea-315e-d1ea277ce0fd
 if !@isdefined power
@@ -187,48 +180,63 @@ end
 # ╔═╡ 5edadcd2-9554-11ea-1714-b5b7692c4797
 html"""<p>We're almost done! It's time to share your amazing story. Scroll to the top of the notebook, and click on <img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/shapes-outline.svg" style="width: 1em; height: 1em; margin-bottom: -.2em;"> to see the export options - or you can always share this notebook's save file. (The file is pure Julia, by the way, and it's runnable! You'll learn more about this in the advanced introduction.)</p>"""
 
-# ╔═╡ 4634c856-9553-11ea-008d-3539195970ea
-md"## Final notes"
+# ╔═╡ 979e3a2b-d522-443e-83d3-09984847b0ef
+html"&nbsp;"
 
-# ╔═╡ 4d0ebb46-9553-11ea-3431-2d203f594815
-md"If anything about this introduction left you confused, something doesn't work, or you have a cool new idea - don't hesitate to contact us! You can do it right from this screen, using the `Instant feedback` form in the bottom right."
+# ╔═╡ 4b907f07-a02d-42f5-8a98-bd5834bce3c5
+md"## Helper Functions
 
-# ╔═╡ d736e096-9553-11ea-3ba5-277afde1afe7
-md"Also, if you were wondering where `confusing_function` came from, here you go! Remember that you, too, can place code wherever you like."
+You don't need to worry about these!
+"
 
-# ╔═╡ 7366f1b6-954c-11ea-3f68-b12444c902c3
-"""
-confusing_function(text::String, array::Array)
+# ╔═╡ 8931e148-fd27-495e-985f-d932f13f60cb
+still_missing(text=md"Replace `missing` with your answer.") = Markdown.MD(Markdown.Admonition("warning", "Here we go!", [text]))
 
-Repeats the `text` as many times as there are elements in `array`.
-"""
-confusing_function(text::String, array::Array) = repeat(text, length(array))
+# ╔═╡ e69222cd-d023-4a4a-a2a2-0df098fc696f
+yays = [md"Fantastic!", md"Splendid!", md"Great!", md"Yay ❤", md"Great! 🎉", md"Well done!", md"Keep it up!", md"Good job!", md"Awesome!", md"You got the right answer!", md"Let's move on to the next section."]
 
-# ╔═╡ a4a60262-9547-11ea-3a81-5bf7f9ee5d16
-consumption = confusing_function("🥫", neighbors)
+# ╔═╡ c6a7e0aa-7337-4d9d-9686-34f80eae78cb
+correct(text=rand(yays)) = Markdown.MD(Markdown.Admonition("correct", "Got it!", [text]))
 
-# ╔═╡ e11e1660-9549-11ea-22f6-8bb53dc045fe
-md"Now we know to prepare $(length(consumption)) cans. Let's stock up!"
+# ╔═╡ ad296628-3e78-44d6-aec4-1e3edadaa3ee
+keep_working(text=md"The answer is not quite right.") = Markdown.MD(Markdown.Admonition("danger", "Keep working on it!", [text]))
 
-# ╔═╡ f27f90c2-954f-11ea-3f93-17acb2ce4280
-md"We have $(length(cans_in_stock)) cans of cat food, and our cats need $(length(consumption)). Try adding another cat to the neighborhood to see what changes!"
+# ╔═╡ b570c4e5-280d-41eb-9386-6b65b4d7b0f0
+if c == a * b
+	correct(md"""**Great!** The value of c = $c.  So you now have a simple computer!
+	
+	Now go back above and change the value of **a = $a** to **a = $(a + 3)** and press **`Shift-Enter`**.
+	What is the new value of **c**?  Notice how all the values get updated in this notebook!
+	""")
+else
+	keep_working()
+end
 
-# ╔═╡ 1deaaf36-9554-11ea-3dae-85851f73dbc6
-md"**Have fun using Pluto!**
+# ╔═╡ 38a2ab41-efc3-4e7d-823a-c2af9275ce5c
+almost(text) = Markdown.MD(Markdown.Admonition("warning", "Almost there!", [text]))
 
-_~ Fons van der Plas & Nicholas Bochenski_"
+# ╔═╡ 7f59aa91-563c-4fb2-877b-5808e09fd15e
+hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hint", [text]))
+
+# ╔═╡ a6446d6d-cb40-40cd-90c7-362181542c6a
+not_defined(variable_name) = Markdown.MD(Markdown.Admonition("danger", "Oopsie!", [md"Make sure that you define a variable called **$(Markdown.Code(string(variable_name)))**"]))
+
+# ╔═╡ ba1ec4c6-07a2-4977-b731-fb577a57d834
+todo(text) = HTML("""<div
+	style="background: rgb(220, 200, 255); padding: 2em; border-radius: 1em;"
+	><h1>TODO</h1>$(repr(MIME"text/html"(), text))</div>""")
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
 
 [compat]
 CSV = "~0.10.9"
 HTTP = "~1.7.4"
-Plots = "~1.38.6"
+StatsPlots = "~0.15.4"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -238,11 +246,41 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 julia_version = "1.7.3"
 manifest_format = "2.0"
 
+[[deps.AbstractFFTs]]
+deps = ["ChainRulesCore", "LinearAlgebra"]
+git-tree-sha1 = "69f7020bd72f069c219b5e8c236c1fa90d2cb409"
+uuid = "621f4979-c628-5d54-868e-fcf4e3e8185c"
+version = "1.2.1"
+
+[[deps.Adapt]]
+deps = ["LinearAlgebra"]
+git-tree-sha1 = "0310e08cb19f5da31d08341c6120c047598f5b9c"
+uuid = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
+version = "3.5.0"
+
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
 
+[[deps.Arpack]]
+deps = ["Arpack_jll", "Libdl", "LinearAlgebra", "Logging"]
+git-tree-sha1 = "9b9b347613394885fd1c8c7729bfc60528faa436"
+uuid = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
+version = "0.5.4"
+
+[[deps.Arpack_jll]]
+deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "OpenBLAS_jll", "Pkg"]
+git-tree-sha1 = "5ba6c757e8feccf03a1554dfaf3e26b3cfc7fd5e"
+uuid = "68821587-b530-5797-8361-c406ea357684"
+version = "3.5.1+1"
+
 [[deps.Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+
+[[deps.AxisAlgorithms]]
+deps = ["LinearAlgebra", "Random", "SparseArrays", "WoodburyMatrices"]
+git-tree-sha1 = "66771c8d21c8ff5e3a93379480a2307ac36863f7"
+uuid = "13072b0f-2c55-5437-9ae7-d433b7a33950"
+version = "1.0.1"
 
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -270,6 +308,12 @@ git-tree-sha1 = "4b859a208b2397a7a623a03449e4636bdb17bcf2"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.16.1+1"
 
+[[deps.Calculus]]
+deps = ["LinearAlgebra"]
+git-tree-sha1 = "f641eb0a4f00c343bbc32346e1217b86f3ce9dad"
+uuid = "49dc2e85-a5d0-5ad3-a950-438e2897f1b9"
+version = "0.5.1"
+
 [[deps.ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
 git-tree-sha1 = "c6d890a52d2c4d55d326439580c3b8d0875a77d9"
@@ -281,6 +325,12 @@ deps = ["ChainRulesCore", "LinearAlgebra", "Test"]
 git-tree-sha1 = "485193efd2176b88e6622a39a246f8c5b600e74e"
 uuid = "9e997f8a-9a97-42d5-a9f1-ce6bfc15e2c0"
 version = "0.1.6"
+
+[[deps.Clustering]]
+deps = ["Distances", "LinearAlgebra", "NearestNeighbors", "Printf", "Random", "SparseArrays", "Statistics", "StatsBase"]
+git-tree-sha1 = "64df3da1d2a26f4de23871cd1b6482bb68092bd5"
+uuid = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
+version = "0.14.3"
 
 [[deps.CodecZlib]]
 deps = ["TranscodingStreams", "Zlib_jll"]
@@ -343,6 +393,12 @@ git-tree-sha1 = "bfc1187b79289637fa0ef6d4436ebdfe6905cbd6"
 uuid = "e2d170a0-9d28-54be-80f0-106bbe20a464"
 version = "1.0.0"
 
+[[deps.DataValues]]
+deps = ["DataValueInterfaces", "Dates"]
+git-tree-sha1 = "d88a19299eba280a6d062e135a43f00323ae70bf"
+uuid = "e7dc6d0d-1eca-5fa6-8ad6-5aecde8b7ea5"
+version = "0.4.13"
+
 [[deps.Dates]]
 deps = ["Printf"]
 uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -350,6 +406,28 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 [[deps.DelimitedFiles]]
 deps = ["Mmap"]
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+
+[[deps.DensityInterface]]
+deps = ["InverseFunctions", "Test"]
+git-tree-sha1 = "80c3e8639e3353e5d2912fb3a1916b8455e2494b"
+uuid = "b429d917-457f-4dbc-8f4c-0cc954292b1d"
+version = "0.4.0"
+
+[[deps.Distances]]
+deps = ["LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI"]
+git-tree-sha1 = "3258d0659f812acde79e8a74b11f17ac06d0ca04"
+uuid = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+version = "0.10.7"
+
+[[deps.Distributed]]
+deps = ["Random", "Serialization", "Sockets"]
+uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+
+[[deps.Distributions]]
+deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
+git-tree-sha1 = "d71264a7b9a95dca3b8fff4477d94a837346c545"
+uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
+version = "0.25.84"
 
 [[deps.DocStringExtensions]]
 deps = ["LibGit2"]
@@ -360,6 +438,12 @@ version = "0.9.3"
 [[deps.Downloads]]
 deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
+
+[[deps.DualNumbers]]
+deps = ["Calculus", "NaNMath", "SpecialFunctions"]
+git-tree-sha1 = "5837a837389fccf076445fce071c8ddaea35a566"
+uuid = "fa6b7ba4-c1ee-5f82-b5fc-ecf0adba8f74"
+version = "0.6.8"
 
 [[deps.Expat_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -379,6 +463,18 @@ git-tree-sha1 = "74faea50c1d007c85837327f6775bea60b5492dd"
 uuid = "b22a6f82-2f65-5046-a5b2-351ab43fb4e5"
 version = "4.4.2+2"
 
+[[deps.FFTW]]
+deps = ["AbstractFFTs", "FFTW_jll", "LinearAlgebra", "MKL_jll", "Preferences", "Reexport"]
+git-tree-sha1 = "90630efff0894f8142308e334473eba54c433549"
+uuid = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
+version = "1.5.0"
+
+[[deps.FFTW_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "c6033cc3892d0ef5bb9cd29b7f2f0331ea5184ea"
+uuid = "f5851436-0d7a-5f13-b9de-f02708fd171a"
+version = "3.3.10+0"
+
 [[deps.FilePathsBase]]
 deps = ["Compat", "Dates", "Mmap", "Printf", "Test", "UUIDs"]
 git-tree-sha1 = "e27c4ebe80e8699540f2d6c805cc12203b614f12"
@@ -387,6 +483,12 @@ version = "0.9.20"
 
 [[deps.FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
+
+[[deps.FillArrays]]
+deps = ["LinearAlgebra", "Random", "SparseArrays", "Statistics"]
+git-tree-sha1 = "d3ba08ab64bdfd27234d3f61956c966266757fe6"
+uuid = "1a297f60-69ca-5386-bcde-b61e274b549b"
+version = "0.13.7"
 
 [[deps.FixedPointNumbers]]
 deps = ["Statistics"]
@@ -475,6 +577,12 @@ git-tree-sha1 = "129acf094d168394e80ee1dc4bc06ec835e510a3"
 uuid = "2e76f6c2-a576-52d4-95c1-20adfe4de566"
 version = "2.8.1+1"
 
+[[deps.HypergeometricFunctions]]
+deps = ["DualNumbers", "LinearAlgebra", "OpenLibm_jll", "SpecialFunctions", "Test"]
+git-tree-sha1 = "709d864e3ed6e3545230601f94e11ebc65994641"
+uuid = "34004b35-14d8-5ef3-9330-4cdb6864b03a"
+version = "0.3.11"
+
 [[deps.IniFile]]
 git-tree-sha1 = "f550e6e32074c939295eb5ea6de31849ac2c9625"
 uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
@@ -486,9 +594,21 @@ git-tree-sha1 = "9cc2baf75c6d09f9da536ddf58eb2f29dedaf461"
 uuid = "842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
 version = "1.4.0"
 
+[[deps.IntelOpenMP_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "d979e54b71da82f3a65b62553da4fc3d18c9004c"
+uuid = "1d5cc7b8-4909-519e-a0f8-d0f5ad9712d0"
+version = "2018.0.3+2"
+
 [[deps.InteractiveUtils]]
 deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
+
+[[deps.Interpolations]]
+deps = ["Adapt", "AxisAlgorithms", "ChainRulesCore", "LinearAlgebra", "OffsetArrays", "Random", "Ratios", "Requires", "SharedArrays", "SparseArrays", "StaticArrays", "WoodburyMatrices"]
+git-tree-sha1 = "721ec2cf720536ad005cb38f50dbba7b02419a15"
+uuid = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
+version = "0.14.7"
 
 [[deps.InverseFunctions]]
 deps = ["Test"]
@@ -530,6 +650,12 @@ git-tree-sha1 = "6f2675ef130a300a112286de91973805fcc5ffbc"
 uuid = "aacddb02-875f-59d6-b918-886e6ef4fbf8"
 version = "2.1.91+0"
 
+[[deps.KernelDensity]]
+deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
+git-tree-sha1 = "9816b296736292a80b9a3200eb7fbb57aaa3917a"
+uuid = "5ab0869b-81aa-558d-bb23-cbf5423bbe9b"
+version = "0.6.5"
+
 [[deps.LAME_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "f6250b16881adf048549549fba48b1161acdac8c"
@@ -558,6 +684,10 @@ deps = ["Formatting", "InteractiveUtils", "LaTeXStrings", "MacroTools", "Markdow
 git-tree-sha1 = "2422f47b34d4b127720a18f86fa7b1aa2e141f29"
 uuid = "23fbe1c1-3f47-55db-b15f-69d7ec21a316"
 version = "0.15.18"
+
+[[deps.LazyArtifacts]]
+deps = ["Artifacts", "Pkg"]
+uuid = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
 
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
@@ -645,6 +775,12 @@ git-tree-sha1 = "cedb76b37bc5a6c702ade66be44f831fa23c681e"
 uuid = "e6f89c97-d47a-5376-807f-9c37f3926c36"
 version = "1.0.0"
 
+[[deps.MKL_jll]]
+deps = ["Artifacts", "IntelOpenMP_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg"]
+git-tree-sha1 = "2ce8695e1e699b68702c03402672a69f54b8aca9"
+uuid = "856f044c-d86e-5d09-b602-aeab76dc8ba7"
+version = "2022.2.0+0"
+
 [[deps.MacroTools]]
 deps = ["Markdown", "Random"]
 git-tree-sha1 = "42324d08725e200c23d4dfb549e0d5d89dede2d2"
@@ -682,14 +818,37 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
 
+[[deps.MultivariateStats]]
+deps = ["Arpack", "LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI", "StatsBase"]
+git-tree-sha1 = "91a48569383df24f0fd2baf789df2aade3d0ad80"
+uuid = "6f286f6a-111f-5878-ab1e-185364afe411"
+version = "0.10.1"
+
 [[deps.NaNMath]]
 deps = ["OpenLibm_jll"]
 git-tree-sha1 = "0877504529a3e5c3343c6f8b4c0381e57e4387e4"
 uuid = "77ba4419-2d1f-58cd-9bb1-8ffee604a2e3"
 version = "1.0.2"
 
+[[deps.NearestNeighbors]]
+deps = ["Distances", "StaticArrays"]
+git-tree-sha1 = "2c3726ceb3388917602169bed973dbc97f1b51a8"
+uuid = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
+version = "0.4.13"
+
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+
+[[deps.Observables]]
+git-tree-sha1 = "6862738f9796b3edc1c09d0890afce4eca9e7e93"
+uuid = "510215fc-4207-5dde-b226-833fc4488ee2"
+version = "0.5.4"
+
+[[deps.OffsetArrays]]
+deps = ["Adapt"]
+git-tree-sha1 = "82d7c9e310fe55aa54996e6f7f94674e2a38fcb4"
+uuid = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
+version = "1.12.9"
 
 [[deps.Ogg_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -737,6 +896,12 @@ version = "1.4.1"
 [[deps.PCRE2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "efcefdf7-47ab-520b-bdef-62a2eaa19f15"
+
+[[deps.PDMats]]
+deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
+git-tree-sha1 = "cf494dca75a69712a72b80bc48f59dcf3dea63ec"
+uuid = "90014a1f-27ba-587c-ab20-58faa44d9150"
+version = "0.11.16"
 
 [[deps.Parsers]]
 deps = ["Dates", "SnoopPrecompile"]
@@ -799,6 +964,12 @@ git-tree-sha1 = "0c03844e2231e12fda4d0086fd7cbe4098ee8dc5"
 uuid = "ea2cea3b-5b76-57ae-a6ef-0a8af62496e1"
 version = "5.15.3+2"
 
+[[deps.QuadGK]]
+deps = ["DataStructures", "LinearAlgebra"]
+git-tree-sha1 = "786efa36b7eff813723c4849c90456609cf06661"
+uuid = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
+version = "2.8.1"
+
 [[deps.REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
@@ -806,6 +977,12 @@ uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 [[deps.Random]]
 deps = ["SHA", "Serialization"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+
+[[deps.Ratios]]
+deps = ["Requires"]
+git-tree-sha1 = "dc84268fe0e3335a62e315a3a7cf2afa7178a734"
+uuid = "c84ed2f1-dad5-54f0-aa8e-dbefe2724439"
+version = "0.4.3"
 
 [[deps.RecipesBase]]
 deps = ["SnoopPrecompile"]
@@ -836,6 +1013,18 @@ git-tree-sha1 = "838a3a4188e2ded87a4f9f184b4b0d78a1e91cb7"
 uuid = "ae029012-a4dd-5104-9daa-d747884805df"
 version = "1.3.0"
 
+[[deps.Rmath]]
+deps = ["Random", "Rmath_jll"]
+git-tree-sha1 = "f65dcb5fa46aee0cf9ed6274ccbd597adc49aa7b"
+uuid = "79098fc4-a85e-5d69-aa6a-4863f24498fa"
+version = "0.7.1"
+
+[[deps.Rmath_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "6ed52fdd3382cf21947b15e8870ac0ddbff736da"
+uuid = "f50d1b31-88e8-58de-be2c-1cc44531875f"
+version = "0.4.0+0"
+
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 
@@ -853,6 +1042,10 @@ version = "1.3.18"
 
 [[deps.Serialization]]
 uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
+
+[[deps.SharedArrays]]
+deps = ["Distributed", "Mmap", "Random", "Serialization"]
+uuid = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
 
 [[deps.Showoff]]
 deps = ["Dates", "Grisu"]
@@ -890,6 +1083,17 @@ git-tree-sha1 = "ef28127915f4229c971eb43f3fc075dd3fe91880"
 uuid = "276daf66-3868-5448-9aa4-cd146d93841b"
 version = "2.2.0"
 
+[[deps.StaticArrays]]
+deps = ["LinearAlgebra", "Random", "StaticArraysCore", "Statistics"]
+git-tree-sha1 = "2d7d9e1ddadc8407ffd460e24218e37ef52dd9a3"
+uuid = "90137ffa-7385-5640-81b9-e52037218182"
+version = "1.5.16"
+
+[[deps.StaticArraysCore]]
+git-tree-sha1 = "6b7ba252635a5eff6a0b0664a41ee140a1c9e72a"
+uuid = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
+version = "1.4.0"
+
 [[deps.Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
 uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
@@ -906,9 +1110,31 @@ git-tree-sha1 = "d1bf48bfcc554a3761a133fe3a9bb01488e06916"
 uuid = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 version = "0.33.21"
 
+[[deps.StatsFuns]]
+deps = ["ChainRulesCore", "HypergeometricFunctions", "InverseFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
+git-tree-sha1 = "5aa6250a781e567388f3285fb4b0f214a501b4d5"
+uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
+version = "1.2.1"
+
+[[deps.StatsPlots]]
+deps = ["AbstractFFTs", "Clustering", "DataStructures", "DataValues", "Distributions", "Interpolations", "KernelDensity", "LinearAlgebra", "MultivariateStats", "NaNMath", "Observables", "Plots", "RecipesBase", "RecipesPipeline", "Reexport", "StatsBase", "TableOperations", "Tables", "Widgets"]
+git-tree-sha1 = "e0d5bc26226ab1b7648278169858adcfbd861780"
+uuid = "f3b207a7-027a-5e70-b257-86293d7955fd"
+version = "0.15.4"
+
+[[deps.SuiteSparse]]
+deps = ["Libdl", "LinearAlgebra", "Serialization", "SparseArrays"]
+uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
+
 [[deps.TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+
+[[deps.TableOperations]]
+deps = ["SentinelArrays", "Tables", "Test"]
+git-tree-sha1 = "e383c87cf2a1dc41fa30c093b2a19877c83e1bc1"
+uuid = "ab02a1b2-a7df-11e8-156e-fb1833f50b87"
+version = "1.2.0"
 
 [[deps.TableTraits]]
 deps = ["IteratorInterfaceExtensions"]
@@ -982,6 +1208,18 @@ deps = ["DataAPI", "InlineStrings", "Parsers"]
 git-tree-sha1 = "b1be2855ed9ed8eac54e5caff2afcdb442d52c23"
 uuid = "ea10d353-3f73-51f8-a26c-33c1cb351aa5"
 version = "1.4.2"
+
+[[deps.Widgets]]
+deps = ["Colors", "Dates", "Observables", "OrderedCollections"]
+git-tree-sha1 = "fcdae142c1cfc7d89de2d11e08721d0f2f86c98a"
+uuid = "cc8bc4a8-27d6-5769-a93b-9d913e69aa62"
+version = "0.6.6"
+
+[[deps.WoodburyMatrices]]
+deps = ["LinearAlgebra", "SparseArrays"]
+git-tree-sha1 = "de67fa59e33ad156a590055375a30b23c40299d3"
+uuid = "efce3f68-66dc-5838-9240-27a6d6f5f9b6"
+version = "0.5.5"
 
 [[deps.WorkerUtilities]]
 git-tree-sha1 = "cd1659ba0d57b71a464a29e64dbc67cfe83d54e7"
@@ -1207,48 +1445,49 @@ version = "1.4.1+0"
 # ╟─b129ba7c-953a-11ea-3379-17adae34924c
 # ╟─b6009e10-a175-4a61-99ee-a6e2fb80f0c4
 # ╠═af595218-7692-446f-b9db-06555efbe95f
-# ╠═4d88b926-9543-11ea-293a-1379b1b5ae64
+# ╟─ba41f596-2e21-4603-8c8c-bbcc1f80866b
+# ╟─4d88b926-9543-11ea-293a-1379b1b5ae64
 # ╟─4237e22e-2ff3-4901-a273-600383dcdff8
 # ╠═a1583d1f-aceb-49b6-bc05-ab1775a39c96
 # ╠═42db969b-7666-4dfc-84fb-dd7a5e143d8f
 # ╟─2ecbed8b-e151-46c1-bfa1-99a91c1431d0
 # ╠═cdfb5f53-80a9-413c-8260-cf2f016af833
-# ╟─11794cad-c79c-4d86-8fcc-6ecbff167761
+# ╟─b570c4e5-280d-41eb-9386-6b65b4d7b0f0
 # ╟─f112b662-9543-11ea-3dcb-2906a99b2188
 # ╟─bed15a4e-f681-466e-a1d7-b24dddaa1835
 # ╟─e5f4482f-efd9-4ad3-94ff-ba734eebb75f
-# ╠═ee4b6ab5-5d67-42b3-8981-aa11d7497e29
+# ╟─ee4b6ab5-5d67-42b3-8981-aa11d7497e29
 # ╠═49e72a0d-ee59-4512-b3d3-2994b11c89a9
+# ╠═aa4e7779-f5af-41ae-be58-0f59f530e57e
+# ╟─a9dcb823-0b9f-4c1b-8b30-b213814ae61a
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
 # ╠═0141a685-f45d-4a1e-8053-5421661a2a48
 # ╟─fd351a54-464c-4048-9bd0-faf1146f5ab2
 # ╠═91313fa3-3d0c-44ef-8468-07b717bdf89a
 # ╟─b6c35b5f-7098-4838-8308-8e11bfc84786
 # ╠═243757e6-f553-41fc-b0ec-64ccf6ee1fe8
-# ╠═9da8a362-1588-4647-b7d8-13118505ec5f
-# ╠═a4a60262-9547-11ea-3a81-5bf7f9ee5d16
-# ╟─270ac49e-9549-11ea-3ffd-71ddaee9f134
-# ╟─e11e1660-9549-11ea-22f6-8bb53dc045fe
-# ╠═745a4584-954a-11ea-028e-59011f268ec6
-# ╟─55ad7422-954e-11ea-0a33-a3b03febb56e
-# ╠═eac62fea-954e-11ea-2768-39ce6f4059ab
-# ╟─f27f90c2-954f-11ea-3f93-17acb2ce4280
-# ╟─6c8e2108-9550-11ea-014d-235770ed4771
-# ╠═9e89fc9a-9550-11ea-14b4-7f0e96225ec0
-# ╟─bdd5d268-9550-11ea-1046-31efedc36872
-# ╟─36cd006a-9551-11ea-3c0c-df8b7f2843c1
-# ╟─fb4e471c-9551-11ea-1ab5-41bbd5de76b8
-# ╟─9d3af596-9554-11ea-21bd-bf427c91c424
-# ╟─3150bf1a-9555-11ea-306f-0fd4d9229a51
-# ╠═f2c79746-9554-11ea-39ca-298fd09248ad
-# ╟─0b094cea-9556-11ea-268e-0d270fd04d56
-# ╠═1908f9f2-9557-11ea-2abd-dd52f8d776f4
-# ╟─784b1774-9557-11ea-315e-d1ea277ce0fd
+# ╠═0dc02846-4762-4832-8608-042838bd6721
+# ╠═73050088-3845-4ea0-bd01-b55baaa84135
+# ╠═5a99d620-2958-43ba-9c3c-f60bfe8fc155
+# ╠═171c4752-8131-4860-83a6-3b3fb61e37f5
+# ╠═f9694c36-c39a-4a47-8648-0d6c4b605d16
+# ╠═941ca951-a77a-4373-900a-ec370b8d8621
+# ╠═156988a0-b5d9-412b-8a0e-96a222ea2149
+# ╠═75e45d81-b520-41d1-90ae-de4544b3de61
+# ╠═7d7492c2-5ef7-48a9-9831-5356581518bd
+# ╠═90aa8597-6fd9-4d4d-96cb-8383734957d4
+# ╟─960f4286-5126-4856-bafa-3a29c1554c12
+# ╠═784b1774-9557-11ea-315e-d1ea277ce0fd
 # ╟─5edadcd2-9554-11ea-1714-b5b7692c4797
-# ╟─4634c856-9553-11ea-008d-3539195970ea
-# ╟─4d0ebb46-9553-11ea-3431-2d203f594815
-# ╟─d736e096-9553-11ea-3ba5-277afde1afe7
-# ╟─7366f1b6-954c-11ea-3f68-b12444c902c3
-# ╟─1deaaf36-9554-11ea-3dae-85851f73dbc6
+# ╟─979e3a2b-d522-443e-83d3-09984847b0ef
+# ╟─4b907f07-a02d-42f5-8a98-bd5834bce3c5
+# ╟─c6a7e0aa-7337-4d9d-9686-34f80eae78cb
+# ╟─8931e148-fd27-495e-985f-d932f13f60cb
+# ╟─e69222cd-d023-4a4a-a2a2-0df098fc696f
+# ╟─ad296628-3e78-44d6-aec4-1e3edadaa3ee
+# ╟─38a2ab41-efc3-4e7d-823a-c2af9275ce5c
+# ╟─7f59aa91-563c-4fb2-877b-5808e09fd15e
+# ╟─a6446d6d-cb40-40cd-90c7-362181542c6a
+# ╟─ba1ec4c6-07a2-4977-b731-fb577a57d834
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
