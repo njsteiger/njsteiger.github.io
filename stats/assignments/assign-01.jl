@@ -62,8 +62,21 @@ md"Fix the value of `c` below to make it `c = a * b`"
 # ╔═╡ cdfb5f53-80a9-413c-8260-cf2f016af833
 c=18
 
+# ╔═╡ 525038a0-fc2f-41b4-be71-8eda9a3816b9
+md"""
+You did multiplication above.  Here's how you do other mathematical operations:
+
+Operation | Type This
+:------------ | :-------------:
+add | +
+subtract | -
+multiply | *
+divide | /
+power | ^
+"""
+
 # ╔═╡ f112b662-9543-11ea-3dcb-2906a99b2188
-html"""<p>Notice that a cell is a container for code & output. To add one, click on the plus icon, <img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/add-outline.svg" style="width: 1em; height: 1em; margin-bottom: -.2em;">, above or below another cell. You can do it wherever you like. After you're done writing code in your cell, remember to run it!</p>"""
+html"""<p>Also notice that a cell is a container for code & output. To add one, click on the plus icon, <img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/add-outline.svg" style="width: 1em; height: 1em; margin-bottom: -.2em;">, above or below another cell. You can do it wherever you like. After you're done writing code in your cell, remember to run it!</p>"""
 
 # ╔═╡ bed15a4e-f681-466e-a1d7-b24dddaa1835
 html"""<p>As we saw above with the simple math example, anytime that you modify a variable in one location it will be changed in other cells that the variable exists in as well.</p>"""
@@ -140,12 +153,12 @@ Tann=file.metANN
 london_ann=Tann[Tann .< 990]
 
 # ╔═╡ f9694c36-c39a-4a47-8648-0d6c4b605d16
-histogram(london_ann,label="Mean Ann. Temp.")
+histogram(london_ann,label="Mean Ann. Temp.",xlabel="Temperature (deg C)",ylabel="Counts")
 
 # ╔═╡ 941ca951-a77a-4373-900a-ec370b8d8621
 md"## Exercise 1
 
-Following the example we've worked through above, plot histograms of London's January and July temperatures. Be sure to accurately label the data that is plotted."
+👉 Following the example we've worked through above, plot separate histograms of London's DJF and JJA average temperatures. Be sure to accurately label axes and the data that is plotted."
 
 # ╔═╡ 156988a0-b5d9-412b-8a0e-96a222ea2149
 
@@ -153,16 +166,71 @@ Following the example we've worked through above, plot histograms of London's Ja
 # ╔═╡ 75e45d81-b520-41d1-90ae-de4544b3de61
 md"## Exercise 2
 
-Plot histograms of London's January and July temperatures."
+It's often helpful to plot different data on the same plot. In Julia this is accomplished by adding another plot command followed by the ! symbol, as in the example below with two sets of random data. This method works for any number of plots that you'd like to add onto the same axes."
+
+# ╔═╡ c83b142c-b27b-4cf7-b164-251bd6078d8b
+data1=randn(300);
+
+# ╔═╡ 83e3e0b4-5a77-4cda-8b80-7aabc8dcd14e
+data2=3 .+randn(300);
+
+# ╔═╡ fe4ad0ba-c1cc-4bc8-bd91-3220a3f61bdc
+begin
+	histogram(data1)
+	histogram!(data2)
+end
+
+# ╔═╡ 35382b10-d23c-41c0-95ee-3b471b47e509
+md"👉 Plot histograms of London's DJF and JJA average temperatures on the same plot. Be sure to label all of your plots."
+
+# ╔═╡ ec09966d-187d-4aa2-bd9b-94b70c1078ed
+begin
+ldjf0=file.DJF
+ldjf=ldjf0[ldjf0 .< 990]
+end
+
+# ╔═╡ d9528d39-8a9b-4f80-ba10-6e28ab3f2d83
+begin
+ljja0=file.JJA
+ljja=ljja0[ljja0 .< 990]
+end
+
+# ╔═╡ d782cc01-d802-4c65-9f06-10a4c7cf64c5
+begin
+	histogram(ldjf,label="DJF",xlabel="Temperature (deg C)",ylabel="Counts")
+	histogram!(ljja,label="JJA")
+end
+
+# ╔═╡ 3fef8f15-6d75-42da-953a-5ad4c89e682b
+md"## Exercise 3
+
+As we learned in the video lectures, another way of representing the same kind of data that's shown in a histogram is to use a kernel density plot. In Julia you can do that using the 'density' function. It's usually a good idea to increase the width of the line in the density plot to a value of at least 3, as in the figure below."
+
+# ╔═╡ d8ddfa5f-906f-41cd-b9d9-6445fac5a691
+density(data1,linewidth=3,label="Random data",ylabel="Normalized Density")
+
+# ╔═╡ 2d5dfcdd-8d8f-4872-82a6-a5ecfef70282
+md"👉 Using the same DJF and JJA data as above, plot kernel density plots on top of the histograms of London's DJF and JJA average temperatures. 
+
+Note that the kernel density plots in Julia produce 'normalized' data, that is data that has had its amplitude information removed. So in order for the plots to look good on the same graph you'll need to normalize the histogram plots. You can figure out how to do this by looking up the options to 'histogram' in the 'Live Docs' tab in the lower right hand side of this page. 
+
+So in total you should produce 4 graphs on the same plot. Be sure to label all of the plotted data. Just as in all the other plots, be sure to label all the plotted data and the axes."
 
 # ╔═╡ 7d7492c2-5ef7-48a9-9831-5356581518bd
 begin
-	histogram(london_ann,label="Mean Ann. Temp.",normalize=true)
-	density!(london_ann,linewidth=3,label="Kernel Density")
+	histogram(ldjf,label="DJF",normalize=true,xlabel="Temperature (deg C)",ylabel="Normalized Density")
+	density!(ldjf,linewidth=3,label="DJF Density")
+	histogram!(ljja,label="JJA",normalize=true)
+	density!(ljja,linewidth=3,label="JJA Density")	
 end
 
-# ╔═╡ 90aa8597-6fd9-4d4d-96cb-8383734957d4
-ldjf=file."metAnn"
+# ╔═╡ 83a9d073-7d9a-4ac1-abc0-8f9fc28391af
+md"## Exercise 4
+
+👉 Download similarly-formatted temperature data for Bet Dagan at the URL 'https://njsteiger.github.io/stats/data/bet_dagan.csv' and plot the DJF and JJA temperature kernel densities of Bet Dagan on the same figure together with the DJF and JJA densities from London that you plotted above. So this figure should have 4 total density plots together. Be able to explain to the TA/professor the differences that you see between the two cities."
+
+# ╔═╡ bd4a91b9-dbf8-47f5-9b8a-a036450e3ec6
+
 
 # ╔═╡ 960f4286-5126-4856-bafa-3a29c1554c12
 md"""
@@ -181,6 +249,9 @@ end
 html"""<p>We're almost done! It's time to share your amazing story. Scroll to the top of the notebook, and click on <img src="https://cdn.jsdelivr.net/gh/ionic-team/ionicons@5.5.1/src/svg/shapes-outline.svg" style="width: 1em; height: 1em; margin-bottom: -.2em;"> to see the export options - or you can always share this notebook's save file. (The file is pure Julia, by the way, and it's runnable! You'll learn more about this in the advanced introduction.)</p>"""
 
 # ╔═╡ 979e3a2b-d522-443e-83d3-09984847b0ef
+html"&nbsp;"
+
+# ╔═╡ c82a16e5-592c-42c8-a3df-2b9c3f7f4250
 html"&nbsp;"
 
 # ╔═╡ 4b907f07-a02d-42f5-8a98-bd5834bce3c5
@@ -1453,6 +1524,7 @@ version = "1.4.1+0"
 # ╟─2ecbed8b-e151-46c1-bfa1-99a91c1431d0
 # ╠═cdfb5f53-80a9-413c-8260-cf2f016af833
 # ╟─b570c4e5-280d-41eb-9386-6b65b4d7b0f0
+# ╟─525038a0-fc2f-41b4-be71-8eda9a3816b9
 # ╟─f112b662-9543-11ea-3dcb-2906a99b2188
 # ╟─bed15a4e-f681-466e-a1d7-b24dddaa1835
 # ╟─e5f4482f-efd9-4ad3-94ff-ba734eebb75f
@@ -1471,15 +1543,27 @@ version = "1.4.1+0"
 # ╠═5a99d620-2958-43ba-9c3c-f60bfe8fc155
 # ╠═171c4752-8131-4860-83a6-3b3fb61e37f5
 # ╠═f9694c36-c39a-4a47-8648-0d6c4b605d16
-# ╠═941ca951-a77a-4373-900a-ec370b8d8621
+# ╟─941ca951-a77a-4373-900a-ec370b8d8621
 # ╠═156988a0-b5d9-412b-8a0e-96a222ea2149
-# ╠═75e45d81-b520-41d1-90ae-de4544b3de61
+# ╟─75e45d81-b520-41d1-90ae-de4544b3de61
+# ╠═c83b142c-b27b-4cf7-b164-251bd6078d8b
+# ╠═83e3e0b4-5a77-4cda-8b80-7aabc8dcd14e
+# ╠═fe4ad0ba-c1cc-4bc8-bd91-3220a3f61bdc
+# ╟─35382b10-d23c-41c0-95ee-3b471b47e509
+# ╠═ec09966d-187d-4aa2-bd9b-94b70c1078ed
+# ╠═d9528d39-8a9b-4f80-ba10-6e28ab3f2d83
+# ╠═d782cc01-d802-4c65-9f06-10a4c7cf64c5
+# ╟─3fef8f15-6d75-42da-953a-5ad4c89e682b
+# ╠═d8ddfa5f-906f-41cd-b9d9-6445fac5a691
+# ╟─2d5dfcdd-8d8f-4872-82a6-a5ecfef70282
 # ╠═7d7492c2-5ef7-48a9-9831-5356581518bd
-# ╠═90aa8597-6fd9-4d4d-96cb-8383734957d4
+# ╟─83a9d073-7d9a-4ac1-abc0-8f9fc28391af
+# ╠═bd4a91b9-dbf8-47f5-9b8a-a036450e3ec6
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
 # ╠═784b1774-9557-11ea-315e-d1ea277ce0fd
 # ╟─5edadcd2-9554-11ea-1714-b5b7692c4797
 # ╟─979e3a2b-d522-443e-83d3-09984847b0ef
+# ╟─c82a16e5-592c-42c8-a3df-2b9c3f7f4250
 # ╟─4b907f07-a02d-42f5-8a98-bd5834bce3c5
 # ╟─c6a7e0aa-7337-4d9d-9686-34f80eae78cb
 # ╟─8931e148-fd27-495e-985f-d932f13f60cb
