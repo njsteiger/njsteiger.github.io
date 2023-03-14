@@ -104,7 +104,7 @@ md"## Exercise 3
 # ╔═╡ bf8c89f2-1a60-4724-a6a0-b11880c87beb
 md"## Exercise 4
 
-👉 Make two different boxplot figures summarizing all of the of the temperature values for London and Bet Dagan in June, July, and August. Be able to discuss whether these figures are consistent with your results in Exercise 3. In addition to looking in the Live Docs, you can see more examples of boxplots at the bottom of the page here: [https://docs.juliaplots.org/latest/tutorial/](https://docs.juliaplots.org/latest/tutorial/)"
+👉 Make two different boxplot figures summarizing all of the temperature values for London and Bet Dagan in June, July, and August. Be able to discuss whether these figures are consistent with your results in Exercise 3. In addition to looking in the Live Docs, you can see more examples of boxplots at the bottom of the page here: [https://docs.juliaplots.org/latest/tutorial/](https://docs.juliaplots.org/latest/tutorial/)"
 
 # ╔═╡ 7df0ee01-6de4-40eb-9346-bae20e270023
 
