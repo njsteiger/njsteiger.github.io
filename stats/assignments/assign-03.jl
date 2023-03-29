@@ -85,7 +85,7 @@ md"## Exercise 2
 # ╔═╡ 191b9184-580c-4cac-a11d-b7233005b82b
 md"## Exercise 3
 
-👉 Load the Laskar 2004 insolation forcing data and plot both the Laskar data and LR04 data on the same figure for the period of the last 500 Kyrs. Note that because the time series have different units, in order to see both you'll need to normalize the data, which will remove the unit information. Normalizing the data is done by removing the mean value of the time series and dividing it by the standard deviation. This makes it so that both time series have the same mean and standard deviation. Do you see a relationship between the two time series?"
+👉 Load the Laskar 2004 insolation forcing data and plot both the Laskar data and LR04 data on the same figure for the period of the last 500 Kyrs. Note that because the time series have different units, in order to see both you'll need to standardize (also called 'normalize') the data, which will remove the unit information. Standardizing the data is done by removing the mean value of the time series and dividing it by the standard deviation. This makes it so that both time series have the same mean and standard deviation. Do you see a relationship between the two time series?"
 
 # ╔═╡ 1997220d-e23c-4938-85f6-b5773fa6ede2
 
