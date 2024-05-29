@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.22
+# v0.19.36
 
 #> [frontmatter]
 #> author_url = "https://github.com/JuliaPluto"
@@ -19,7 +19,8 @@ begin
 	using HypothesisTests
 	using StatsPlots
 	using HTTP
-	using NetCDF
+	using CSV
+	using PlutoUI
 end
 
 # ╔═╡ b129ba7c-953a-11ea-3379-17adae34924c
@@ -36,6 +37,9 @@ md"""
 Note: initialization could take up to 15 minutes!
 """
 
+# ╔═╡ f808a6df-bc5e-4b21-ae79-fbffa3328d96
+redseacores_url="https://njsteiger.github.io/stats/img/red_sea_cores_grant_2014.jpg"
+
 # ╔═╡ 0a9b9ef1-3506-4e2e-8f34-9943795a212e
 md"""
 !!! note "Save Your Notebook!"
@@ -45,52 +49,84 @@ md"""
 # ╔═╡ 6d99ed80-b56e-44c6-a095-3bea1a3df62e
 md"## Loading Data
 
-For this assignment we'll be using the same historical global mean temperature data from the UK's Hadley Centre, HadCRUT5 (https://www.metoffice.gov.uk/hadobs/hadcrut5/) that we used in the previous assignment. Recall that this is a probabilistic estimate or reconstruction of global mean temperature that provides 200 total equally-likely estimates of global mean temperature from 1850 to 2023. Time follows the rows while individual ensemble members are the columns."
+For this assignment we'll be using a reconstruction of past sea level based on measurements from sediment cores taken from the Red Sea (Grant, K., Rohling, E., Ramsey, C. et al. Sea-level variability over five glacial cycles. Nat Commun 5, 5076 (2014). https://doi.org/10.1038/ncomms6076)."
 
-# ╔═╡ 1ec13319-4e7f-43b6-953a-eab23d8d331b
+# ╔═╡ a9834553-f74b-4fc6-82c5-11f36462440e
+md"""(a) Location of Red Sea sediment cores. (b) Satellite image of dust transport over the location of the cores.
+
+$(Resource(redseacores_url,:width => 300))"""
+
+# ╔═╡ 0a1641d8-486a-4a25-be9d-5e19b4024ea4
+md"This data in the original publication goes back through five glacial cycles, but here we're just going to load the first 3000 years. The first column are the dates (in years BP) and the other columns are the ensemble estimates of sea level relative to the current sea level of the Red Sea (units are in meters)."
+
+# ╔═╡ 117f2bf2-4fdf-4077-8f32-ff10a00bcf72
 begin
-	urlH="https://njsteiger.github.io/stats/data/HadCRUT.5.0.1.0.analysis.ensemble_series.global.annual.nc" # HadCRUT data
-	httpfile = HTTP.download(urlH)
-	yrs=collect(1850:2023)
-	tas_ens=ncread(httpfile,"tas")
+	url_g="https://njsteiger.github.io/stats/data/sea_level_prob_red_sea_grant_2014.csv"
+	http_response_g=HTTP.get(url_g)
+	file_g=CSV.File(http_response_g.body; header=false) 
+	d0 = file_g|>CSV.Tables.matrix
+end
+
+# ╔═╡ 468b0610-30e5-40b7-8456-9e1644329f20
+md"And this is what the data look like for the first five dates:"
+
+# ╔═╡ 0dbaeba9-8603-499f-9283-db6741073f7d
+begin
+	age=d0[1:5,1]
+	sl2=d0[:,2:6]
+	plot(age,sl2',seriestype=:scatter, label=false, xlabel="Years BP", ylabel="Relative Sea Level (m)", title="Red Sea Sediment Core Sea Level Estimates")
 end
 
 # ╔═╡ 941ca951-a77a-4373-900a-ec370b8d8621
 md"## Exercise 1
 
-For this and the following exercises, we'll be looking at the distribution of global mean temperature values for a single year. We will treat this distribution as our true 'population' distribution and draw random 'sample' distributions from it to explore some of the features of confidence intervals and sampling size that we learned in the course lectures. In real life you basically never know for sure the true population distribution; in Climate or Earth Sciences the 'population' distribution is equivalent to the 'true climate/earth system', who's statistical features we never know perfectly nor can we observe it perfectly.
+For this and the following exercise, we'll be looking at all of the sea level estimates for the past 3000 years. We will treat this distribution as our true 'population' distribution and draw random 'sample' distributions from it to explore some of the features of confidence intervals and sampling size that we learned in the course lectures. In real life you basically never know for sure the true population distribution; in Climate or Earth Sciences the 'population' distribution is equivalent to the 'true climate/earth system', whose statistical features we never know perfectly nor can we observe it perfectly.
 
-👉 Make a density plot of the global mean temperature ensemble for the year 1950 and plot over the top of this a vertical line indicating the location of the mean value of this ensemble. Recall that you did exactly this same kind of plot in Assignment 2."
+👉 Make a density plot that includes every sea level estimate in the data over the past 3000 years. This distribution will be our population distribution for the rest of the exercises. Calculate and plot over the top of this a vertical line indicating the location of the mean value of this distribution."
 
-# ╔═╡ 3dc5905d-ea4f-4d84-9777-28cc9565d08e
+# ╔═╡ da039a1a-1185-4c27-9470-7779e2c810ef
+
+
+# ╔═╡ 21b86554-fd23-4cd6-94ff-edc093051173
 
 
 # ╔═╡ 757fd65d-73cf-47b9-a7d4-322c50e95d3c
 md"## Exercise 2
 
-Now we're going to see how small samples from the true/population distribution compare to the true/population distribution. To take random samples from a distribution you can use the `sample` function. For these exercises only worry about inputing the distribution of values you found in Exercise 1 and a value for the number of samples you need to draw (the `sample` function allows for other additional options for sampling that we won't use here).
+Now we're going to see how small samples from the true/population distribution compare to the true/population distribution. To take random samples from a distribution you can use the `sample` function. For these exercises only worry about inputing the vector of values you found in Exercise 1 and a number indicating how many samples you need to draw (the `sample` function allows for other additional options for sampling that we won't use here).
 
 👉 Make density plots on the same figure showing the true distribution from Exercise 1 along with 4 other random samples of 10 draws each. Make sure that you can clearly see the true distribution by making its linewidth much wider than the samples. Note that because these are random samples, it is unlikely that they will look the same if you compute them multiple times or if you compare them to someone else's samples. How well do these sample distributions match the true distribution?"
 
-# ╔═╡ 34cca66b-14f5-4587-9955-9b312eb4fb53
+# ╔═╡ d15e3707-1a87-424f-bab6-23e4d851a5de
+
+
+# ╔═╡ 5e5a3da6-3846-4452-8758-9e336ae9cfc4
 
 
 # ╔═╡ 46ae7895-aa88-424c-88ce-1e51c79e4ada
 md"## Exercise 3
+👉 Repeat Exercise 2 but with a sample size of 100 instead of 10. How well do these sample distributions match the true distribution? Why is there a difference in the results between these two exercises?"
 
-👉 Repeat Exercise 2 but with a sample size of 100 instead of 10. How well do these sample distributions match the true distribution?|"
+# ╔═╡ dfcea5b6-96a0-4685-b78a-25bd374d9131
 
-# ╔═╡ 0438ee42-44ec-4dd2-ac3b-97c6bbf05e80
+
+# ╔═╡ aab8faef-584c-408c-8d0f-5a098a59271e
 
 
 # ╔═╡ 555d20be-569e-44fc-ba56-0726f3e5eabd
 md"## Exercise 4
 
-Now we're going to see how the sample size affects our estimates of confidence intervals. For estimating confidence intervals we're going to use the `OneSampleTTest` function inside of the confidence interval function `confint`; this combination of functions will estimate 95% confidence intervals for mean estimates of samples that we will draw. To use the `OneSampleTTest` function you'll need to input the mean of the sample, the standard deviation of the sample, and the size of the sample (as we learned in the lectures).
+Now we're going to see how the sample size affects our estimates of confidence intervals. For estimating confidence intervals we're going to use the `OneSampleTTest` function inside of the confidence interval function `confint`; this combination of functions will estimate 95% confidence intervals for the mean of the samples that we will draw. To use the `OneSampleTTest` function you'll need to input the mean of the sample, the standard deviation of the sample, and the size of the sample (as we learned in the lectures).
 
-👉 Make 3 random samples of size 10, 50, and 100 from the year 1950 global mean temperature ensemble data that we've been working with and compute 95% confidence intervals for each. Then make a density plot of the true distribution and it's mean (as in Exercise 1) along with pairs of vertical lines indicating the locations of the confidence interval estimates. Make sure the matching pairs of confidence intervals are the same color so that you can see their range. You can make the different lines more distinct from each other (and thus easier to see) by having different choices of `linestyle`. Explain the results that you see."
+👉 Make 3 random samples of size 10, 50, and 100 from all the sea level data that we've been working with and compute 95% confidence intervals for each. Then make a density plot of the true distribution and it's mean (as in Exercise 1) along with pairs of vertical lines indicating the locations of the confidence interval estimates. Make sure the matching pairs of confidence intervals are the same color so that you can see their range. You can make the different lines more distinct from each other (and thus easier to see) by having different choices of `linestyle`. Explain the results that you see."
 
-# ╔═╡ 9be79c44-aeb6-4cbe-93d5-b0146454c5dd
+# ╔═╡ 007aa75c-6b16-4f5e-bb02-ae1c81160990
+
+
+# ╔═╡ 2df7243b-aa04-4e01-a94d-91ab47cc060a
+
+
+# ╔═╡ 9c4e39dd-b5f3-4abb-8e96-24652cb1f078
 
 
 # ╔═╡ 75e45d81-b520-41d1-90ae-de4544b3de61
@@ -100,7 +136,13 @@ We've learned in the lectures that confidence intervals are not guaranteed to co
 
 👉 Verify the idea of confidence intervals by calculating 50 confidence intervals of 50 random samples of the temperature ensemble we've been using with a sample size of 25 (do this using a for loop). Make a scatter plot of the means of each of these samples along with error bars extending to the upper and lower bounds of the confidence intervals; you can do this using the `yerror` option within a scatter plot. [A nice example to follow for this kind of plot is here](https://discourse.julialang.org/t/asymmetric-error-bars-and-box-plots-in-julia/73647/3) (pay close attention to how the error bars need to be calculated for the plot). And then plot over the top of this a horizontal line (`:hline`) showing the location of the true mean value. Note that we're basically trying to recreate one of the figures shown in an Anki card about this idea. How many of your 50 confidence intervals do not contain the mean value? Is this approximately what the 95% confidence interval is supposed to indicate?"
 
-# ╔═╡ 2a86dbc3-1bd5-4b15-ba7a-a40872b72289
+# ╔═╡ c08c8199-f223-4066-a821-5aa006e2add1
+
+
+# ╔═╡ f5d904d7-682e-4675-a6d0-797d98e7b32b
+
+
+# ╔═╡ 4e953eb7-4e4f-43d2-91b8-22ed15e95e9f
 
 
 # ╔═╡ 960f4286-5126-4856-bafa-3a29c1554c12
@@ -155,16 +197,18 @@ note(text) = HTML("""<div
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 HypothesisTests = "09f84164-cd44-5f33-b23f-e6b0d136a0d5"
-NetCDF = "30363a11-5582-574a-97bb-aa9a979735b9"
+PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
 
 [compat]
+CSV = "~0.10.12"
 HTTP = "~1.7.4"
 HypothesisTests = "~0.10.11"
-NetCDF = "~0.11.7"
+PlutoUI = "~0.7.55"
 StatsBase = "~0.33.21"
 StatsPlots = "~0.15.4"
 """
@@ -173,21 +217,35 @@ StatsPlots = "~0.15.4"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.5"
+julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "1f453f1ba731960f73c8d1fd8659f9d1749255e6"
+project_hash = "00268fa7b675c670c88045fe8974f9de73c065e8"
 
 [[deps.AbstractFFTs]]
-deps = ["ChainRulesCore", "LinearAlgebra"]
+deps = ["LinearAlgebra"]
 git-tree-sha1 = "16b6dbc4cf7caee4e1e75c49485ec67b667098a0"
 uuid = "621f4979-c628-5d54-868e-fcf4e3e8185c"
 version = "1.3.1"
+weakdeps = ["ChainRulesCore"]
+
+    [deps.AbstractFFTs.extensions]
+    AbstractFFTsChainRulesCoreExt = "ChainRulesCore"
+
+[[deps.AbstractPlutoDingetjes]]
+deps = ["Pkg"]
+git-tree-sha1 = "c278dfab760520b8bb7e9511b968bf4ba38b7acc"
+uuid = "6e696c72-6542-2067-7265-42206c756150"
+version = "1.2.3"
 
 [[deps.Adapt]]
 deps = ["LinearAlgebra", "Requires"]
 git-tree-sha1 = "cc37d689f599e8df4f464b2fa3870ff7db7492ef"
 uuid = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
 version = "3.6.1"
+weakdeps = ["StaticArrays"]
+
+    [deps.Adapt.extensions]
+    AdaptStaticArraysExt = "StaticArrays"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -228,6 +286,12 @@ git-tree-sha1 = "19a35467a82e236ff51bc17a3a44b69ef35185a2"
 uuid = "6e34b625-4abd-537c-b88f-471c36dfa7a0"
 version = "1.0.8+0"
 
+[[deps.CSV]]
+deps = ["CodecZlib", "Dates", "FilePathsBase", "InlineStrings", "Mmap", "Parsers", "PooledArrays", "PrecompileTools", "SentinelArrays", "Tables", "Unicode", "WeakRefStrings", "WorkerUtilities"]
+git-tree-sha1 = "679e69c611fff422038e9e21e270c4197d49d918"
+uuid = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+version = "0.10.12"
+
 [[deps.Cairo_jll]]
 deps = ["Artifacts", "Bzip2_jll", "CompilerSupportLibraries_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
 git-tree-sha1 = "4b859a208b2397a7a623a03449e4636bdb17bcf2"
@@ -245,12 +309,6 @@ deps = ["Compat", "LinearAlgebra", "SparseArrays"]
 git-tree-sha1 = "c6d890a52d2c4d55d326439580c3b8d0875a77d9"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
 version = "1.15.7"
-
-[[deps.ChangesOfVariables]]
-deps = ["ChainRulesCore", "LinearAlgebra", "Test"]
-git-tree-sha1 = "485193efd2176b88e6622a39a246f8c5b600e74e"
-uuid = "9e997f8a-9a97-42d5-a9f1-ce6bfc15e2c0"
-version = "0.1.6"
 
 [[deps.Clustering]]
 deps = ["Distances", "LinearAlgebra", "NearestNeighbors", "Printf", "Random", "SparseArrays", "Statistics", "StatsBase"]
@@ -299,21 +357,33 @@ uuid = "38540f10-b2f7-11e9-35d8-d573e4eb0ff2"
 version = "0.2.3"
 
 [[deps.Compat]]
-deps = ["Dates", "LinearAlgebra", "UUIDs"]
+deps = ["UUIDs"]
 git-tree-sha1 = "7a60c856b9fa189eb34f5f8a6f6b5529b7942957"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
 version = "4.6.1"
+weakdeps = ["Dates", "LinearAlgebra"]
+
+    [deps.Compat.extensions]
+    CompatLinearAlgebraExt = "LinearAlgebra"
 
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.0.1+0"
+version = "1.0.5+1"
 
 [[deps.ConstructionBase]]
 deps = ["LinearAlgebra"]
 git-tree-sha1 = "89a9db8d28102b094992472d333674bd1a83ce2a"
 uuid = "187b0558-2788-49d3-abe0-74a17ed4e7c9"
 version = "1.5.1"
+
+    [deps.ConstructionBase.extensions]
+    IntervalSetsExt = "IntervalSets"
+    StaticArraysExt = "StaticArrays"
+
+    [deps.ConstructionBase.weakdeps]
+    IntervalSets = "8197267c-284f-5f27-9208-e0e47529a953"
+    StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [[deps.Contour]]
 git-tree-sha1 = "d05d9e7b7aedff4e5b51a029dced05cfb6125781"
@@ -348,19 +418,9 @@ uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 
 [[deps.DelimitedFiles]]
 deps = ["Mmap"]
+git-tree-sha1 = "9e2f36d3c96a820c678f2f1f1782582fcf685bae"
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
-
-[[deps.DensityInterface]]
-deps = ["InverseFunctions", "Test"]
-git-tree-sha1 = "80c3e8639e3353e5d2912fb3a1916b8455e2494b"
-uuid = "b429d917-457f-4dbc-8f4c-0cc954292b1d"
-version = "0.4.0"
-
-[[deps.DiskArrays]]
-deps = ["OffsetArrays"]
-git-tree-sha1 = "43226f85ea2e3946e48087db99f1ba67f9b5cdef"
-uuid = "3c3547ce-8d99-4f5e-a174-61eb10b00ae3"
-version = "0.3.11"
+version = "1.9.1"
 
 [[deps.Distances]]
 deps = ["LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI"]
@@ -373,10 +433,18 @@ deps = ["Random", "Serialization", "Sockets"]
 uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[deps.Distributions]]
-deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
+deps = ["FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
 git-tree-sha1 = "13027f188d26206b9e7b863036f87d2f2e7d013a"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
 version = "0.25.87"
+
+    [deps.Distributions.extensions]
+    DistributionsChainRulesCoreExt = "ChainRulesCore"
+    DistributionsDensityInterfaceExt = "DensityInterface"
+
+    [deps.Distributions.weakdeps]
+    ChainRulesCore = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
+    DensityInterface = "b429d917-457f-4dbc-8f4c-0cc954292b1d"
 
 [[deps.DocStringExtensions]]
 deps = ["LibGit2"]
@@ -394,6 +462,12 @@ deps = ["Calculus", "NaNMath", "SpecialFunctions"]
 git-tree-sha1 = "5837a837389fccf076445fce071c8ddaea35a566"
 uuid = "fa6b7ba4-c1ee-5f82-b5fc-ecf0adba8f74"
 version = "0.6.8"
+
+[[deps.EpollShim_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl"]
+git-tree-sha1 = "8e9441ee83492030ace98f9789a654a6d0b1f643"
+uuid = "2702e6a9-849d-5ed8-8c21-79e8b8f9ee43"
+version = "0.0.20230411+0"
 
 [[deps.Expat_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -424,6 +498,12 @@ deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "c6033cc3892d0ef5bb9cd29b7f2f0331ea5184ea"
 uuid = "f5851436-0d7a-5f13-b9de-f02708fd171a"
 version = "3.3.10+0"
+
+[[deps.FilePathsBase]]
+deps = ["Compat", "Dates", "Mmap", "Printf", "Test", "UUIDs"]
+git-tree-sha1 = "9f00e42f8d99fdde64d40c8ea5d14269a2e2c1aa"
+uuid = "48062228-2e41-5def-b9a4-89aafe57970f"
+version = "0.9.21"
 
 [[deps.FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
@@ -509,12 +589,6 @@ git-tree-sha1 = "53bb909d1151e57e2484c3d1b53e19552b887fb2"
 uuid = "42e2da0e-8278-4e71-bc24-59509adca0fe"
 version = "1.0.2"
 
-[[deps.HDF5_jll]]
-deps = ["Artifacts", "JLLWrappers", "LibCURL_jll", "Libdl", "OpenSSL_jll", "Pkg", "Zlib_jll"]
-git-tree-sha1 = "4cc2bb72df6ff40b055295fdef6d92955f9dede8"
-uuid = "0234f1f7-429e-5d53-9886-15a909be8d59"
-version = "1.12.2+2"
-
 [[deps.HTTP]]
 deps = ["Base64", "CodecZlib", "Dates", "IniFile", "Logging", "LoggingExtras", "MbedTLS", "NetworkOptions", "OpenSSL", "Random", "SimpleBufferStream", "Sockets", "URIs", "UUIDs"]
 git-tree-sha1 = "37e4657cd56b11abe3d10cd4a1ec5fbdb4180263"
@@ -533,16 +607,40 @@ git-tree-sha1 = "432b5b03176f8182bd6841fbfc42c718506a2d5f"
 uuid = "34004b35-14d8-5ef3-9330-4cdb6864b03a"
 version = "0.3.15"
 
+[[deps.Hyperscript]]
+deps = ["Test"]
+git-tree-sha1 = "179267cfa5e712760cd43dcae385d7ea90cc25a4"
+uuid = "47d2ed2b-36de-50cf-bf87-49c2cf4b8b91"
+version = "0.0.5"
+
+[[deps.HypertextLiteral]]
+deps = ["Tricks"]
+git-tree-sha1 = "7134810b1afce04bbc1045ca1985fbe81ce17653"
+uuid = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
+version = "0.9.5"
+
 [[deps.HypothesisTests]]
 deps = ["Combinatorics", "Distributions", "LinearAlgebra", "Random", "Rmath", "Roots", "Statistics", "StatsBase"]
 git-tree-sha1 = "ae3b6964d58df11984d22644ce5546eaf20fe95d"
 uuid = "09f84164-cd44-5f33-b23f-e6b0d136a0d5"
 version = "0.10.11"
 
+[[deps.IOCapture]]
+deps = ["Logging", "Random"]
+git-tree-sha1 = "8b72179abc660bfab5e28472e019392b97d0985c"
+uuid = "b5f81e59-6552-4d32-b1f0-c071b021bf89"
+version = "0.2.4"
+
 [[deps.IniFile]]
 git-tree-sha1 = "f550e6e32074c939295eb5ea6de31849ac2c9625"
 uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
 version = "0.5.1"
+
+[[deps.InlineStrings]]
+deps = ["Parsers"]
+git-tree-sha1 = "9cc2baf75c6d09f9da536ddf58eb2f29dedaf461"
+uuid = "842dd82b-1e85-43dc-bf29-5d0ee9dffc48"
+version = "1.4.0"
 
 [[deps.IntelOpenMP_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -559,12 +657,6 @@ deps = ["Adapt", "AxisAlgorithms", "ChainRulesCore", "LinearAlgebra", "OffsetArr
 git-tree-sha1 = "721ec2cf720536ad005cb38f50dbba7b02419a15"
 uuid = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
 version = "0.14.7"
-
-[[deps.InverseFunctions]]
-deps = ["Test"]
-git-tree-sha1 = "49510dfcb407e572524ba94aeae2fced1f3feb0f"
-uuid = "3587e190-3f89-42d0-90ee-14403ec27112"
-version = "0.1.8"
 
 [[deps.IrrationalConstants]]
 git-tree-sha1 = "630b497eafcc20001bba38a4651b327dcfc491d2"
@@ -635,6 +727,18 @@ git-tree-sha1 = "ee342fcc2b8762c43a60dfbbf73bc2258703af19"
 uuid = "23fbe1c1-3f47-55db-b15f-69d7ec21a316"
 version = "0.15.19"
 
+    [deps.Latexify.extensions]
+    DataFramesExt = "DataFrames"
+    DiffEqBiologicalExt = "DiffEqBiological"
+    ParameterizedFunctionsExt = "DiffEqBase"
+    SymEngineExt = "SymEngine"
+
+    [deps.Latexify.weakdeps]
+    DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+    DiffEqBase = "2b5f629d-d688-5b77-993f-72d75c75574e"
+    DiffEqBiological = "eb300fae-53e8-50a0-950c-e21f52c2b7e0"
+    SymEngine = "123dc426-2d89-5057-bbad-38513e3affd8"
+
 [[deps.LazyArtifacts]]
 deps = ["Artifacts", "Pkg"]
 uuid = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
@@ -642,21 +746,26 @@ uuid = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
-version = "0.6.3"
+version = "0.6.4"
 
 [[deps.LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
-version = "7.84.0+0"
+version = "8.4.0+0"
 
 [[deps.LibGit2]]
-deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
+deps = ["Base64", "LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
+
+[[deps.LibGit2_jll]]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll"]
+uuid = "e37daf67-58a4-590a-8e99-b0245dd2ffc5"
+version = "1.6.4+0"
 
 [[deps.LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
-version = "1.10.2+0"
+version = "1.11.0+1"
 
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -710,14 +819,24 @@ uuid = "38a345b3-de98-5d2b-a5d3-14cd9215e700"
 version = "2.36.0+0"
 
 [[deps.LinearAlgebra]]
-deps = ["Libdl", "libblastrampoline_jll"]
+deps = ["Libdl", "OpenBLAS_jll", "libblastrampoline_jll"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [[deps.LogExpFunctions]]
-deps = ["ChainRulesCore", "ChangesOfVariables", "DocStringExtensions", "InverseFunctions", "IrrationalConstants", "LinearAlgebra"]
+deps = ["DocStringExtensions", "IrrationalConstants", "LinearAlgebra"]
 git-tree-sha1 = "0a1b7c2863e44523180fdb3146534e265a91870b"
 uuid = "2ab3a3ac-af41-5b50-aa03-7779005ae688"
 version = "0.3.23"
+
+    [deps.LogExpFunctions.extensions]
+    LogExpFunctionsChainRulesCoreExt = "ChainRulesCore"
+    LogExpFunctionsChangesOfVariablesExt = "ChangesOfVariables"
+    LogExpFunctionsInverseFunctionsExt = "InverseFunctions"
+
+    [deps.LogExpFunctions.weakdeps]
+    ChainRulesCore = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
+    ChangesOfVariables = "9e997f8a-9a97-42d5-a9f1-ce6bfc15e2c0"
+    InverseFunctions = "3587e190-3f89-42d0-90ee-14403ec27112"
 
 [[deps.Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
@@ -727,6 +846,11 @@ deps = ["Dates", "Logging"]
 git-tree-sha1 = "cedb76b37bc5a6c702ade66be44f831fa23c681e"
 uuid = "e6f89c97-d47a-5376-807f-9c37f3926c36"
 version = "1.0.0"
+
+[[deps.MIMEs]]
+git-tree-sha1 = "65f28ad4b594aebe22157d6fac869786a255b7eb"
+uuid = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
+version = "0.1.4"
 
 [[deps.MKL_jll]]
 deps = ["Artifacts", "IntelOpenMP_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg"]
@@ -753,7 +877,7 @@ version = "1.1.7"
 [[deps.MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
-version = "2.28.0+0"
+version = "2.28.2+1"
 
 [[deps.Measures]]
 git-tree-sha1 = "c13304c81eec1ed3af7fc20e75fb6b26092a1102"
@@ -771,7 +895,7 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
-version = "2022.2.1"
+version = "2023.1.10"
 
 [[deps.MultivariateStats]]
 deps = ["Arpack", "LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI", "StatsBase"]
@@ -790,18 +914,6 @@ deps = ["Distances", "StaticArrays"]
 git-tree-sha1 = "2c3726ceb3388917602169bed973dbc97f1b51a8"
 uuid = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
 version = "0.4.13"
-
-[[deps.NetCDF]]
-deps = ["DiskArrays", "Formatting", "NetCDF_jll"]
-git-tree-sha1 = "328178762645783b20495d408ab317b4c2d25b1a"
-uuid = "30363a11-5582-574a-97bb-aa9a979735b9"
-version = "0.11.7"
-
-[[deps.NetCDF_jll]]
-deps = ["Artifacts", "HDF5_jll", "JLLWrappers", "LibCURL_jll", "Libdl", "Pkg", "XML2_jll", "Zlib_jll"]
-git-tree-sha1 = "072f8371f74c3b9e1b26679de7fbf059d45ea221"
-uuid = "7243133f-43d8-5620-bbf4-c2c921802cf3"
-version = "400.902.5+1"
 
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
@@ -827,12 +939,12 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
-version = "0.3.20+0"
+version = "0.3.23+2"
 
 [[deps.OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
-version = "0.8.1+0"
+version = "0.8.1+2"
 
 [[deps.OpenSSL]]
 deps = ["BitFlags", "Dates", "MozillaCACerts_jll", "OpenSSL_jll", "Sockets"]
@@ -866,7 +978,7 @@ version = "1.6.0"
 [[deps.PCRE2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "efcefdf7-47ab-520b-bdef-62a2eaa19f15"
-version = "10.40.0+0"
+version = "10.42.0+1"
 
 [[deps.PDMats]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
@@ -892,9 +1004,9 @@ uuid = "30392449-352a-5448-841d-b1acce4e97dc"
 version = "0.40.1+0"
 
 [[deps.Pkg]]
-deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
+deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-version = "1.8.0"
+version = "1.10.0"
 
 [[deps.PlotThemes]]
 deps = ["PlotUtils", "Statistics"]
@@ -913,6 +1025,38 @@ deps = ["Base64", "Contour", "Dates", "Downloads", "FFMPEG", "FixedPointNumbers"
 git-tree-sha1 = "5434b0ee344eaf2854de251f326df8720f6a7b55"
 uuid = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 version = "1.38.10"
+
+    [deps.Plots.extensions]
+    FileIOExt = "FileIO"
+    GeometryBasicsExt = "GeometryBasics"
+    IJuliaExt = "IJulia"
+    ImageInTerminalExt = "ImageInTerminal"
+    UnitfulExt = "Unitful"
+
+    [deps.Plots.weakdeps]
+    FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+    GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
+    IJulia = "7073ff75-c697-5162-941a-fcdaad2a7d2a"
+    ImageInTerminal = "d8c32880-2388-543b-8c61-d9f865259254"
+    Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
+
+[[deps.PlutoUI]]
+deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
+git-tree-sha1 = "68723afdb616445c6caaef6255067a8339f91325"
+uuid = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+version = "0.7.55"
+
+[[deps.PooledArrays]]
+deps = ["DataAPI", "Future"]
+git-tree-sha1 = "36d8b4b899628fb92c2749eb488d884a926614d3"
+uuid = "2dfb63ee-cc39-5dd5-95bd-886bf059d720"
+version = "1.4.3"
+
+[[deps.PrecompileTools]]
+deps = ["Preferences"]
+git-tree-sha1 = "03b4c25b43cb84cee5c90aa9b5ea0a78fd848d2f"
+uuid = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
+version = "1.2.0"
 
 [[deps.Preferences]]
 deps = ["TOML"]
@@ -941,7 +1085,7 @@ deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 
 [[deps.Random]]
-deps = ["SHA", "Serialization"]
+deps = ["SHA"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[deps.Ratios]]
@@ -996,6 +1140,14 @@ deps = ["ChainRulesCore", "CommonSolve", "Printf", "Setfield"]
 git-tree-sha1 = "82362f2a4f756951f21ebb3ac2aed094c46a5109"
 uuid = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
 version = "2.0.12"
+
+    [deps.Roots.extensions]
+    RootsForwardDiffExt = "ForwardDiff"
+    RootsIntervalRootFindingExt = "IntervalRootFinding"
+
+    [deps.Roots.weakdeps]
+    ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+    IntervalRootFinding = "d2bf35a9-74e0-55ec-b149-d360ff49b807"
 
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
@@ -1053,14 +1205,19 @@ uuid = "a2af1166-a08f-5f64-846c-94a0d3cef48c"
 version = "1.1.0"
 
 [[deps.SparseArrays]]
-deps = ["LinearAlgebra", "Random"]
+deps = ["Libdl", "LinearAlgebra", "Random", "Serialization", "SuiteSparse_jll"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+version = "1.10.0"
 
 [[deps.SpecialFunctions]]
-deps = ["ChainRulesCore", "IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
+deps = ["IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
 git-tree-sha1 = "ef28127915f4229c971eb43f3fc075dd3fe91880"
 uuid = "276daf66-3868-5448-9aa4-cd146d93841b"
 version = "2.2.0"
+weakdeps = ["ChainRulesCore"]
+
+    [deps.SpecialFunctions.extensions]
+    SpecialFunctionsChainRulesCoreExt = "ChainRulesCore"
 
 [[deps.StaticArrays]]
 deps = ["LinearAlgebra", "Random", "StaticArraysCore", "Statistics"]
@@ -1076,6 +1233,7 @@ version = "1.4.0"
 [[deps.Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
 uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+version = "1.10.0"
 
 [[deps.StatsAPI]]
 deps = ["LinearAlgebra"]
@@ -1090,10 +1248,18 @@ uuid = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 version = "0.33.21"
 
 [[deps.StatsFuns]]
-deps = ["ChainRulesCore", "HypergeometricFunctions", "InverseFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
+deps = ["HypergeometricFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
 git-tree-sha1 = "f625d686d5a88bcd2b15cd81f18f98186fdc0c9a"
 uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
 version = "1.3.0"
+
+    [deps.StatsFuns.extensions]
+    StatsFunsChainRulesCoreExt = "ChainRulesCore"
+    StatsFunsInverseFunctionsExt = "InverseFunctions"
+
+    [deps.StatsFuns.weakdeps]
+    ChainRulesCore = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
+    InverseFunctions = "3587e190-3f89-42d0-90ee-14403ec27112"
 
 [[deps.StatsPlots]]
 deps = ["AbstractFFTs", "Clustering", "DataStructures", "DataValues", "Distributions", "Interpolations", "KernelDensity", "LinearAlgebra", "MultivariateStats", "NaNMath", "Observables", "Plots", "RecipesBase", "RecipesPipeline", "Reexport", "StatsBase", "TableOperations", "Tables", "Widgets"]
@@ -1105,10 +1271,15 @@ version = "0.15.4"
 deps = ["Libdl", "LinearAlgebra", "Serialization", "SparseArrays"]
 uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
 
+[[deps.SuiteSparse_jll]]
+deps = ["Artifacts", "Libdl", "libblastrampoline_jll"]
+uuid = "bea87d4a-7f5b-5778-9afe-8cc45184846c"
+version = "7.2.1+1"
+
 [[deps.TOML]]
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
-version = "1.0.0"
+version = "1.0.3"
 
 [[deps.TableOperations]]
 deps = ["SentinelArrays", "Tables", "Test"]
@@ -1131,7 +1302,7 @@ version = "1.10.1"
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
-version = "1.10.1"
+version = "1.10.0"
 
 [[deps.TensorCore]]
 deps = ["LinearAlgebra"]
@@ -1148,6 +1319,11 @@ deps = ["Random", "Test"]
 git-tree-sha1 = "0b829474fed270a4b0ab07117dce9b9a2fa7581a"
 uuid = "3bb67fe8-82b1-5028-8e26-92a6c54297fa"
 version = "0.9.12"
+
+[[deps.Tricks]]
+git-tree-sha1 = "eae1bb484cd63b36999ee58be2de6c178105112f"
+uuid = "410a4b4d-49e4-4fbc-ab6d-cb71b17b3775"
+version = "0.1.8"
 
 [[deps.URIs]]
 git-tree-sha1 = "074f993b0ca030848b897beff716d93aca60f06a"
@@ -1173,7 +1349,7 @@ uuid = "41fe7b60-77ed-43a1-b4f0-825fd5a5650d"
 version = "0.2.0"
 
 [[deps.Wayland_jll]]
-deps = ["Artifacts", "Expat_jll", "JLLWrappers", "Libdl", "Libffi_jll", "Pkg", "XML2_jll"]
+deps = ["Artifacts", "EpollShim_jll", "Expat_jll", "JLLWrappers", "Libdl", "Libffi_jll", "Pkg", "XML2_jll"]
 git-tree-sha1 = "ed8d92d9774b077c53e1da50fd81a36af3744c1c"
 uuid = "a2964d1f-97da-50d4-b82a-358c7fce9d89"
 version = "1.21.0+0"
@@ -1183,6 +1359,12 @@ deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "4528479aa01ee1b3b4cd0e6faef0e04cf16466da"
 uuid = "2381bf8a-dfd0-557d-9999-79630e7b1b91"
 version = "1.25.0+0"
+
+[[deps.WeakRefStrings]]
+deps = ["DataAPI", "InlineStrings", "Parsers"]
+git-tree-sha1 = "b1be2855ed9ed8eac54e5caff2afcdb442d52c23"
+uuid = "ea10d353-3f73-51f8-a26c-33c1cb351aa5"
+version = "1.4.2"
 
 [[deps.Widgets]]
 deps = ["Colors", "Dates", "Observables", "OrderedCollections"]
@@ -1195,6 +1377,11 @@ deps = ["LinearAlgebra", "SparseArrays"]
 git-tree-sha1 = "de67fa59e33ad156a590055375a30b23c40299d3"
 uuid = "efce3f68-66dc-5838-9240-27a6d6f5f9b6"
 version = "0.5.5"
+
+[[deps.WorkerUtilities]]
+git-tree-sha1 = "cd1659ba0d57b71a464a29e64dbc67cfe83d54e7"
+uuid = "76eceee3-57b5-4d4a-8e66-0e911cebbf60"
+version = "1.6.1"
 
 [[deps.XML2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Libiconv_jll", "Pkg", "Zlib_jll"]
@@ -1337,7 +1524,7 @@ version = "1.4.0+3"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
-version = "1.2.12+3"
+version = "1.2.13+1"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1364,9 +1551,9 @@ uuid = "0ac62f75-1d6f-5e53-bd7c-93b484bb37c0"
 version = "0.15.1+0"
 
 [[deps.libblastrampoline_jll]]
-deps = ["Artifacts", "Libdl", "OpenBLAS_jll"]
+deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.1.1+0"
+version = "5.8.0+1"
 
 [[deps.libfdk_aac_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1389,12 +1576,12 @@ version = "1.3.7+1"
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
-version = "1.48.0+0"
+version = "1.52.0+1"
 
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
-version = "17.4.0+0"
+version = "17.4.0+2"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1419,19 +1606,31 @@ version = "1.4.1+0"
 # ╟─b129ba7c-953a-11ea-3379-17adae34924c
 # ╟─b6009e10-a175-4a61-99ee-a6e2fb80f0c4
 # ╠═af595218-7692-446f-b9db-06555efbe95f
+# ╟─f808a6df-bc5e-4b21-ae79-fbffa3328d96
 # ╟─0a9b9ef1-3506-4e2e-8f34-9943795a212e
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
-# ╠═1ec13319-4e7f-43b6-953a-eab23d8d331b
+# ╟─a9834553-f74b-4fc6-82c5-11f36462440e
+# ╟─0a1641d8-486a-4a25-be9d-5e19b4024ea4
+# ╠═117f2bf2-4fdf-4077-8f32-ff10a00bcf72
+# ╟─468b0610-30e5-40b7-8456-9e1644329f20
+# ╠═0dbaeba9-8603-499f-9283-db6741073f7d
 # ╟─941ca951-a77a-4373-900a-ec370b8d8621
-# ╠═3dc5905d-ea4f-4d84-9777-28cc9565d08e
+# ╠═da039a1a-1185-4c27-9470-7779e2c810ef
+# ╠═21b86554-fd23-4cd6-94ff-edc093051173
 # ╟─757fd65d-73cf-47b9-a7d4-322c50e95d3c
-# ╠═34cca66b-14f5-4587-9955-9b312eb4fb53
+# ╠═d15e3707-1a87-424f-bab6-23e4d851a5de
+# ╠═5e5a3da6-3846-4452-8758-9e336ae9cfc4
 # ╟─46ae7895-aa88-424c-88ce-1e51c79e4ada
-# ╠═0438ee42-44ec-4dd2-ac3b-97c6bbf05e80
+# ╠═dfcea5b6-96a0-4685-b78a-25bd374d9131
+# ╠═aab8faef-584c-408c-8d0f-5a098a59271e
 # ╟─555d20be-569e-44fc-ba56-0726f3e5eabd
-# ╠═9be79c44-aeb6-4cbe-93d5-b0146454c5dd
+# ╠═007aa75c-6b16-4f5e-bb02-ae1c81160990
+# ╠═2df7243b-aa04-4e01-a94d-91ab47cc060a
+# ╠═9c4e39dd-b5f3-4abb-8e96-24652cb1f078
 # ╟─75e45d81-b520-41d1-90ae-de4544b3de61
-# ╠═2a86dbc3-1bd5-4b15-ba7a-a40872b72289
+# ╠═c08c8199-f223-4066-a821-5aa006e2add1
+# ╠═f5d904d7-682e-4675-a6d0-797d98e7b32b
+# ╠═4e953eb7-4e4f-43d2-91b8-22ed15e95e9f
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
 # ╟─979e3a2b-d522-443e-83d3-09984847b0ef
 # ╟─c82a16e5-592c-42c8-a3df-2b9c3f7f4250
