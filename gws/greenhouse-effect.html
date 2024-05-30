@@ -98,27 +98,27 @@ The parameter \(\epsilon\), called the emissivity or the absorptivity, determine
 </p>    
     
 <p>    
-To derive the equations for this model we’ll need to balance energy going into and out of each component. So we balance all the radiation arrows going into and out of the surface and all the radiation arrows going into and out of the atmosphere. And let’s initially assume that \(\epsilon=1\), that is, the atmosphere is a perfect blackbody and absorbs all the surface infrared radiation. Here’s the energy balance equation for the surface
+To derive the equations for this model we’ll need to balance energy going into and out of each component. So we balance all the radiation arrows going into and out of the surface and all the radiation arrows going into and out of an imaginary line that we’ll draw at the ‘top of the atmosphere’, which is actually above the atmospheric layer here. And let’s initially assume that \(\epsilon=1\), that is, the atmosphere is a perfect blackbody and absorbs all the surface infrared radiation. Here’s the energy balance equation for the surface,
 
-\[\frac{S}{4}(1-\alpha) + \sigma T^4_a = \sigma T^4_s \; , \tag{2} \]
+\[\frac{S}{4} + \sigma T^4_a = \alpha\frac{S}{4}+\sigma T^4_s \; ,\] and moving solar radiation over to one side,
+    
+\[\frac{S}{4}(1-\alpha) + \sigma T^4_a = \sigma T^4_s \; . \tag{2} \]
 
-and for the atmosphere the equation is
+The equation for the imaginary ‘top of the atmosphere’, with \(\epsilon=1\), is
 
-\[\sigma T^4_s=2\sigma T^4_a \; . \tag{3}\]
-
-If we look at the planet as a whole and ask how the energy going in is balanced with the energy coming out, with \(\epsilon=1\) we have 
-
-\[\frac{S}{4}(1-\alpha)  = \sigma T^4_a \; . \tag{4}\]
+\[\frac{S}{4} = \alpha\frac{S}{4}+\sigma T^4_a \; ,\] or equivalently
+    
+\[\frac{S}{4}(1-\alpha)  = \sigma T^4_a \; . \tag{3}\]
 </p>
 
 <p>
-Notice that equation (4) is the same energy balance equation as our first model, equation (1). So our initial equation actually applies best to the energy balance at the top of the atmosphere.
+Notice that equation (3) is the same energy balance equation as our first model, equation (1). So our initial equation actually applies best to the energy balance at the top of the atmosphere.
 </p>
       
 <p>
-We can now solve these equations for \(T_a\) and \(T_s\). We can use equation (4) for \(T_a\) and either substitute equation (4) or equation (3) into equation (2) to get an equation only in terms of \(T_s\),
+We can now solve equations (2) and (3) for \(T_a\) and \(T_s\) to get 
 
-\[T_a=\left[\frac{S}{4\sigma}(1-\alpha)\right]^{1/4} \]
+\[T_a=\left[\frac{S}{4\sigma}(1-\alpha)\right]^{1/4} \; ,\]
 
 \[T_s=\left[\frac{S}{2\sigma}(1-\alpha)\right]^{1/4} \; .\]
 </p>          
@@ -133,13 +133,13 @@ Instead of assuming that the atmosphere absorbs all the infrared radiation emitt
     
     
 <p>
-\[\frac{S}{4}(1-\alpha)+\epsilon\sigma T^4_a = \sigma T^4_s \; , \]
+\[\frac{S}{4}+\epsilon\sigma T^4_a = \alpha\frac{S}{4}+\sigma T^4_s \; , \]
 
-\[\frac{S}{4}(1-\alpha)=\epsilon\sigma T^4_a + (1-\epsilon)\sigma T^4_s \; . \]
+\[\frac{S}{4}=\alpha\frac{S}{4} + (1-\epsilon)\sigma T^4_s + \epsilon\sigma T^4_a\; . \]
 
 Solving these two equations for \(T_s\) we obtain
 
-\[T_s=\left[\frac{S(1-\alpha)}{2\sigma(2-\epsilon)}\right]^{1/4} \; . \tag{5}\]
+\[T_s=\left[\frac{S(1-\alpha)}{2\sigma(2-\epsilon)}\right]^{1/4} \; . \tag{4}\]
 </p>    
     
 <p>
