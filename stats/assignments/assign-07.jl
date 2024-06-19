@@ -119,7 +119,7 @@ md"## Exercise 3
 
 It's best to check for normality using both an analytical and graphical approach. In science and statistics in general, it's always best to use at least two methods for analyzing something, especially if both methods are quite different. If two very different methods agree on a result, then you have strong evidence that your result doesn't depend on the method you happened to use.
 
-👉 Check for the normality of the same Agriculture and Alpine soil erosion data that you plotted above using the [Jarque-Bera test](https://juliastats.org/HypothesisTests.jl/stable/time_series/#HypothesisTests.JarqueBeraTest) and the default α. In running this test, don't worry about changing the 'adjusted' setting. Also, in using this test, think carefully about what is the null hypothesis and what is the alternative hypothesis you are testing for. Based on this and the previous exercises, what kind of data is or is not normally distributed?"
+👉 Check for the normality of the same log-transformed data that you plotted above, using the [Jarque-Bera test](https://juliastats.org/HypothesisTests.jl/stable/time_series/#HypothesisTests.JarqueBeraTest) and the default α. In running this test, don't worry about changing the 'adjusted' setting. Also, in using this test, think carefully about what is the null hypothesis and what is the alternative hypothesis you are testing for. Based on this and the previous exercises, what kind of data is or is not normally distributed?"
 
 # ╔═╡ e33ec172-9e11-485b-8fea-c13a41fff829
 
@@ -138,7 +138,7 @@ It's best to check for normality using both an analytical and graphical approach
 
 # ╔═╡ 8e02abbf-54c8-44ca-8c06-38290b1db816
 md"## Exercise 4
-👉 Based on your results from Exercises 2 and 3, compute either a two-sample t-test or a [Mann-Whitney U test](https://juliastats.org/HypothesisTests.jl/stable/nonparametric/#Mann-Whitney-U-test) for the following scientific hypotheses:
+👉 Based on your results from Exercises 2 and 3, compute either a two-sample t-test or a [Mann-Whitney U test](https://juliastats.org/HypothesisTests.jl/stable/nonparametric/#Mann-Whitney-U-test) on the log-transformed data for the following scientific hypotheses:
 
 (1) Is the rate of erosion from agriculture statistically the same as the rate of erosion from alpine environments?
 
