@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.36
+# v0.19.38
 
 #> [frontmatter]
 #> author_url = "https://github.com/JuliaPluto"
@@ -21,6 +21,7 @@ begin
 	using HTTP
 	using CSV
 	using PlutoUI
+	using DataFrames
 end
 
 # ╔═╡ b129ba7c-953a-11ea-3379-17adae34924c
@@ -49,68 +50,74 @@ md"""
 # ╔═╡ 6d99ed80-b56e-44c6-a095-3bea1a3df62e
 md"## Loading Data
 
-For this assignment we'll be using a reconstruction of past sea level based on measurements from sediment cores taken from the Red Sea (Grant, K., Rohling, E., Ramsey, C. et al. Sea-level variability over five glacial cycles. Nat Commun 5, 5076 (2014). https://doi.org/10.1038/ncomms6076)."
+For this assignment we'll be using a reconstruction of past sea level based on measurements from three sediment cores taken from the Red Sea (Grant, K., Rohling, E., Ramsey, C. et al. Sea-level variability over five glacial cycles. Nat Commun 5, 5076 (2014). https://doi.org/10.1038/ncomms6076)."
 
 # ╔═╡ a9834553-f74b-4fc6-82c5-11f36462440e
-md"""(a) Location of Red Sea sediment cores. (b) Satellite image of dust transport over the location of the cores.
+md"""(a) Location of the three Red Sea sediment cores. (b) Satellite image of dust transport over the location of the cores.
 
 $(Resource(redseacores_url,:width => 300))"""
 
 # ╔═╡ 0a1641d8-486a-4a25-be9d-5e19b4024ea4
-md"This data in the original publication goes back through five glacial cycles, but here we're just going to load the first 3000 years. The first column are the dates (in years BP) and the other columns are the ensemble estimates of sea level relative to the current sea level of the Red Sea (units are in meters)."
+md"This data in the original publication goes back through five glacial cycles, but here we're just going to load the data from Marine Isotope Stages 2 through 4, so from about 11,700 years BP to 70,000 years BP. The first column are the dates (in years BP) and the other columns are the measurements of sea level relative to the current sea level of the Red Sea (units are in meters). The three data values in the other columns are the samples taken from the three cores at each date."
 
-# ╔═╡ 117f2bf2-4fdf-4077-8f32-ff10a00bcf72
+# ╔═╡ 02742dcf-e98d-4c4f-a392-34c99d54bab6
 begin
-	url_g="https://njsteiger.github.io/stats/data/sea_level_prob_red_sea_grant_2014.csv"
+	url_g="https://njsteiger.github.io/stats/data/sea_level_3samples_prob_red_sea_grant_2014.csv"
 	http_response_g=HTTP.get(url_g)
 	file_g=CSV.File(http_response_g.body; header=false) 
 	d0 = file_g|>CSV.Tables.matrix
 end
 
 # ╔═╡ 468b0610-30e5-40b7-8456-9e1644329f20
-md"And this is what the data look like for the first five dates:"
+md"And this is what the data look like over time:"
 
 # ╔═╡ 0dbaeba9-8603-499f-9283-db6741073f7d
 begin
-	age=d0[1:5,1]
-	sl2=d0[:,2:6]
-	plot(age,sl2',seriestype=:scatter, label=false, xlabel="Years BP", ylabel="Relative Sea Level (m)", title="Red Sea Sediment Core Sea Level Estimates")
+	ages=d0[:,1]
+	sl_data=Matrix(d0[:,2:end])
+	plot(ages,sl_data,seriestype=:scatter, label=["Core KL09" "Core KL11" "Core MD92-1017"], xlabel="Years BP", ylabel="Relative Sea Level (m)", title="Red Sea Sediment Core Sea Level Estimates")
 end
 
 # ╔═╡ 941ca951-a77a-4373-900a-ec370b8d8621
 md"## Exercise 1
 
-For this and the following exercise, we'll be looking at all of the sea level estimates for the past 3000 years. We will treat this distribution as our true 'population' distribution and draw random 'sample' distributions from it to explore some of the features of confidence intervals and sampling size that we learned in the course lectures. In real life you basically never know for sure the true population distribution; in Climate or Earth Sciences the 'population' distribution is equivalent to the 'true climate/earth system', whose statistical features we never know perfectly nor can we observe it perfectly.
+For this and the following exercises, we'll be looking at all of the sea level data plotted in the figure above, from all three cores. We will treat this distribution as our true 'population' distribution and draw random 'sample' distributions from it to explore some of the features of confidence intervals and sampling size that we learned in the course lectures. In real life you basically never know for sure the true population distribution; in Climate or Earth Sciences the 'population' distribution is equivalent to the 'true climate/earth system', whose statistical features we never know perfectly nor can we observe it perfectly.
 
-👉 Make a density plot that includes every sea level estimate in the data over the past 3000 years. This distribution will be our population distribution for the rest of the exercises. Calculate and plot over the top of this a vertical line indicating the location of the mean value of this distribution."
+👉 Make a density plot that includes every sea level estimate in the data. This distribution will be our population distribution for the rest of the exercises. Calculate and plot over the top of this a vertical line indicating the location of the mean value of this distribution."
 
-# ╔═╡ da039a1a-1185-4c27-9470-7779e2c810ef
+# ╔═╡ 5bebd89d-1345-4eed-9d56-d236d584ae2a
 
 
-# ╔═╡ 21b86554-fd23-4cd6-94ff-edc093051173
+# ╔═╡ 8c5f9a32-bda3-4324-b923-3e45b67bde1f
 
 
 # ╔═╡ 757fd65d-73cf-47b9-a7d4-322c50e95d3c
 md"## Exercise 2
 
-Now we're going to see how small samples from the true/population distribution compare to the true/population distribution. To take random samples from a distribution you can use the `sample` function. For these exercises only worry about inputing the vector of values you found in Exercise 1 and a number indicating how many samples you need to draw (the `sample` function allows for other additional options for sampling that we won't use here).
+Now we're going to see how small samples from the true/population distribution compare to the true/population distribution. To take random samples from a distribution you can use the `sample` function. For these exercises only worry about inputing the vector of values you plotted in Exercise 1 and a number indicating how many samples you need to draw (the `sample` function allows for other additional options for sampling that we won't use here).
 
 👉 Make density plots on the same figure showing the true distribution from Exercise 1 along with 4 other random samples of 10 draws each. Make sure that you can clearly see the true distribution by making its linewidth much wider than the samples. Note that because these are random samples, it is unlikely that they will look the same if you compute them multiple times or if you compare them to someone else's samples. How well do these sample distributions match the true distribution?"
 
-# ╔═╡ d15e3707-1a87-424f-bab6-23e4d851a5de
+# ╔═╡ 090d364e-c5df-42b4-97c2-078c3b623a59
 
 
-# ╔═╡ 5e5a3da6-3846-4452-8758-9e336ae9cfc4
+# ╔═╡ 92ed49c0-306d-4f13-84b7-754f22c32b44
+
+
+# ╔═╡ 16dc10b1-c1ce-4efb-b0d3-180b9f43245c
 
 
 # ╔═╡ 46ae7895-aa88-424c-88ce-1e51c79e4ada
 md"## Exercise 3
 👉 Repeat Exercise 2 but with a sample size of 100 instead of 10. How well do these sample distributions match the true distribution? Why is there a difference in the results between these two exercises?"
 
-# ╔═╡ dfcea5b6-96a0-4685-b78a-25bd374d9131
+# ╔═╡ 77b7baf6-f6bf-4991-9056-cba158330edd
 
 
-# ╔═╡ aab8faef-584c-408c-8d0f-5a098a59271e
+# ╔═╡ 7883472f-c18a-4171-a444-e2a233753f81
+
+
+# ╔═╡ 5b02b69b-efb1-41f5-a14d-d5af847df727
 
 
 # ╔═╡ 555d20be-569e-44fc-ba56-0726f3e5eabd
@@ -120,13 +127,13 @@ Now we're going to see how the sample size affects our estimates of confidence i
 
 👉 Make 3 random samples of size 10, 50, and 100 from all the sea level data that we've been working with and compute 95% confidence intervals for each. Then make a density plot of the true distribution and it's mean (as in Exercise 1) along with pairs of vertical lines indicating the locations of the confidence interval estimates. Make sure the matching pairs of confidence intervals are the same color so that you can see their range. You can make the different lines more distinct from each other (and thus easier to see) by having different choices of `linestyle`. Explain the results that you see."
 
-# ╔═╡ 007aa75c-6b16-4f5e-bb02-ae1c81160990
+# ╔═╡ 50e85547-4795-4b17-b018-b5a925bf85e6
 
 
-# ╔═╡ 2df7243b-aa04-4e01-a94d-91ab47cc060a
+# ╔═╡ 22ddce6f-1884-4bf9-9f56-90cde1f31df9
 
 
-# ╔═╡ 9c4e39dd-b5f3-4abb-8e96-24652cb1f078
+# ╔═╡ caa51c4d-e4d4-47ef-9aba-efa28191d41a
 
 
 # ╔═╡ 75e45d81-b520-41d1-90ae-de4544b3de61
@@ -134,15 +141,18 @@ md"## Exercise 5
 
 We've learned in the lectures that confidence intervals are not guaranteed to contain the true value and that they are fairly counter-intuitive in their meaning. They don't tell you there's a 95% chance that the true value is contained within them (that's a Bayesian 'credible interval'), though probably the large majority of scientists misinterpret them this way. Rather, confidence intervals only have a meaning within the context of making many of them: If you repeat the same experiment many times and construct confidence intervals each time, 95% of the confidence interval ranges will (hopefully!) contain the true value. 
 
-👉 Verify the idea of confidence intervals by calculating 50 confidence intervals of 50 random samples of the temperature ensemble we've been using with a sample size of 25 (do this using a for loop). Make a scatter plot of the means of each of these samples along with error bars extending to the upper and lower bounds of the confidence intervals; you can do this using the `yerror` option within a scatter plot. [A nice example to follow for this kind of plot is here](https://discourse.julialang.org/t/asymmetric-error-bars-and-box-plots-in-julia/73647/3) (pay close attention to how the error bars need to be calculated for the plot). And then plot over the top of this a horizontal line (`:hline`) showing the location of the true mean value. Note that we're basically trying to recreate one of the figures shown in an Anki card about this idea. How many of your 50 confidence intervals do not contain the mean value? Is this approximately what the 95% confidence interval is supposed to indicate?"
+👉 Verify the idea of confidence intervals by calculating 50 confidence intervals from 50 different random samples of the sea level data that we've been using. For each sample select 25 samples of the data (do this using a for loop). Make a scatter plot of the means of each of these samples along with error bars extending to the upper and lower bounds of the confidence intervals; you can do this using the `yerror` option within a scatter plot. [A nice example to follow for this kind of plot is here](https://discourse.julialang.org/t/asymmetric-error-bars-and-box-plots-in-julia/73647/3) (pay close attention to how the error bars need to be calculated for the plot). And then plot over the top of this a horizontal line (`:hline`) showing the location of the true mean value. Note that we're basically trying to recreate one of the figures shown in an Anki card about this idea. How many of your 50 confidence intervals do not contain the mean value? Is this approximately what the 95% confidence interval is supposed to indicate?"
 
-# ╔═╡ c08c8199-f223-4066-a821-5aa006e2add1
-
-
-# ╔═╡ f5d904d7-682e-4675-a6d0-797d98e7b32b
+# ╔═╡ c412ea44-6b1a-40bc-9968-c632cff22801
 
 
-# ╔═╡ 4e953eb7-4e4f-43d2-91b8-22ed15e95e9f
+# ╔═╡ 00d6ac0b-4ff0-4244-ae8f-98e46993572a
+
+
+# ╔═╡ b8675f7c-0e7d-4bd2-a232-65bdf5d5f624
+
+
+# ╔═╡ cb7d0abe-da02-4938-bfcd-006569e5c632
 
 
 # ╔═╡ 960f4286-5126-4856-bafa-3a29c1554c12
@@ -163,26 +173,8 @@ md"## (Helper Functions)
 You don't need to worry about these!
 "
 
-# ╔═╡ 8931e148-fd27-495e-985f-d932f13f60cb
-still_missing(text=md"Replace `missing` with your answer.") = Markdown.MD(Markdown.Admonition("warning", "Here we go!", [text]))
-
-# ╔═╡ e69222cd-d023-4a4a-a2a2-0df098fc696f
-yays = [md"Fantastic!", md"Splendid!", md"Great!", md"Yay ❤", md"Great! 🎉", md"Well done!", md"Keep it up!", md"Good job!", md"Awesome!", md"You got the right answer!", md"Let's move on to the next section."]
-
-# ╔═╡ c6a7e0aa-7337-4d9d-9686-34f80eae78cb
-correct(text=rand(yays)) = Markdown.MD(Markdown.Admonition("correct", "Got it!", [text]))
-
-# ╔═╡ ad296628-3e78-44d6-aec4-1e3edadaa3ee
-keep_working(text=md"The answer is not quite right.") = Markdown.MD(Markdown.Admonition("danger", "Keep working on it!", [text]))
-
-# ╔═╡ 38a2ab41-efc3-4e7d-823a-c2af9275ce5c
-almost(text) = Markdown.MD(Markdown.Admonition("warning", "Almost there!", [text]))
-
 # ╔═╡ 7f59aa91-563c-4fb2-877b-5808e09fd15e
 hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hint", [text]))
-
-# ╔═╡ a6446d6d-cb40-40cd-90c7-362181542c6a
-not_defined(variable_name) = Markdown.MD(Markdown.Admonition("danger", "Oopsie!", [md"Make sure that you define a variable called **$(Markdown.Code(string(variable_name)))**"]))
 
 # ╔═╡ ba1ec4c6-07a2-4977-b731-fb577a57d834
 todo(text) = HTML("""<div
@@ -198,6 +190,7 @@ note(text) = HTML("""<div
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 HypothesisTests = "09f84164-cd44-5f33-b23f-e6b0d136a0d5"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
@@ -206,6 +199,7 @@ StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
 
 [compat]
 CSV = "~0.10.12"
+DataFrames = "~1.5.0"
 HTTP = "~1.7.4"
 HypothesisTests = "~0.10.11"
 PlutoUI = "~0.7.55"
@@ -217,9 +211,9 @@ StatsPlots = "~0.15.4"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.0"
+julia_version = "1.9.3"
 manifest_format = "2.0"
-project_hash = "00268fa7b675c670c88045fe8974f9de73c065e8"
+project_hash = "34ed5e54afc0468a5a6e0d7b832967f0caf8c64a"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -246,6 +240,12 @@ weakdeps = ["StaticArrays"]
 
     [deps.Adapt.extensions]
     AdaptStaticArraysExt = "StaticArrays"
+
+[[deps.AliasTables]]
+deps = ["PtrArrays", "Random"]
+git-tree-sha1 = "9876e1e164b144ca45e9e3198d0b689cadfed9ff"
+uuid = "66dad0bd-aa9a-41b7-9441-69ab47430ed8"
+version = "1.1.3"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -369,7 +369,7 @@ weakdeps = ["Dates", "LinearAlgebra"]
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.0.5+1"
+version = "1.0.5+0"
 
 [[deps.ConstructionBase]]
 deps = ["LinearAlgebra"]
@@ -390,10 +390,21 @@ git-tree-sha1 = "d05d9e7b7aedff4e5b51a029dced05cfb6125781"
 uuid = "d38c429a-6771-53c6-b99e-75d170b6e991"
 version = "0.6.2"
 
+[[deps.Crayons]]
+git-tree-sha1 = "249fe38abf76d48563e2f4556bebd215aa317e15"
+uuid = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
+version = "4.1.1"
+
 [[deps.DataAPI]]
 git-tree-sha1 = "e8119c1a33d267e16108be441a287a6981ba1630"
 uuid = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
 version = "1.14.0"
+
+[[deps.DataFrames]]
+deps = ["Compat", "DataAPI", "Future", "InlineStrings", "InvertedIndices", "IteratorInterfaceExtensions", "LinearAlgebra", "Markdown", "Missings", "PooledArrays", "PrettyTables", "Printf", "REPL", "Random", "Reexport", "SentinelArrays", "SnoopPrecompile", "SortingAlgorithms", "Statistics", "TableTraits", "Tables", "Unicode"]
+git-tree-sha1 = "aa51303df86f8626a962fccb878430cdb0a97eee"
+uuid = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+version = "1.5.0"
 
 [[deps.DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
@@ -433,18 +444,20 @@ deps = ["Random", "Serialization", "Sockets"]
 uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[deps.Distributions]]
-deps = ["FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
-git-tree-sha1 = "13027f188d26206b9e7b863036f87d2f2e7d013a"
+deps = ["AliasTables", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns"]
+git-tree-sha1 = "9c405847cc7ecda2dc921ccf18b47ca150d7317e"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.87"
+version = "0.25.109"
 
     [deps.Distributions.extensions]
     DistributionsChainRulesCoreExt = "ChainRulesCore"
     DistributionsDensityInterfaceExt = "DensityInterface"
+    DistributionsTestExt = "Test"
 
     [deps.Distributions.weakdeps]
     ChainRulesCore = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
     DensityInterface = "b429d917-457f-4dbc-8f4c-0cc954292b1d"
+    Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[deps.DocStringExtensions]]
 deps = ["LibGit2"]
@@ -658,6 +671,11 @@ git-tree-sha1 = "721ec2cf720536ad005cb38f50dbba7b02419a15"
 uuid = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
 version = "0.14.7"
 
+[[deps.InvertedIndices]]
+git-tree-sha1 = "0dc7b50b8d436461be01300fd8cd45aa0274b038"
+uuid = "41ab1584-1d38-5bbf-9106-f11c6c58b48f"
+version = "1.3.0"
+
 [[deps.IrrationalConstants]]
 git-tree-sha1 = "630b497eafcc20001bba38a4651b327dcfc491d2"
 uuid = "92d709cd-6900-40b7-9082-c6be49f344b6"
@@ -746,26 +764,21 @@ uuid = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
 uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
-version = "0.6.4"
+version = "0.6.3"
 
 [[deps.LibCURL_jll]]
 deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
-version = "8.4.0+0"
+version = "7.84.0+0"
 
 [[deps.LibGit2]]
-deps = ["Base64", "LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
+deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
-
-[[deps.LibGit2_jll]]
-deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll"]
-uuid = "e37daf67-58a4-590a-8e99-b0245dd2ffc5"
-version = "1.6.4+0"
 
 [[deps.LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
-version = "1.11.0+1"
+version = "1.10.2+0"
 
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -877,7 +890,7 @@ version = "1.1.7"
 [[deps.MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
-version = "2.28.2+1"
+version = "2.28.2+0"
 
 [[deps.Measures]]
 git-tree-sha1 = "c13304c81eec1ed3af7fc20e75fb6b26092a1102"
@@ -895,7 +908,7 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
-version = "2023.1.10"
+version = "2022.10.11"
 
 [[deps.MultivariateStats]]
 deps = ["Arpack", "LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI", "StatsBase"]
@@ -939,12 +952,12 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
-version = "0.3.23+2"
+version = "0.3.21+4"
 
 [[deps.OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
-version = "0.8.1+2"
+version = "0.8.1+0"
 
 [[deps.OpenSSL]]
 deps = ["BitFlags", "Dates", "MozillaCACerts_jll", "OpenSSL_jll", "Sockets"]
@@ -978,7 +991,7 @@ version = "1.6.0"
 [[deps.PCRE2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "efcefdf7-47ab-520b-bdef-62a2eaa19f15"
-version = "10.42.0+1"
+version = "10.42.0+0"
 
 [[deps.PDMats]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
@@ -1006,7 +1019,7 @@ version = "0.40.1+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-version = "1.10.0"
+version = "1.9.2"
 
 [[deps.PlotThemes]]
 deps = ["PlotUtils", "Statistics"]
@@ -1064,9 +1077,20 @@ git-tree-sha1 = "47e5f437cc0e7ef2ce8406ce1e7e24d44915f88d"
 uuid = "21216c6a-2e73-6563-6e65-726566657250"
 version = "1.3.0"
 
+[[deps.PrettyTables]]
+deps = ["Crayons", "LaTeXStrings", "Markdown", "PrecompileTools", "Printf", "Reexport", "StringManipulation", "Tables"]
+git-tree-sha1 = "88b895d13d53b5577fd53379d913b9ab9ac82660"
+uuid = "08abe8d2-0d0c-5749-adfa-8a2ac140af0d"
+version = "2.3.1"
+
 [[deps.Printf]]
 deps = ["Unicode"]
 uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[[deps.PtrArrays]]
+git-tree-sha1 = "f011fbb92c4d401059b2212c05c0601b70f8b759"
+uuid = "43287f4e-b6f4-7ad1-bb20-aadabca52c3d"
+version = "1.2.0"
 
 [[deps.Qt5Base_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Fontconfig_jll", "Glib_jll", "JLLWrappers", "Libdl", "Libglvnd_jll", "OpenSSL_jll", "Pkg", "Xorg_libXext_jll", "Xorg_libxcb_jll", "Xorg_xcb_util_image_jll", "Xorg_xcb_util_keysyms_jll", "Xorg_xcb_util_renderutil_jll", "Xorg_xcb_util_wm_jll", "Zlib_jll", "xkbcommon_jll"]
@@ -1085,7 +1109,7 @@ deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 
 [[deps.Random]]
-deps = ["SHA"]
+deps = ["SHA", "Serialization"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[deps.Ratios]]
@@ -1207,7 +1231,6 @@ version = "1.1.0"
 [[deps.SparseArrays]]
 deps = ["Libdl", "LinearAlgebra", "Random", "Serialization", "SuiteSparse_jll"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
-version = "1.10.0"
 
 [[deps.SpecialFunctions]]
 deps = ["IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
@@ -1233,7 +1256,7 @@ version = "1.4.0"
 [[deps.Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
 uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
-version = "1.10.0"
+version = "1.9.0"
 
 [[deps.StatsAPI]]
 deps = ["LinearAlgebra"]
@@ -1267,14 +1290,20 @@ git-tree-sha1 = "e0d5bc26226ab1b7648278169858adcfbd861780"
 uuid = "f3b207a7-027a-5e70-b257-86293d7955fd"
 version = "0.15.4"
 
+[[deps.StringManipulation]]
+deps = ["PrecompileTools"]
+git-tree-sha1 = "a04cabe79c5f01f4d723cc6704070ada0b9d46d5"
+uuid = "892a3eda-7b42-436c-8928-eab12a02cf0e"
+version = "0.3.4"
+
 [[deps.SuiteSparse]]
 deps = ["Libdl", "LinearAlgebra", "Serialization", "SparseArrays"]
 uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
 
 [[deps.SuiteSparse_jll]]
-deps = ["Artifacts", "Libdl", "libblastrampoline_jll"]
+deps = ["Artifacts", "Libdl", "Pkg", "libblastrampoline_jll"]
 uuid = "bea87d4a-7f5b-5778-9afe-8cc45184846c"
-version = "7.2.1+1"
+version = "5.10.1+6"
 
 [[deps.TOML]]
 deps = ["Dates"]
@@ -1524,7 +1553,7 @@ version = "1.4.0+3"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
-version = "1.2.13+1"
+version = "1.2.13+0"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1553,7 +1582,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.8.0+1"
+version = "5.8.0+0"
 
 [[deps.libfdk_aac_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1576,12 +1605,12 @@ version = "1.3.7+1"
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
-version = "1.52.0+1"
+version = "1.48.0+0"
 
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
-version = "17.4.0+2"
+version = "17.4.0+0"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1611,37 +1640,34 @@ version = "1.4.1+0"
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
 # ╟─a9834553-f74b-4fc6-82c5-11f36462440e
 # ╟─0a1641d8-486a-4a25-be9d-5e19b4024ea4
-# ╠═117f2bf2-4fdf-4077-8f32-ff10a00bcf72
+# ╠═02742dcf-e98d-4c4f-a392-34c99d54bab6
 # ╟─468b0610-30e5-40b7-8456-9e1644329f20
 # ╠═0dbaeba9-8603-499f-9283-db6741073f7d
 # ╟─941ca951-a77a-4373-900a-ec370b8d8621
-# ╠═da039a1a-1185-4c27-9470-7779e2c810ef
-# ╠═21b86554-fd23-4cd6-94ff-edc093051173
+# ╠═5bebd89d-1345-4eed-9d56-d236d584ae2a
+# ╠═8c5f9a32-bda3-4324-b923-3e45b67bde1f
 # ╟─757fd65d-73cf-47b9-a7d4-322c50e95d3c
-# ╠═d15e3707-1a87-424f-bab6-23e4d851a5de
-# ╠═5e5a3da6-3846-4452-8758-9e336ae9cfc4
+# ╠═090d364e-c5df-42b4-97c2-078c3b623a59
+# ╠═92ed49c0-306d-4f13-84b7-754f22c32b44
+# ╠═16dc10b1-c1ce-4efb-b0d3-180b9f43245c
 # ╟─46ae7895-aa88-424c-88ce-1e51c79e4ada
-# ╠═dfcea5b6-96a0-4685-b78a-25bd374d9131
-# ╠═aab8faef-584c-408c-8d0f-5a098a59271e
+# ╠═77b7baf6-f6bf-4991-9056-cba158330edd
+# ╠═7883472f-c18a-4171-a444-e2a233753f81
+# ╠═5b02b69b-efb1-41f5-a14d-d5af847df727
 # ╟─555d20be-569e-44fc-ba56-0726f3e5eabd
-# ╠═007aa75c-6b16-4f5e-bb02-ae1c81160990
-# ╠═2df7243b-aa04-4e01-a94d-91ab47cc060a
-# ╠═9c4e39dd-b5f3-4abb-8e96-24652cb1f078
+# ╠═50e85547-4795-4b17-b018-b5a925bf85e6
+# ╠═22ddce6f-1884-4bf9-9f56-90cde1f31df9
+# ╠═caa51c4d-e4d4-47ef-9aba-efa28191d41a
 # ╟─75e45d81-b520-41d1-90ae-de4544b3de61
-# ╠═c08c8199-f223-4066-a821-5aa006e2add1
-# ╠═f5d904d7-682e-4675-a6d0-797d98e7b32b
-# ╠═4e953eb7-4e4f-43d2-91b8-22ed15e95e9f
+# ╠═c412ea44-6b1a-40bc-9968-c632cff22801
+# ╠═00d6ac0b-4ff0-4244-ae8f-98e46993572a
+# ╠═b8675f7c-0e7d-4bd2-a232-65bdf5d5f624
+# ╠═cb7d0abe-da02-4938-bfcd-006569e5c632
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
 # ╟─979e3a2b-d522-443e-83d3-09984847b0ef
 # ╟─c82a16e5-592c-42c8-a3df-2b9c3f7f4250
 # ╟─4b907f07-a02d-42f5-8a98-bd5834bce3c5
-# ╟─c6a7e0aa-7337-4d9d-9686-34f80eae78cb
-# ╟─8931e148-fd27-495e-985f-d932f13f60cb
-# ╟─e69222cd-d023-4a4a-a2a2-0df098fc696f
-# ╟─ad296628-3e78-44d6-aec4-1e3edadaa3ee
-# ╟─38a2ab41-efc3-4e7d-823a-c2af9275ce5c
 # ╟─7f59aa91-563c-4fb2-877b-5808e09fd15e
-# ╟─a6446d6d-cb40-40cd-90c7-362181542c6a
 # ╟─ba1ec4c6-07a2-4977-b731-fb577a57d834
 # ╟─071b9ef5-be8e-450c-9879-90bc38aa42fe
 # ╟─00000000-0000-0000-0000-000000000001
