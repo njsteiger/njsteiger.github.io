@@ -1,6 +1,6 @@
 body {
     font-size: 100%;
-    background-color: #2688DE;
+    background-color: #041E32;
     padding-right: 9%;
     padding-left: 5%;
     padding-top: 1.5%;
@@ -22,81 +22,57 @@ div.container-fluid {
     padding-top: 5%;
 }
 
+
 p    {
 	color:white;
 	text-align:left;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Fira Sans", sans-serif;
 	font-weight: 400;
 	font-size:1em;
     margin-bottom: 0.75em; /*addd some space below headings and next line */
 }
-p2    {
+
+p.par    {
 	color:white;
 	text-align:left;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 700;
-	font-style: italic;
-	font-size:1em;
-}
-pa    {
-	color:white;
-	text-align:left;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Fira Sans", sans-serif;
 	font-weight: 400;
 	font-size:1.25em;
-}
-pn    {
-	color:white;
-	text-align:center;
-	font-family: 'Caveat', sans-serif;
-	font-size:2.6em;
 }
 h1    {
 	color:white;
 	font-size:1.75em;
 	text-align:left;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Fira Sans", sans-serif;
 	font-weight: 700;
     margin-bottom: 0.75em; /*addd some space below headings and next line */
     margin-top: 0.75em; /*addd some space below headings and next line */
 }
 
-a.c1 {
+a.nav {
 	color:white;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Fira Sans", sans-serif;
 	font-weight: 700;
 	font-size:1.5em;
 	text-decoration:none;
 	}
-a.c1:link  {color:white}
-a.c1:visited {color:white}
-a.c1:hover {color:#D4E7F8}
-a.c1:active {color:#D4E7F8}
+a.nav:link  {color:white}
+a.nav:visited {color:white}
+a.nav:hover {color:#cdd2d6}
+a.nav:active {color:#cdd2d6}
 
-a.c2 {
+a.link {
 	color:white;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Fira Sans", sans-serif;
 	font-weight: 400;
 	font-size:1em;
 	font-style:italic;
 	text-decoration:none;
 }
-a.c2:link  {color:#A8CFF2}
-a.c2:visited {color:#A8CFF2}
-a.c2:hover {color:#D4E7F8}
-a.c2:active {color:#D4E7F8}
-
-a.ca {
-	color:white;
-	text-align:left;
-	font-family: 'Open Sans', sans-serif;
-	font-size:1.1em;
-	text-decoration:none;
-}
-a.ca:link  {color:#A8CFF2}
-a.ca:visited {color:#A8CFF2}
-a.ca:hover {color:#D4E7F8}
-a.ca:active {color:#D4E7F8}
+a.link:link  {color:#9ba5ad}
+a.link:visited {color:#9ba5ad}
+a.link:hover {color:#cdd2d6}
+a.link:active {color:#cdd2d6}
 
 .responsiveCal {
 position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
@@ -104,4 +80,13 @@ position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
  
 .responsiveCal iframe {
 position: absolute; top:0; left: 0; width: 100%; height: 100%;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(155, 165, 173, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-light .navbar-toggler {
+    color: #9ba5ad;
+    border-color: #9ba5ad;
 }
