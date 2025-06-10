@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.3
+# v0.20.0
 
 #> [frontmatter]
 #> author_url = "https://github.com/JuliaPluto"
@@ -43,7 +43,7 @@ For this assignment we'll be NINO3.4 data along with long-term temperature data 
 
 **The goal of this assignment is to see how the temperature at different locations is linearly related to the NINO3.4 index. We will do this using both Pearson correlation and linear regression since they are very closely related.** 
 
-A few things to note: (1) All of this data are for the annual mean. (2) The NINO3.4 data does not cover the same time period as the location-specific temperature data, so you will need to account for this. (3) The NINO3.4 index is a measure of the strength and state of the El Nino-Southern Oscillation; if you don't know about this important climate phenomenon, you can [learn about it here.](https://njsteiger.github.io/gws/climate-variability.html#enso)"
+A few things to note: (1) All of this data are for the annual mean. (2) The NINO3.4 index is a measure of the strength and state of the El Nino-Southern Oscillation; if you don't know about this important climate phenomenon, you can [learn about it here.](https://njsteiger.github.io/gws/climate-variability.html#enso)"
 
 # ╔═╡ a41fc3ab-dff1-4b78-95fe-71158e727609
 begin
@@ -56,25 +56,31 @@ md"## Exercise 1
 
 👉 Load all of the data, except for the years, into a matrix, with each time series going into a different column."
 
-# ╔═╡ 46fb228e-1d5f-4660-92a0-8888116c301d
+# ╔═╡ 783b0abf-8d84-4c08-a040-f4e681997b6f
+
+
+# ╔═╡ a4a88f8e-b6c4-4836-b663-e413bc3e8a5e
 
 
 # ╔═╡ 9a52808a-5e07-42fc-bb0d-406e9b09ec64
 md"👉 Compute a [Correlation Matrix](https://www.statology.org/how-to-read-a-correlation-matrix/) of this data matrix using the function `cor`. Be able to explain what your correlation matrix is showing."
 
-# ╔═╡ 6ed2a3b8-e90c-4d85-9e49-5d31e3a53df8
+# ╔═╡ 052e52a8-c502-4942-b661-4167ac46c1c4
+
+
+# ╔═╡ 6bc456ac-f45c-42db-86cc-53fab20ad62f
 
 
 # ╔═╡ f8960568-c28d-4b23-908a-ef756c71a5a9
 md"## Exercise 2
 
-Another way of showing more information than a correlation matrix can provide is to make a correlation plot. Julia's StatsPlots provides two ways of making a correlation plot. This kind of a plot is incredibly useful when you first get a data set and are trying to figure out how different variables are related to each other.
+Another way of showing more information than a correlation matrix can provide is to make a correlation plot. This kind of a plot is incredibly useful when you first get a data set and are trying to figure out how different variables are related to each other.
 
 👉 Use [cornerplot](https://docs.juliaplots.org/latest/generated/statsplots/#corrplot-and-cornerplot) to make a correlation plot of all the time series by inputing your matrix of data. Be sure to provide correct labels so that you know what the columns and rows are. Increase the size of the plot by including this option in the plot: `size = (800, 800)` and also include the option `normalize=true` to normalize the histograms. 
 
 👉 Explain, functionally, what each part of this plot is showing (what are the dots, the colors, the lines, and the histograms) and how it relates to the correlation matrix you computed in the previous exercise."
 
-# ╔═╡ 11fad240-2678-49c7-a0ec-04da502c870f
+# ╔═╡ 7878685f-4271-46fc-a1bf-46c6e8210f0a
 
 
 # ╔═╡ f6d31f6e-83f8-4ef2-8a3d-ba1e09ae2f3e
@@ -93,16 +99,16 @@ md"👉 Compute a linear regression for each of the three cities to see how well
 
 👉 Based on the summary information in the tables (p-values indicated by the 'Pr(>|t|)' and upper/lower bounds of the regression coefficient estimates) that is automatically printed out when you compute the regression, discuss which cities are estimated to be linearly related to NINO3.4. How would you describe your results from a climate perspective?"
 
-# ╔═╡ 6a805c03-17b7-47a7-ad97-0570f075a256
+# ╔═╡ d6e20977-deed-4169-8f86-753e14b15adb
 
 
-# ╔═╡ 9faa398d-899c-4185-b1ac-db8605438fe0
+# ╔═╡ cc5b9f5a-4d42-49fc-bfd6-59ca716e99d0
 
 
-# ╔═╡ fb2ddad7-d04b-4dbe-821a-9f39ba75dcd4
+# ╔═╡ eebbece7-8867-497d-93bb-60269e770106
 
 
-# ╔═╡ dbbf7f10-e1ce-49da-9171-fdb9991d0991
+# ╔═╡ 505ea39c-b646-435f-b826-9e0aeef04563
 
 
 # ╔═╡ aa783ccb-ec2d-4fc7-896b-436354d3faca
@@ -1783,19 +1789,21 @@ version = "1.8.1+0"
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
 # ╠═a41fc3ab-dff1-4b78-95fe-71158e727609
 # ╟─02ef75c9-3943-4dcb-b73c-c4ca412637bf
-# ╠═46fb228e-1d5f-4660-92a0-8888116c301d
+# ╠═783b0abf-8d84-4c08-a040-f4e681997b6f
+# ╠═a4a88f8e-b6c4-4836-b663-e413bc3e8a5e
 # ╟─9a52808a-5e07-42fc-bb0d-406e9b09ec64
-# ╠═6ed2a3b8-e90c-4d85-9e49-5d31e3a53df8
+# ╠═052e52a8-c502-4942-b661-4167ac46c1c4
+# ╠═6bc456ac-f45c-42db-86cc-53fab20ad62f
 # ╟─f8960568-c28d-4b23-908a-ef756c71a5a9
-# ╠═11fad240-2678-49c7-a0ec-04da502c870f
+# ╠═7878685f-4271-46fc-a1bf-46c6e8210f0a
 # ╠═f6d31f6e-83f8-4ef2-8a3d-ba1e09ae2f3e
 # ╟─b5fe2fa7-ca36-4302-8c40-f6418be4946b
 # ╟─35240cb6-15e3-4a9b-924c-f507f8b8ceb4
 # ╟─2cf10321-d730-47ff-b319-5b7f659410e7
-# ╠═6a805c03-17b7-47a7-ad97-0570f075a256
-# ╠═9faa398d-899c-4185-b1ac-db8605438fe0
-# ╠═fb2ddad7-d04b-4dbe-821a-9f39ba75dcd4
-# ╠═dbbf7f10-e1ce-49da-9171-fdb9991d0991
+# ╠═d6e20977-deed-4169-8f86-753e14b15adb
+# ╠═cc5b9f5a-4d42-49fc-bfd6-59ca716e99d0
+# ╠═eebbece7-8867-497d-93bb-60269e770106
+# ╠═505ea39c-b646-435f-b826-9e0aeef04563
 # ╠═aa783ccb-ec2d-4fc7-896b-436354d3faca
 # ╠═1b5a604e-c5fc-4529-8af8-c0ab225a9d58
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
