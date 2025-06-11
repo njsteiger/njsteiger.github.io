@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.0
+# v0.20.3
 
 #> [frontmatter]
 #> author_url = "https://github.com/JuliaPluto"
@@ -14,7 +14,7 @@ using Markdown
 using InteractiveUtils
 
 # ╔═╡ af595218-7692-446f-b9db-06555efbe95f
-using Statistics, StatsBase, HypothesisTests, StatsPlots, TypedTables, Printf, CSV, GLM
+using Statistics, StatsBase, HypothesisTests, StatsPlots, TypedTables, CSV, GLM
 
 # ╔═╡ b129ba7c-953a-11ea-3379-17adae34924c
 md"""
@@ -56,19 +56,13 @@ md"## Exercise 1
 
 👉 Load all of the data, except for the years, into a matrix, with each time series going into a different column."
 
-# ╔═╡ 783b0abf-8d84-4c08-a040-f4e681997b6f
-
-
-# ╔═╡ a4a88f8e-b6c4-4836-b663-e413bc3e8a5e
+# ╔═╡ 9d3971b0-c26b-489b-9967-549bcd9e6e44
 
 
 # ╔═╡ 9a52808a-5e07-42fc-bb0d-406e9b09ec64
 md"👉 Compute a [Correlation Matrix](https://www.statology.org/how-to-read-a-correlation-matrix/) of this data matrix using the function `cor`. Be able to explain what your correlation matrix is showing."
 
-# ╔═╡ 052e52a8-c502-4942-b661-4167ac46c1c4
-
-
-# ╔═╡ 6bc456ac-f45c-42db-86cc-53fab20ad62f
+# ╔═╡ 5423e808-c506-49a9-9edd-de78526db6f7
 
 
 # ╔═╡ f8960568-c28d-4b23-908a-ef756c71a5a9
@@ -80,7 +74,7 @@ Another way of showing more information than a correlation matrix can provide is
 
 👉 Explain, functionally, what each part of this plot is showing (what are the dots, the colors, the lines, and the histograms) and how it relates to the correlation matrix you computed in the previous exercise."
 
-# ╔═╡ 7878685f-4271-46fc-a1bf-46c6e8210f0a
+# ╔═╡ 789fa87e-eb60-431a-b0e8-c8d0cc8ccfa8
 
 
 # ╔═╡ f6d31f6e-83f8-4ef2-8a3d-ba1e09ae2f3e
@@ -89,26 +83,43 @@ Another way of showing more information than a correlation matrix can provide is
 # ╔═╡ b5fe2fa7-ca36-4302-8c40-f6418be4946b
 md" ## Exercise 3
 
-One of the things that the `cornerplot` computed and displayed is the regression line for each data comparison. We're now going to do this ourselves using linear regression and we'll get much more information than what the `cornerplot` is giving us."
+One of the things that the `cornerplot` computed and displayed is the regression line for each data comparison. We're now going to do this ourselves using linear regression and we'll get much more information than what the `cornerplot` is giving us.
+
+The goal of the linear regression here is to see how ENSO affects the annual mean temperature of these three cities."
 
 # ╔═╡ 35240cb6-15e3-4a9b-924c-f507f8b8ceb4
-md" For the linear regression we're going to use the GLM package (Generalized Linear Models), specifically the function `lm`, which is short for 'Linear Model'. To use this function you need to put the independent variable into the column of a matrix, but the first column of this matrix needs to be a column of 1s of the same length as the other column; this column of 1s is for the regression intercept variable, β0. So if your matrix of ones and the variable is X and your dependent data is in the column vector y, then you can compute the regression model with `lm(X,y)`."
+md" For the linear regression we're going to use the GLM package (Generalized Linear Models), specifically the function `lm`, which is short for 'Linear Model'. To use this function you need to put the independent variable into the column of a matrix, but the first column of this matrix needs to be a column of 1s of the same length as the other column; this column of 1s is for the regression intercept variable, β0. So if your matrix of ones and the variable is the matrix X and your dependent data is in the column vector y, then you can compute the regression model with `lm(X,y)`."
 
 # ╔═╡ 2cf10321-d730-47ff-b319-5b7f659410e7
-md"👉 Compute a linear regression for each of the three cities to see how well the NINO3.4 index can explain the mean annual temperatures in these cities. Think carefully about which variable should be the X variable and which should be the y variable in the regression; for a univariate regression like this it actualy won't change the results, but if you add more variables into the regression it will matter.
+md"👉 Before you compute the regressions, write out an explanation below about what should be the X variable and what should be the y variable? Why would it be illogical to switch X and y in the regression (even if numerically the computer doesn't care)?
+"
 
-👉 Based on the summary information in the tables (p-values indicated by the 'Pr(>|t|)' and upper/lower bounds of the regression coefficient estimates) that is automatically printed out when you compute the regression, discuss which cities are estimated to be linearly related to NINO3.4. How would you describe your results from a climate perspective?"
-
-# ╔═╡ d6e20977-deed-4169-8f86-753e14b15adb
-
-
-# ╔═╡ cc5b9f5a-4d42-49fc-bfd6-59ca716e99d0
+# ╔═╡ 1013559d-b01c-495d-a0ca-c68f5f4fb718
 
 
-# ╔═╡ eebbece7-8867-497d-93bb-60269e770106
+# ╔═╡ 8a7286fb-6c08-4e47-a056-5e566e1a39d3
+md"👉 Write below what the null hypothesis is for a univariate linear regression. What are the null and alternative hypotheses for the values of β0 and β1? What should the confidence intervals be for β0 and β1 for the null and alternative hypotheses?
+"
+
+# ╔═╡ fd2efb18-5d9b-4787-a036-9f5850d19f84
 
 
-# ╔═╡ 505ea39c-b646-435f-b826-9e0aeef04563
+# ╔═╡ f0ed61c3-bb72-4f4f-8147-31485deba4a8
+
+
+# ╔═╡ 41423541-771b-4309-9814-366033fe3d5c
+md" 👉 Calculate the linear regression for each city. Based on the summary information in the tables (p-values indicated by the 'Pr(>|t|)' and upper/lower bounds of the regression coefficient estimates) that is automatically printed out when you compute the regression, discuss which cities are estimated to be linearly related to NINO3.4. How would you describe your results from a climate perspective?"
+
+# ╔═╡ 54f36709-e6d3-4321-ae8a-4c2f25e612be
+
+
+# ╔═╡ 1e3f9543-f6d2-4c1c-a86f-9d718d7a39e4
+
+
+# ╔═╡ ef7f9dbe-66eb-4059-8714-797eb2625392
+
+
+# ╔═╡ 60050141-70e6-4e8b-a77a-30b1ac27ad95
 
 
 # ╔═╡ aa783ccb-ec2d-4fc7-896b-436354d3faca
@@ -149,7 +160,6 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 GLM = "38e38edf-8417-5370-95a0-9cbb8c7f171a"
 HypothesisTests = "09f84164-cd44-5f33-b23f-e6b0d136a0d5"
-Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
@@ -171,7 +181,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.11.4"
 manifest_format = "2.0"
-project_hash = "efb5207f7cf599963404a5029c274b5ee78ebcac"
+project_hash = "6c67b4f828f2e0dba6e4c54b70525a7349fde04a"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -1789,21 +1799,24 @@ version = "1.8.1+0"
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
 # ╠═a41fc3ab-dff1-4b78-95fe-71158e727609
 # ╟─02ef75c9-3943-4dcb-b73c-c4ca412637bf
-# ╠═783b0abf-8d84-4c08-a040-f4e681997b6f
-# ╠═a4a88f8e-b6c4-4836-b663-e413bc3e8a5e
+# ╠═9d3971b0-c26b-489b-9967-549bcd9e6e44
 # ╟─9a52808a-5e07-42fc-bb0d-406e9b09ec64
-# ╠═052e52a8-c502-4942-b661-4167ac46c1c4
-# ╠═6bc456ac-f45c-42db-86cc-53fab20ad62f
+# ╠═5423e808-c506-49a9-9edd-de78526db6f7
 # ╟─f8960568-c28d-4b23-908a-ef756c71a5a9
-# ╠═7878685f-4271-46fc-a1bf-46c6e8210f0a
+# ╠═789fa87e-eb60-431a-b0e8-c8d0cc8ccfa8
 # ╠═f6d31f6e-83f8-4ef2-8a3d-ba1e09ae2f3e
 # ╟─b5fe2fa7-ca36-4302-8c40-f6418be4946b
 # ╟─35240cb6-15e3-4a9b-924c-f507f8b8ceb4
 # ╟─2cf10321-d730-47ff-b319-5b7f659410e7
-# ╠═d6e20977-deed-4169-8f86-753e14b15adb
-# ╠═cc5b9f5a-4d42-49fc-bfd6-59ca716e99d0
-# ╠═eebbece7-8867-497d-93bb-60269e770106
-# ╠═505ea39c-b646-435f-b826-9e0aeef04563
+# ╠═1013559d-b01c-495d-a0ca-c68f5f4fb718
+# ╟─8a7286fb-6c08-4e47-a056-5e566e1a39d3
+# ╠═fd2efb18-5d9b-4787-a036-9f5850d19f84
+# ╠═f0ed61c3-bb72-4f4f-8147-31485deba4a8
+# ╟─41423541-771b-4309-9814-366033fe3d5c
+# ╠═54f36709-e6d3-4321-ae8a-4c2f25e612be
+# ╠═1e3f9543-f6d2-4c1c-a86f-9d718d7a39e4
+# ╠═ef7f9dbe-66eb-4059-8714-797eb2625392
+# ╠═60050141-70e6-4e8b-a77a-30b1ac27ad95
 # ╠═aa783ccb-ec2d-4fc7-896b-436354d3faca
 # ╠═1b5a604e-c5fc-4529-8af8-c0ab225a9d58
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
