@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title> <!-- Left blank as requested -->
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensuring full visual blankness and black background */
+        body {
+            font-family: sans-serif; /* Keep a default font, though no text is visible */
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <!-- 
+      Main container for centering the image both horizontally and vertically.
+      min-h-screen ensures it takes up the full viewport height.
+    -->
+    <div class="min-h-screen flex items-center justify-center p-4">
+        
+        <!-- 
+          The Image Element
+          - max-w-full: Ensures it fits within the viewport width.
+          - max-h-[90vh]: Limits the height to prevent scrolling on tall images.
+          - object-cover: Ensures the image covers the area nicely.
+        -->
+        <img 
+            src="./img/saturn_nasa.jpg" 
+            alt="Saturn"
+            class="max-w-full h-auto rounded-xl shadow-2xl transform transition-transform duration-500 max-h-[90vh] object-cover mx-auto"
+        >
+        
+    </div>
+
+</body>
+</html>
