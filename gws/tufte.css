@@ -108,6 +108,22 @@ body {
     counter-reset: sidenote-counter;
 }
 
+sub {
+    vertical-align: baseline;
+    position: relative;
+    top: 0.3em; /* Adjust this value as needed for the desired position */
+    line-height: 0; /* Prevents the element from affecting the line height of the parent */
+    font-size: 0.8em; /* Makes the subscript text smaller (adjust as needed) */
+}
+
+sup {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.5em; /* Adjust this value to move it up */
+    line-height: 0; /* Prevents the element from affecting the line height */
+    font-size: 0.8em; /* Makes the superscript text smaller (adjust as needed) */
+}
+
 /* Dark is default, light theme if user prefers it */
 @media (prefers-color-scheme: light) {
     body {
