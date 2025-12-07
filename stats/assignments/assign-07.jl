@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.3
+# v0.20.20
 
 #> [frontmatter]
 #> author_url = "https://github.com/JuliaPluto"
@@ -26,8 +26,6 @@ md"""
 # ╔═╡ b6009e10-a175-4a61-99ee-a6e2fb80f0c4
 md"""
 #### Intializing Packages
-
-Note: initialization could take up to 10 minutes! But if it's taking longer than that, something is probably wrong; try closing all Pluto sessions and restarting Julia and Pluto or even completely restarting your computer.
 """
 
 # ╔═╡ 0a9b9ef1-3506-4e2e-8f34-9943795a212e
@@ -55,27 +53,23 @@ end
 # ╔═╡ ddefd039-aeee-4d6f-89e8-5538c011584b
 md"## Exercise 1
 
-👉 Load the Switzerland data and plot a time series plot of the temperature from all six locations. "
+👉 Load the Switzerland data and plot a time series plot of the temperature from all six locations. 
 
-# ╔═╡ ca6ddfee-3ad6-458d-98bd-5fb748206fc9
+👉 Redo this plot but first remove the mean values from each location's time series so that the values are anomalies instead of absolute values. Based on these figures, why would it be more meaningful to estimate an average of quantities that are anomalies instead of absolute values?"
 
-
-# ╔═╡ a4da250c-8a2d-4da6-ad05-78a376d063be
-
-
-# ╔═╡ bed5e6fc-c84b-4249-9d21-392676021d3e
+# ╔═╡ ae302196-e56f-4c38-814c-62b136183da9
 
 
-# ╔═╡ 948387fd-9a19-4f55-8b02-da7c84f37bd1
-md"👉 Redo the above plot but first remove the mean values from each location's time series so that the values are anomalies instead of absolute values. Based on these figures, why would it be more meaningful to estimate an average of quantities that are anomalies instead of absolute values?"
-
-# ╔═╡ 5151c384-41fd-4d9f-a06f-b736e7ff699d
+# ╔═╡ 7f1873be-f06a-4062-92ae-fe0f3ccc7ace
 
 
-# ╔═╡ b5f85b06-1ee2-4dcd-9ace-d5bc2b4f09f8
+# ╔═╡ 966b3792-d822-454d-b7d5-0c56304cd4de
 
 
-# ╔═╡ 575a538b-16f8-4bf6-93fd-caeedd7bf840
+# ╔═╡ a43874a7-dd28-4f18-9b2e-bfe7aa2b977f
+
+
+# ╔═╡ 64b7a5f6-5cfe-43e5-8f53-1833509ae4dd
 
 
 # ╔═╡ 95999d37-6f9a-40d1-81b5-a22977ed13e5
@@ -83,16 +77,13 @@ md"## Exercise 2
 
 👉 Estimate the mean temperature of Switzerland from 1880 to 2022 using the bootstrap approach. So for this exercise you'll be repeatedly calculating the mean time series of a random selection of the Swiss temperature anomaly time series. You can take a random sample of a range of values using the `sample` function, where `sample(1:k,n)` is a random sample of n values from 1 to k (the default is sampling with replacement). Once you have estimated the mean temperature of Switzerland, plot the many equally-likely temperature time series (called an 'ensemble') using the `errorline` plot type with the `:plume` option like you did when we plotted the HadCRUT5 global mean temperature ensemble in a previous assignment."
 
-# ╔═╡ 56b9eeb5-c7de-462d-a799-e79f96dc695b
+# ╔═╡ f12cde7e-61d4-490c-912a-f39af6c9ea09
 
 
-# ╔═╡ 2783544c-3bdc-4160-a6c4-de13a52b5910
+# ╔═╡ 0ad56272-5115-48bb-a4f5-321db4c969ad
 
 
-# ╔═╡ 3baa5b81-de8f-4736-a1e9-595ac5aa3244
-
-
-# ╔═╡ a948e2d5-c4ce-468a-bb82-8498539546f9
+# ╔═╡ d9ce9aa8-d308-4c14-86ac-bb41b5e2acf5
 
 
 # ╔═╡ 123d846e-0841-49fb-8d91-c5b858388265
@@ -107,44 +98,69 @@ begin
 	fileeu = CSV.File(download(urleu))
 end
 
-# ╔═╡ 4d3d6fb9-cdad-49d6-812e-dd6f516a7ce5
+# ╔═╡ 32f37924-74cb-4eef-9dba-ecb4d1a1e214
 
 
-# ╔═╡ e9691dec-b9ef-42c8-b646-e4efc247006e
+# ╔═╡ d9a4a50b-581d-4733-8ab6-cf2f9f59935a
 
 
-# ╔═╡ 4884c5a0-9d6c-4844-81bc-76203454720d
+# ╔═╡ 635a64d4-d189-44ca-bb7f-9f50aaef92b4
 
 
-# ╔═╡ 96e076a0-8e2b-4eca-ad6c-2d03f5b11b34
-
-
-# ╔═╡ 112a0f32-9ed0-4ddc-afe0-142647e052f4
+# ╔═╡ 4cc09b7b-0532-4f72-847a-2d2a24ee5311
 
 
 # ╔═╡ fc31a4c4-beb8-44a9-99d7-5716b9002221
 md"## Exercise 4
 
-👉 In the lecture video and in the Anki cards we've learned that the distribution of our bootstrap ensemble has some very convenient properties. Use one of these properties to calculate the 95% confidence interval of for both European and Swiss mean temperature reconstructions for the years 1890 and 2000. Visually display these confidence intervals using any plotting approach that clearly shows these intervals and how they relate to the underlying distribution of data. In your plot show all of the confidence intervals together so we can compare them visually and make sure that the data and the corresponding confidence intervals match somehow (using color or linestyle similarities). 
+Let's now use these two temperature reconstructions to try out different kinds of hypothesis tests. In a previous assignment we compared the values of temperature from different time periods to see if there was statistical evidence for warming over time. Now let's ask a different question and see if European and Swiss temperatures are statistically distinct from each other. 
 
-👉 How could you use these confidence intervals to make statistical inferences or test hypotheses? Give an example hypothesis test you could do based on the plot you made."
+👉 In preparation for this, make four density plots, all on the same graph, of the temperature ensembles for the years 1890 and 2000 for the two locations, along with vertical lines showing the 95% confidence intervals, based on the bootstrapped data you've already computed, for each of the four distributions. Make sure that the density plots and the corresponding confidence intervals match somehow (using similar colors or linestyles).
+"
 
-# ╔═╡ abd86f27-e623-4907-a841-a8bb0be5a5f5
-
-
-# ╔═╡ 0a803d7a-0916-43fc-bcd4-f7d252174b34
+# ╔═╡ e5171202-ac82-49f5-a5da-da901c625ccf
 
 
-# ╔═╡ 955b03f2-af94-4bc1-98b4-c9713a7db193
+# ╔═╡ 49d9f4b1-18a8-44bb-b86f-55a4961ae34a
 
 
-# ╔═╡ 85bf2f76-07f5-4ed2-af82-5b67af48dcff
+# ╔═╡ 757d0756-26b6-4f8e-9dff-26369d3ff02d
 
 
-# ╔═╡ 563e1947-1c36-41aa-be6c-f69ac4e138d0
+# ╔═╡ fa44f5f6-d59a-4d7a-ae76-5a67e93dcc01
 
 
-# ╔═╡ d9c7d665-45ee-4b7b-a18a-3459f5569564
+# ╔═╡ a3f24bdb-5a34-4175-812e-de7747c795ae
+
+
+# ╔═╡ 600a7290-7a2e-4cae-9181-503551f9976d
+
+
+# ╔═╡ 38de534b-5933-4d84-9f65-6f476a45168a
+md"👉 Based on what was discussed in the lectures, use the information in the plots you made to see if the European and Swiss temperature ensemble distributions are statistically different from each other for the years 1890 and 2000. So for this comparison you are testing Europe in 1890 versus Switzerland in 1890, and Europe in 2000 versus Switzerland in 2000."
+
+# ╔═╡ d506c652-88dd-4aae-8ef1-e21915794534
+
+
+# ╔═╡ 1d4148a9-af2b-491d-bd34-c097959300a5
+
+
+# ╔═╡ fc05afc3-20f7-4615-bb71-988d3e8e0d42
+md"👉 Now let's do the same statistical test, but using the [HypothesisTests](https://juliastats.org/HypothesisTests.jl/stable/) package. Use either the [Kolmogorov-Smirnov test](https://juliastats.org/HypothesisTests.jl/stable/nonparametric/#Kolmogorov-Smirnov-test) or the [Anderson-Darling test](https://juliastats.org/HypothesisTests.jl/stable/nonparametric/#HypothesisTests.KSampleADTest) to see if the European and Swiss temperature ensemble distributions are statistically different from each other for the years 1890 and 2000, just as you did above using the bootstrap ensemble. Discuss how your results using the KS-test/AD-test are similar and/or different from the bootstrap confidence invervals."
+
+# ╔═╡ da4d3c1d-9994-4752-93ef-a19d898c4c65
+
+
+# ╔═╡ 0dc18bf2-9fe2-454c-a20c-b38a84587b9b
+
+
+# ╔═╡ 325e0c04-776b-431e-8e6f-a95e1ae15e25
+
+
+# ╔═╡ 57215ed0-4b5b-46ee-aa45-c2fb00190d26
+
+
+# ╔═╡ c2af5b57-f7d1-4c31-81c5-80666a878d5b
 
 
 # ╔═╡ 59c86013-19ad-4671-8a42-05b4b1e498ab
@@ -204,9 +220,9 @@ StatsPlots = "~0.15.4"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.4"
+julia_version = "1.12.0"
 manifest_format = "2.0"
-project_hash = "65b7c1cb33f26d50bcea29eb89cf27b0e7dc6790"
+project_hash = "e3143b199ea116d87338252a230e0ed130b36148"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -390,7 +406,7 @@ weakdeps = ["Dates", "LinearAlgebra"]
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.1.1+0"
+version = "1.3.0+1"
 
 [[deps.CompositionsBase]]
 git-tree-sha1 = "802bb88cd69dfd1509f6670416bd4434015693ad"
@@ -741,6 +757,11 @@ git-tree-sha1 = "eac1206917768cb54957c65a615460d87b455fc1"
 uuid = "aacddb02-875f-59d6-b918-886e6ef4fbf8"
 version = "3.1.1+0"
 
+[[deps.JuliaSyntaxHighlighting]]
+deps = ["StyledStrings"]
+uuid = "ac6e5ff7-fb65-4e79-a425-ec3bc9c03011"
+version = "1.12.0"
+
 [[deps.KernelDensity]]
 deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
 git-tree-sha1 = "7d703202e65efa1369de1279c162b915e245eed1"
@@ -803,24 +824,24 @@ uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
 version = "0.6.4"
 
 [[deps.LibCURL_jll]]
-deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "OpenSSL_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
-version = "8.6.0+0"
+version = "8.11.1+1"
 
 [[deps.LibGit2]]
-deps = ["Base64", "LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
+deps = ["LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 version = "1.11.0"
 
 [[deps.LibGit2_jll]]
-deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll"]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "OpenSSL_jll"]
 uuid = "e37daf67-58a4-590a-8e99-b0245dd2ffc5"
-version = "1.7.2+0"
+version = "1.9.0+0"
 
 [[deps.LibSSH2_jll]]
-deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
+deps = ["Artifacts", "Libdl", "OpenSSL_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
-version = "1.11.0+1"
+version = "1.11.3+1"
 
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -865,7 +886,7 @@ version = "2.41.0+0"
 [[deps.LinearAlgebra]]
 deps = ["Libdl", "OpenBLAS_jll", "libblastrampoline_jll"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
-version = "1.11.0"
+version = "1.12.0"
 
 [[deps.LogExpFunctions]]
 deps = ["DocStringExtensions", "IrrationalConstants", "LinearAlgebra"]
@@ -905,7 +926,7 @@ uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 version = "0.5.16"
 
 [[deps.Markdown]]
-deps = ["Base64"]
+deps = ["Base64", "JuliaSyntaxHighlighting", "StyledStrings"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 version = "1.11.0"
 
@@ -916,7 +937,8 @@ uuid = "739be429-bea8-5141-9913-cc70e7f3736d"
 version = "1.1.9"
 
 [[deps.MbedTLS_jll]]
-deps = ["Artifacts", "Libdl"]
+deps = ["Artifacts", "JLLWrappers", "Libdl"]
+git-tree-sha1 = "926c6af3a037c68d02596a44c22ec3595f5f760b"
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
 version = "2.28.6+0"
 
@@ -937,7 +959,7 @@ version = "1.11.0"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
-version = "2023.12.12"
+version = "2025.5.20"
 
 [[deps.MultivariateStats]]
 deps = ["Arpack", "Distributions", "LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI", "StatsBase"]
@@ -959,7 +981,7 @@ version = "0.4.21"
 
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
-version = "1.2.0"
+version = "1.3.0"
 
 [[deps.Observables]]
 git-tree-sha1 = "7438a59546cf62428fc9d1bc94729146d37a7225"
@@ -984,12 +1006,12 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
-version = "0.3.27+1"
+version = "0.3.29+0"
 
 [[deps.OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
-version = "0.8.1+4"
+version = "0.8.7+0"
 
 [[deps.OpenSSL]]
 deps = ["BitFlags", "Dates", "MozillaCACerts_jll", "OpenSSL_jll", "Sockets"]
@@ -998,10 +1020,9 @@ uuid = "4d8831e6-92b7-49fb-bdf8-b643e874388c"
 version = "1.4.3"
 
 [[deps.OpenSSL_jll]]
-deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "9216a80ff3682833ac4b733caa8c00390620ba5d"
+deps = ["Artifacts", "Libdl"]
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
-version = "3.5.0+0"
+version = "3.5.1+0"
 
 [[deps.OpenSpecFun_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl"]
@@ -1023,7 +1044,7 @@ version = "1.8.0"
 [[deps.PCRE2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "efcefdf7-47ab-520b-bdef-62a2eaa19f15"
-version = "10.42.0+1"
+version = "10.44.0+1"
 
 [[deps.PDMats]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
@@ -1052,7 +1073,7 @@ version = "0.44.2+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "Random", "SHA", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-version = "1.11.0"
+version = "1.12.0"
 weakdeps = ["REPL"]
 
     [deps.Pkg.extensions]
@@ -1155,7 +1176,7 @@ version = "2.11.2"
     Enzyme = "7da242da-08ed-463a-9acd-ee780be4f1d9"
 
 [[deps.REPL]]
-deps = ["InteractiveUtils", "Markdown", "Sockets", "StyledStrings", "Unicode"]
+deps = ["InteractiveUtils", "JuliaSyntaxHighlighting", "Markdown", "Sockets", "StyledStrings", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 version = "1.11.0"
 
@@ -1284,7 +1305,7 @@ version = "1.2.1"
 [[deps.SparseArrays]]
 deps = ["Libdl", "LinearAlgebra", "Random", "Serialization", "SuiteSparse_jll"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
-version = "1.11.0"
+version = "1.12.0"
 
 [[deps.SpecialFunctions]]
 deps = ["IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
@@ -1368,7 +1389,7 @@ uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
 [[deps.SuiteSparse_jll]]
 deps = ["Artifacts", "Libdl", "libblastrampoline_jll"]
 uuid = "bea87d4a-7f5b-5778-9afe-8cc45184846c"
-version = "7.7.0+0"
+version = "7.8.3+2"
 
 [[deps.TOML]]
 deps = ["Dates"]
@@ -1650,7 +1671,7 @@ version = "1.6.0+0"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
-version = "1.2.13+1"
+version = "1.3.1+2"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1691,7 +1712,7 @@ version = "0.15.2+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.11.0+0"
+version = "5.13.1+1"
 
 [[deps.libdecor_jll]]
 deps = ["Artifacts", "Dbus_jll", "JLLWrappers", "Libdl", "Libglvnd_jll", "Pango_jll", "Wayland_jll", "xkbcommon_jll"]
@@ -1738,10 +1759,10 @@ version = "1.1.6+0"
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
-version = "1.59.0+0"
+version = "1.64.0+1"
 
 [[deps.oneTBB_jll]]
-deps = ["Artifacts", "JLLWrappers", "Libdl"]
+deps = ["Artifacts", "JLLWrappers", "LazyArtifacts", "Libdl"]
 git-tree-sha1 = "d5a767a3bb77135a99e433afe0eb14cd7f6914c3"
 uuid = "1317d2d5-d96f-522e-a858-c73665f53c3e"
 version = "2022.0.0+0"
@@ -1749,7 +1770,7 @@ version = "2022.0.0+0"
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
-version = "17.4.0+2"
+version = "17.5.0+2"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1778,32 +1799,37 @@ version = "1.8.1+0"
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
 # ╠═91313fa3-3d0c-44ef-8468-07b717bdf89a
 # ╟─ddefd039-aeee-4d6f-89e8-5538c011584b
-# ╠═ca6ddfee-3ad6-458d-98bd-5fb748206fc9
-# ╠═a4da250c-8a2d-4da6-ad05-78a376d063be
-# ╠═bed5e6fc-c84b-4249-9d21-392676021d3e
-# ╟─948387fd-9a19-4f55-8b02-da7c84f37bd1
-# ╠═5151c384-41fd-4d9f-a06f-b736e7ff699d
-# ╠═b5f85b06-1ee2-4dcd-9ace-d5bc2b4f09f8
-# ╠═575a538b-16f8-4bf6-93fd-caeedd7bf840
+# ╠═ae302196-e56f-4c38-814c-62b136183da9
+# ╠═7f1873be-f06a-4062-92ae-fe0f3ccc7ace
+# ╠═966b3792-d822-454d-b7d5-0c56304cd4de
+# ╠═a43874a7-dd28-4f18-9b2e-bfe7aa2b977f
+# ╠═64b7a5f6-5cfe-43e5-8f53-1833509ae4dd
 # ╟─95999d37-6f9a-40d1-81b5-a22977ed13e5
-# ╠═56b9eeb5-c7de-462d-a799-e79f96dc695b
-# ╠═2783544c-3bdc-4160-a6c4-de13a52b5910
-# ╠═3baa5b81-de8f-4736-a1e9-595ac5aa3244
-# ╠═a948e2d5-c4ce-468a-bb82-8498539546f9
+# ╠═f12cde7e-61d4-490c-912a-f39af6c9ea09
+# ╠═0ad56272-5115-48bb-a4f5-321db4c969ad
+# ╠═d9ce9aa8-d308-4c14-86ac-bb41b5e2acf5
 # ╟─123d846e-0841-49fb-8d91-c5b858388265
 # ╠═d53a4f3e-5a68-411f-9c47-b11e561ee041
-# ╠═4d3d6fb9-cdad-49d6-812e-dd6f516a7ce5
-# ╠═e9691dec-b9ef-42c8-b646-e4efc247006e
-# ╠═4884c5a0-9d6c-4844-81bc-76203454720d
-# ╠═96e076a0-8e2b-4eca-ad6c-2d03f5b11b34
-# ╠═112a0f32-9ed0-4ddc-afe0-142647e052f4
+# ╠═32f37924-74cb-4eef-9dba-ecb4d1a1e214
+# ╠═d9a4a50b-581d-4733-8ab6-cf2f9f59935a
+# ╠═635a64d4-d189-44ca-bb7f-9f50aaef92b4
+# ╠═4cc09b7b-0532-4f72-847a-2d2a24ee5311
 # ╟─fc31a4c4-beb8-44a9-99d7-5716b9002221
-# ╠═abd86f27-e623-4907-a841-a8bb0be5a5f5
-# ╠═0a803d7a-0916-43fc-bcd4-f7d252174b34
-# ╠═955b03f2-af94-4bc1-98b4-c9713a7db193
-# ╠═85bf2f76-07f5-4ed2-af82-5b67af48dcff
-# ╠═563e1947-1c36-41aa-be6c-f69ac4e138d0
-# ╠═d9c7d665-45ee-4b7b-a18a-3459f5569564
+# ╠═e5171202-ac82-49f5-a5da-da901c625ccf
+# ╠═49d9f4b1-18a8-44bb-b86f-55a4961ae34a
+# ╠═757d0756-26b6-4f8e-9dff-26369d3ff02d
+# ╠═fa44f5f6-d59a-4d7a-ae76-5a67e93dcc01
+# ╠═a3f24bdb-5a34-4175-812e-de7747c795ae
+# ╠═600a7290-7a2e-4cae-9181-503551f9976d
+# ╟─38de534b-5933-4d84-9f65-6f476a45168a
+# ╠═d506c652-88dd-4aae-8ef1-e21915794534
+# ╠═1d4148a9-af2b-491d-bd34-c097959300a5
+# ╟─fc05afc3-20f7-4615-bb71-988d3e8e0d42
+# ╠═da4d3c1d-9994-4752-93ef-a19d898c4c65
+# ╠═0dc18bf2-9fe2-454c-a20c-b38a84587b9b
+# ╠═325e0c04-776b-431e-8e6f-a95e1ae15e25
+# ╠═57215ed0-4b5b-46ee-aa45-c2fb00190d26
+# ╠═c2af5b57-f7d1-4c31-81c5-80666a878d5b
 # ╠═59c86013-19ad-4671-8a42-05b4b1e498ab
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
 # ╟─979e3a2b-d522-443e-83d3-09984847b0ef
