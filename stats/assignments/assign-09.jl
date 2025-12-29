@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.3
+# v0.20.20
 
 #> [frontmatter]
 #> author_url = "https://github.com/JuliaPluto"
@@ -39,11 +39,11 @@ md"""
 # ╔═╡ 6d99ed80-b56e-44c6-a095-3bea1a3df62e
 md"## Loading Data
 
-For this assignment we'll be NINO3.4 data along with long-term temperature data from 3 different locations: Calcutta (India), Melbourne (Australia), and New York City (USA).
+For this assignment we'll be using NINO3.4 and North Atlantic Oscillation (NAO) data along with long-term temperature data from 3 different locations: Zurich (Switzerland), Calcutta (India), and New York City (USA).
 
-**The goal of this assignment is to see how the temperature at different locations is linearly related to the NINO3.4 index. We will do this using both Pearson correlation and linear regression since they are very closely related.** 
+**The goal of this assignment is to see how the temperature at different locations is linearly related to the NINO3.4 and NAO indices. We will do this using both Pearson correlation and linear regression since they are very closely related.** 
 
-A few things to note: (1) All of this data are for the annual mean. (2) The NINO3.4 index is a measure of the strength and state of the El Nino-Southern Oscillation; if you don't know about this important climate phenomenon, you can [learn about it here.](https://njsteiger.github.io/gws/climate-variability.html#enso)"
+A few things to note: (1) All of this data are for the annual mean. (2) The NINO3.4 index is a measure of the strength and state of the El Nino-Southern Oscillation; you can [learn more about ENSO here.](https://njsteiger.github.io/gws/climate-variability.html#enso) (3) The NAO is a measure of where storms go over the North Atlantic, with positive values moving storms into Northern Europe and negative values moving storms into Southern Europe; you can [learn more about the NAO here.](https://njsteiger.github.io/gws/climate-variability.html#monthly-to-seasonal-variability)"
 
 # ╔═╡ a41fc3ab-dff1-4b78-95fe-71158e727609
 begin
@@ -56,13 +56,16 @@ md"## Exercise 1
 
 👉 Load all of the data, except for the years, into a matrix, with each time series going into a different column."
 
-# ╔═╡ 9d3971b0-c26b-489b-9967-549bcd9e6e44
+# ╔═╡ 799cb9ca-abf2-430e-b593-c45dd7039988
 
 
 # ╔═╡ 9a52808a-5e07-42fc-bb0d-406e9b09ec64
 md"👉 Compute a [Correlation Matrix](https://www.statology.org/how-to-read-a-correlation-matrix/) of this data matrix using the function `cor`. Be able to explain what your correlation matrix is showing."
 
-# ╔═╡ 5423e808-c506-49a9-9edd-de78526db6f7
+# ╔═╡ cfbac9fd-2ac4-4b7d-a048-f3a98b6f9a67
+
+
+# ╔═╡ 31a8e7c5-2748-40ed-95ef-95e7590ace5c
 
 
 # ╔═╡ f8960568-c28d-4b23-908a-ef756c71a5a9
@@ -74,7 +77,7 @@ Another way of showing more information than a correlation matrix can provide is
 
 👉 Explain, functionally, what each part of this plot is showing (what are the dots, the colors, the lines, and the histograms) and how it relates to the correlation matrix you computed in the previous exercise."
 
-# ╔═╡ 789fa87e-eb60-431a-b0e8-c8d0cc8ccfa8
+# ╔═╡ 98d6739f-8562-4e1c-ac1f-2088b3b104c3
 
 
 # ╔═╡ f6d31f6e-83f8-4ef2-8a3d-ba1e09ae2f3e
@@ -85,47 +88,85 @@ md" ## Exercise 3
 
 One of the things that the `cornerplot` computed and displayed is the regression line for each data comparison. We're now going to do this ourselves using linear regression and we'll get much more information than what the `cornerplot` is giving us.
 
-The goal of the linear regression here is to see how ENSO affects the annual mean temperature of these three cities."
+The goal of the linear regression here is to see how ENSO affects the annual mean temperature of the cities."
 
-# ╔═╡ 35240cb6-15e3-4a9b-924c-f507f8b8ceb4
+# ╔═╡ e14efa0d-6931-4f80-8570-aa5fcace6f77
 md" For the linear regression we're going to use the GLM package (Generalized Linear Models), specifically the function `lm`, which is short for 'Linear Model'. To use this function you need to put the independent variable into the column of a matrix, but the first column of this matrix needs to be a column of 1s of the same length as the other column; this column of 1s is for the regression intercept variable, β0. So if your matrix of ones and the variable is the matrix X and your dependent data is in the column vector y, then you can compute the regression model with `lm(X,y)`."
 
 # ╔═╡ 2cf10321-d730-47ff-b319-5b7f659410e7
 md"👉 Before you compute the regressions, write out an explanation below about what should be the X variable and what should be the y variable? Why would it be illogical to switch X and y in the regression (even if numerically the computer doesn't care)?
 "
 
-# ╔═╡ 1013559d-b01c-495d-a0ca-c68f5f4fb718
+# ╔═╡ 8781ff09-b0d1-4878-8c66-a364b0b2b28e
 
 
-# ╔═╡ 8a7286fb-6c08-4e47-a056-5e566e1a39d3
+# ╔═╡ ea1f13c6-21ef-4faf-a0ab-42a6f9b315b7
 md"👉 Write below what the null hypothesis is for a univariate linear regression. What are the null and alternative hypotheses for the values of β0 and β1? What should the confidence intervals be for β0 and β1 for the null and alternative hypotheses?
 "
 
-# ╔═╡ fd2efb18-5d9b-4787-a036-9f5850d19f84
+# ╔═╡ e55b68bd-d780-4619-abd3-f11f02cf43cc
 
 
-# ╔═╡ f0ed61c3-bb72-4f4f-8147-31485deba4a8
+# ╔═╡ 91af09e7-e1aa-4d43-ab36-f8fa8dfab2d9
 
 
 # ╔═╡ 41423541-771b-4309-9814-366033fe3d5c
-md" 👉 Calculate the linear regression for each city. Based on the summary information in the tables (p-values indicated by the 'Pr(>|t|)' and upper/lower bounds of the regression coefficient estimates) that is automatically printed out when you compute the regression, discuss which cities are estimated to be linearly related to NINO3.4. How would you describe your results from a climate perspective?"
+md" 👉 Calculate two different linear regressions for the two cities with the strongest correlation to the NINO3.4 index. 
 
-# ╔═╡ 54f36709-e6d3-4321-ae8a-4c2f25e612be
+👉 Based on the summary information in the tables (p-values indicated by the 'Pr(>|t|)' and upper/lower bounds of the regression coefficient estimates) that is automatically printed out when you compute the regression, discuss whether these cities are estimated to be linearly related to NINO3.4. How would you describe your results from a climate perspective?"
 
-
-# ╔═╡ 1e3f9543-f6d2-4c1c-a86f-9d718d7a39e4
-
-
-# ╔═╡ ef7f9dbe-66eb-4059-8714-797eb2625392
+# ╔═╡ 07039066-04b9-426d-8a66-2a808d175c09
 
 
-# ╔═╡ 60050141-70e6-4e8b-a77a-30b1ac27ad95
+# ╔═╡ 22617560-a1f4-406a-9ba5-446fa3e43922
 
 
-# ╔═╡ aa783ccb-ec2d-4fc7-896b-436354d3faca
+# ╔═╡ 17a2cd59-7a29-4886-adc5-53a63b58deb9
 
 
-# ╔═╡ 1b5a604e-c5fc-4529-8af8-c0ab225a9d58
+# ╔═╡ a415fec3-1b8e-44f8-a157-ed761d484940
+
+
+# ╔═╡ 8f6cce4e-7601-4911-9130-0ef84aadc5c4
+
+
+# ╔═╡ bc5fd345-1183-4130-8f7c-970b6fb3e32e
+md" ## Exercise 4
+
+Now let's try a multivariate regression using both NINO3.4 and NAO as predictors. 
+
+👉 For this regression, pick the city that appears to be most strongly related to ENSO and the NAO and calculate a multivariate regression for these variables.
+
+👉 Based on the summary information in the tables that is automatically printed out when you compute the regression, discuss whether this city is estimated to be linearly related to NINO3.4 and the NAO."
+
+# ╔═╡ 9a79edf8-5f31-4400-9374-d634325bb2ca
+
+
+# ╔═╡ b25681c0-c01b-41b6-8f2a-7a63d5917e1c
+
+
+# ╔═╡ f7c0e7be-1860-4cc5-a671-7590682805be
+md"👉 Is this city better predicted with one variable (NINO34 or NAO) or with both variables? Answer this question using the adjusted R² function, `adjr2`. Note that you'll need to save the linear regression as a variable and put that into the `adjr2` function."
+
+# ╔═╡ 81e38bbd-d916-4996-a63b-a81e8fa8303f
+
+
+# ╔═╡ 94915862-2ac9-47ad-8e9e-8c1144d437b6
+
+
+# ╔═╡ d5b587d5-e5ff-4f71-b634-f480700fd427
+
+
+# ╔═╡ 46a80b47-655f-4af2-9030-16ad8c9fe1fa
+
+
+# ╔═╡ b0c88e7b-4ec9-465c-92c6-aa3911b6308a
+
+
+# ╔═╡ f6c000d9-7a6f-4e34-9889-a5bc9ab9629b
+
+
+# ╔═╡ 5849c37e-c963-4b3e-b942-cb5b4010b3e0
 
 
 # ╔═╡ 960f4286-5126-4856-bafa-3a29c1554c12
@@ -169,7 +210,6 @@ TypedTables = "9d95f2ec-7b3d-5a63-8d20-e2491e220bb9"
 CSV = "~0.10.15"
 GLM = "~1.9.0"
 HypothesisTests = "~0.11.5"
-Statistics = "~1.11.1"
 StatsBase = "~0.34.5"
 StatsPlots = "~0.15.7"
 TypedTables = "~1.4.3"
@@ -179,9 +219,9 @@ TypedTables = "~1.4.3"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.4"
+julia_version = "1.12.0"
 manifest_format = "2.0"
-project_hash = "6c67b4f828f2e0dba6e4c54b70525a7349fde04a"
+project_hash = "749239c0ef1ec9690de9b358998521d5a25b2f17"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -364,7 +404,7 @@ weakdeps = ["Dates", "LinearAlgebra"]
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.1.1+0"
+version = "1.3.0+1"
 
 [[deps.CompositionsBase]]
 git-tree-sha1 = "802bb88cd69dfd1509f6670416bd4434015693ad"
@@ -739,6 +779,11 @@ git-tree-sha1 = "eac1206917768cb54957c65a615460d87b455fc1"
 uuid = "aacddb02-875f-59d6-b918-886e6ef4fbf8"
 version = "3.1.1+0"
 
+[[deps.JuliaSyntaxHighlighting]]
+deps = ["StyledStrings"]
+uuid = "ac6e5ff7-fb65-4e79-a425-ec3bc9c03011"
+version = "1.12.0"
+
 [[deps.KernelDensity]]
 deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
 git-tree-sha1 = "7d703202e65efa1369de1279c162b915e245eed1"
@@ -801,24 +846,24 @@ uuid = "b27032c2-a3e7-50c8-80cd-2d36dbcbfd21"
 version = "0.6.4"
 
 [[deps.LibCURL_jll]]
-deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Zlib_jll", "nghttp2_jll"]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "OpenSSL_jll", "Zlib_jll", "nghttp2_jll"]
 uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
-version = "8.6.0+0"
+version = "8.11.1+1"
 
 [[deps.LibGit2]]
-deps = ["Base64", "LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
+deps = ["LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 version = "1.11.0"
 
 [[deps.LibGit2_jll]]
-deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll"]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "OpenSSL_jll"]
 uuid = "e37daf67-58a4-590a-8e99-b0245dd2ffc5"
-version = "1.7.2+0"
+version = "1.9.0+0"
 
 [[deps.LibSSH2_jll]]
-deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
+deps = ["Artifacts", "Libdl", "OpenSSL_jll"]
 uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
-version = "1.11.0+1"
+version = "1.11.3+1"
 
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
@@ -863,7 +908,7 @@ version = "2.41.0+0"
 [[deps.LinearAlgebra]]
 deps = ["Libdl", "OpenBLAS_jll", "libblastrampoline_jll"]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
-version = "1.11.0"
+version = "1.12.0"
 
 [[deps.LogExpFunctions]]
 deps = ["DocStringExtensions", "IrrationalConstants", "LinearAlgebra"]
@@ -903,7 +948,7 @@ uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 version = "0.5.16"
 
 [[deps.Markdown]]
-deps = ["Base64"]
+deps = ["Base64", "JuliaSyntaxHighlighting", "StyledStrings"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 version = "1.11.0"
 
@@ -914,7 +959,8 @@ uuid = "739be429-bea8-5141-9913-cc70e7f3736d"
 version = "1.1.9"
 
 [[deps.MbedTLS_jll]]
-deps = ["Artifacts", "Libdl"]
+deps = ["Artifacts", "JLLWrappers", "Libdl"]
+git-tree-sha1 = "926c6af3a037c68d02596a44c22ec3595f5f760b"
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
 version = "2.28.6+0"
 
@@ -935,7 +981,7 @@ version = "1.11.0"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
-version = "2023.12.12"
+version = "2025.5.20"
 
 [[deps.MultivariateStats]]
 deps = ["Arpack", "Distributions", "LinearAlgebra", "SparseArrays", "Statistics", "StatsAPI", "StatsBase"]
@@ -957,7 +1003,7 @@ version = "0.4.21"
 
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
-version = "1.2.0"
+version = "1.3.0"
 
 [[deps.Observables]]
 git-tree-sha1 = "7438a59546cf62428fc9d1bc94729146d37a7225"
@@ -982,12 +1028,12 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
-version = "0.3.27+1"
+version = "0.3.29+0"
 
 [[deps.OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
-version = "0.8.1+4"
+version = "0.8.7+0"
 
 [[deps.OpenSSL]]
 deps = ["BitFlags", "Dates", "MozillaCACerts_jll", "OpenSSL_jll", "Sockets"]
@@ -996,10 +1042,9 @@ uuid = "4d8831e6-92b7-49fb-bdf8-b643e874388c"
 version = "1.4.3"
 
 [[deps.OpenSSL_jll]]
-deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "9216a80ff3682833ac4b733caa8c00390620ba5d"
+deps = ["Artifacts", "Libdl"]
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
-version = "3.5.0+0"
+version = "3.5.1+0"
 
 [[deps.OpenSpecFun_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl"]
@@ -1021,7 +1066,7 @@ version = "1.8.0"
 [[deps.PCRE2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "efcefdf7-47ab-520b-bdef-62a2eaa19f15"
-version = "10.42.0+1"
+version = "10.44.0+1"
 
 [[deps.PDMats]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
@@ -1050,7 +1095,7 @@ version = "0.44.2+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "Random", "SHA", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-version = "1.11.0"
+version = "1.12.0"
 weakdeps = ["REPL"]
 
     [deps.Pkg.extensions]
@@ -1153,7 +1198,7 @@ version = "2.11.2"
     Enzyme = "7da242da-08ed-463a-9acd-ee780be4f1d9"
 
 [[deps.REPL]]
-deps = ["InteractiveUtils", "Markdown", "Sockets", "StyledStrings", "Unicode"]
+deps = ["InteractiveUtils", "JuliaSyntaxHighlighting", "Markdown", "Sockets", "StyledStrings", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 version = "1.11.0"
 
@@ -1287,7 +1332,7 @@ version = "1.2.1"
 [[deps.SparseArrays]]
 deps = ["Libdl", "LinearAlgebra", "Random", "Serialization", "SuiteSparse_jll"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
-version = "1.11.0"
+version = "1.12.0"
 
 [[deps.SpecialFunctions]]
 deps = ["IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
@@ -1383,7 +1428,7 @@ uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
 [[deps.SuiteSparse_jll]]
 deps = ["Artifacts", "Libdl", "libblastrampoline_jll"]
 uuid = "bea87d4a-7f5b-5778-9afe-8cc45184846c"
-version = "7.7.0+0"
+version = "7.8.3+2"
 
 [[deps.TOML]]
 deps = ["Dates"]
@@ -1671,7 +1716,7 @@ version = "1.6.0+0"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
-version = "1.2.13+1"
+version = "1.3.1+2"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1712,7 +1757,7 @@ version = "0.15.2+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.11.0+0"
+version = "5.13.1+1"
 
 [[deps.libdecor_jll]]
 deps = ["Artifacts", "Dbus_jll", "JLLWrappers", "Libdl", "Libglvnd_jll", "Pango_jll", "Wayland_jll", "xkbcommon_jll"]
@@ -1759,10 +1804,10 @@ version = "1.1.6+0"
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
-version = "1.59.0+0"
+version = "1.64.0+1"
 
 [[deps.oneTBB_jll]]
-deps = ["Artifacts", "JLLWrappers", "Libdl"]
+deps = ["Artifacts", "JLLWrappers", "LazyArtifacts", "Libdl"]
 git-tree-sha1 = "d5a767a3bb77135a99e433afe0eb14cd7f6914c3"
 uuid = "1317d2d5-d96f-522e-a858-c73665f53c3e"
 version = "2022.0.0+0"
@@ -1770,7 +1815,7 @@ version = "2022.0.0+0"
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
-version = "17.4.0+2"
+version = "17.5.0+2"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1799,26 +1844,37 @@ version = "1.8.1+0"
 # ╟─6d99ed80-b56e-44c6-a095-3bea1a3df62e
 # ╠═a41fc3ab-dff1-4b78-95fe-71158e727609
 # ╟─02ef75c9-3943-4dcb-b73c-c4ca412637bf
-# ╠═9d3971b0-c26b-489b-9967-549bcd9e6e44
+# ╠═799cb9ca-abf2-430e-b593-c45dd7039988
 # ╟─9a52808a-5e07-42fc-bb0d-406e9b09ec64
-# ╠═5423e808-c506-49a9-9edd-de78526db6f7
+# ╠═cfbac9fd-2ac4-4b7d-a048-f3a98b6f9a67
+# ╠═31a8e7c5-2748-40ed-95ef-95e7590ace5c
 # ╟─f8960568-c28d-4b23-908a-ef756c71a5a9
-# ╠═789fa87e-eb60-431a-b0e8-c8d0cc8ccfa8
+# ╠═98d6739f-8562-4e1c-ac1f-2088b3b104c3
 # ╠═f6d31f6e-83f8-4ef2-8a3d-ba1e09ae2f3e
 # ╟─b5fe2fa7-ca36-4302-8c40-f6418be4946b
-# ╟─35240cb6-15e3-4a9b-924c-f507f8b8ceb4
+# ╟─e14efa0d-6931-4f80-8570-aa5fcace6f77
 # ╟─2cf10321-d730-47ff-b319-5b7f659410e7
-# ╠═1013559d-b01c-495d-a0ca-c68f5f4fb718
-# ╟─8a7286fb-6c08-4e47-a056-5e566e1a39d3
-# ╠═fd2efb18-5d9b-4787-a036-9f5850d19f84
-# ╠═f0ed61c3-bb72-4f4f-8147-31485deba4a8
+# ╠═8781ff09-b0d1-4878-8c66-a364b0b2b28e
+# ╟─ea1f13c6-21ef-4faf-a0ab-42a6f9b315b7
+# ╠═e55b68bd-d780-4619-abd3-f11f02cf43cc
+# ╠═91af09e7-e1aa-4d43-ab36-f8fa8dfab2d9
 # ╟─41423541-771b-4309-9814-366033fe3d5c
-# ╠═54f36709-e6d3-4321-ae8a-4c2f25e612be
-# ╠═1e3f9543-f6d2-4c1c-a86f-9d718d7a39e4
-# ╠═ef7f9dbe-66eb-4059-8714-797eb2625392
-# ╠═60050141-70e6-4e8b-a77a-30b1ac27ad95
-# ╠═aa783ccb-ec2d-4fc7-896b-436354d3faca
-# ╠═1b5a604e-c5fc-4529-8af8-c0ab225a9d58
+# ╠═07039066-04b9-426d-8a66-2a808d175c09
+# ╠═22617560-a1f4-406a-9ba5-446fa3e43922
+# ╠═17a2cd59-7a29-4886-adc5-53a63b58deb9
+# ╠═a415fec3-1b8e-44f8-a157-ed761d484940
+# ╠═8f6cce4e-7601-4911-9130-0ef84aadc5c4
+# ╟─bc5fd345-1183-4130-8f7c-970b6fb3e32e
+# ╠═9a79edf8-5f31-4400-9374-d634325bb2ca
+# ╠═b25681c0-c01b-41b6-8f2a-7a63d5917e1c
+# ╟─f7c0e7be-1860-4cc5-a671-7590682805be
+# ╠═81e38bbd-d916-4996-a63b-a81e8fa8303f
+# ╠═94915862-2ac9-47ad-8e9e-8c1144d437b6
+# ╠═d5b587d5-e5ff-4f71-b634-f480700fd427
+# ╠═46a80b47-655f-4af2-9030-16ad8c9fe1fa
+# ╠═b0c88e7b-4ec9-465c-92c6-aa3911b6308a
+# ╠═f6c000d9-7a6f-4e34-9889-a5bc9ab9629b
+# ╠═5849c37e-c963-4b3e-b942-cb5b4010b3e0
 # ╟─960f4286-5126-4856-bafa-3a29c1554c12
 # ╟─979e3a2b-d522-443e-83d3-09984847b0ef
 # ╟─c82a16e5-592c-42c8-a3df-2b9c3f7f4250
