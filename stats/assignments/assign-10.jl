@@ -30,11 +30,11 @@ md"""
 """
 
 # ╔═╡ a1e431f8-947d-4c5e-bf27-7b4313d92adf
-md"## Loading Data
+md"## Background
 
 For this assignment we'll be exploring the assumptions of linear regression by re-producing the results of [a research paper](https://doi.org/10.1002/2014JA020732) from a professor in the Institute of Physics at HUJI. According to the authors, the goal of the paper was to try to show that variability in the energy output of the sun has been the primary cause of global mean sea level changes over the past few decades. 
 
-For some background, the energy output of the sun varies by about ±0.5 W/m² that when it is spread over the surface of the Earth provides a varying ±0.1 W/m² depending on the point of the solar cycle the sun is in. The following figure shows how this solar variabilility forcing (labeled 'Solar', yellow line) compares to other climate forcings since 1750. As you can see this line shows only small wiggles relative to other factors and so it would be surprising that solar variability could be the dominant factor in global mean sea level changes, as the authors claim."
+For some background, the energy output of the sun varies by about ±0.5 W/m² and when it is spread over the surface of the Earth provides a varying ±0.1 W/m² depending on the point of the solar cycle the sun is in. The following figure shows how this solar variabilility forcing (labeled 'Solar', yellow line) compares to other climate forcings since 1750. As you can see this line shows only small wiggles relative to other factors and so it would be surprising that solar variability could be the dominant factor in global mean sea level changes, as the authors claim."
 
 # ╔═╡ a0150eff-fe47-453f-82c7-f2c9eab745c0
 md"""**Figure 1:** 
@@ -58,7 +58,7 @@ Below are the most recent versions of the data that the authors used. The data i
 "
 
 # ╔═╡ f128545d-a74c-485c-bc92-f2218ff5afea
-gfile = CSV.File("globalmeansealevel_nino34_tsi_1993_2023.csv")
+gfile = CSV.File(download("https://njsteiger.github.io/stats/data/globalmeansealevel_nino34_tsi_1993_2023.csv"))
 
 # ╔═╡ 42be34ce-ddc3-4961-baae-52b1b4925bd2
 md"## Exercise 1
