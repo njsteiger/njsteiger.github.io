@@ -1,153 +1,123 @@
+/* Variable Font Definition */
+@font-face {
+  font-family: 'Fira Sans';
+  /* '100 900' tells the browser this single file covers all weights from Thin to Black */
+  font-weight: 100 900;
+  font-style: normal; 
+  /* Loading the variable file */
+  src: url('./fonts/Firava.woff2') format('woff2-variations'),
+       url('./fonts/Firava.woff2') format('woff2');
+}
+
+/* Variable Font Definition */
+@font-face {
+  font-family: 'Fira Sans';
+  /* '100 900' tells the browser this single file covers all weights from Thin to Black */
+  font-weight: 100 900;
+  font-style: italic; 
+  /* Loading the variable file */
+  src: url('./fonts/FiravaItalic.woff2') format('woff2-variations'),
+       url('./fonts/FiravaItalic.woff2') format('woff2');
+}
+
+/* CSS Variables */
+:root {
+  --bg-dark: #041E32;
+  --text-light: #ffffff;
+  --text-muted: #9ba5ad;
+  --text-hover: #cdd2d6;
+  --font-primary: "Fira Sans", sans-serif;
+}
+
 html {
-    margin: 0;
-    padding: 0;
-    background: #041E32;
-    overflow-y: scroll;
-    background-attachment: fixed;
-}
-
-/* Fonts from: https://gwfh.mranftl.com/fonts */
-
-/* fira-sans-300 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 300;
-  src: url('./fonts/fira-sans-v17-latin-300.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('./fonts/fira-sans-v17-latin-300.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
-}
-/* fira-sans-300italic - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Fira Sans';
-  font-style: italic;
-  font-weight: 300;
-  src: url('./fonts/fira-sans-v17-latin-300italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('./fonts/fira-sans-v17-latin-300italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
-}
-/* fira-sans-regular - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/fira-sans-v17-latin-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('./fonts/fira-sans-v17-latin-regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
-}
-/* fira-sans-italic - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Fira Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: url('./fonts/fira-sans-v17-latin-italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('./fonts/fira-sans-v17-latin-italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
-}
-/* fira-sans-500 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Fira Sans';
-  font-style: normal;
-  font-weight: 500;
-  src: url('./fonts/fira-sans-v17-latin-500.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('./fonts/fira-sans-v17-latin-500.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
-}
-/* fira-sans-500italic - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Fira Sans';
-  font-style: italic;
-  font-weight: 500;
-  src: url('./fonts/fira-sans-v17-latin-500italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('./fonts/fira-sans-v17-latin-500italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+  background: var(--bg-dark);
+  overflow-y: scroll;
 }
 
 body {
-    margin: 0;
-    font-size: 100%;
-    background: #041E32;
-    padding-right: 9%;
-    padding-left: 5%;
-    padding-top: 1.5%;
-    padding-bottom: 7%;
+  background: var(--bg-dark);
+  margin: 0;
+  font-size: 100%;
+  padding: 1.5% 9% 7% 5%;
 }
 
-div.container-fluid {
-    padding-top: 5%;
-    background-color: #041E32;
+
+/* Base text styles */
+
+p, a, h1, h2 {
+  color: var(--text-light);
+  font-family: var(--font-primary);
+  text-align: left;
 }
 
-p    {
-	color:white;
-	text-align:left;
-	font-family: "Fira Sans", sans-serif;
-	font-weight: 300;
-	font-size:1em;
-    margin-bottom: 0.75em; /*addd some space below headings and next line */
+p {
+  font-weight: 300;
+  font-size: 1em;
+  margin-bottom: 0.75em;
 }
 
-p.par    {
-	font-size:1.25em;
+p.par {
+  font-size: 1.25em;
 }
 
-h1    {
-	color:white;
-	font-size:1.75em;
-	text-align:left;
-	font-family: "Fira Sans", sans-serif;
-	font-weight: 400;
-    margin-bottom: 0.75em; /*addd some space below headings and next line */
-    margin-top: 0.75em; /*addd some space below headings and next line */
+h1 {
+  font-size: 1.75em;
+  font-weight: 400;
+  margin: 0.75em 0;
 }
 
-h2    {
-	color:white;
-	font-size:1.05em;
-	text-align:left;
-	font-family: "Fira Sans", sans-serif;
-	font-weight: 400;
-    font-style:italic;
-    margin-bottom: 1em; /*addd some space below headings and next line */
-    margin-top: 1em; /*addd some space below headings and next line */
+h2 {
+  font-size: 1.05em;
+  font-weight: 400;
+  font-style: italic;
+  margin: 1em 0;
+}
+
+
+/* Navigation & Link styles */
+
+.nav, .link { 
+    transition: color 0.2s ease; /* Non-instantaeous color transition */
 }
 
 a.nav {
-	color:white;
-	font-family: "Fira Sans", sans-serif;
-	font-weight: 400;
-	font-size:1.5em;
-	text-decoration:none;
-	}
-a.nav:link  {color:white}
-a.nav:visited {color:white}
-a.nav:hover {color:#cdd2d6}
-a.nav:active {color:#cdd2d6}
+  color: var(--text-light);
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 1.5em;
+  text-decoration: none;    
+}
+
+a.nav:hover,
+a.nav:active {
+  color: var(--text-hover);
+}
 
 a.link {
-	color:white;
-	font-family: "Fira Sans", sans-serif;
-	font-style:italic;
-	text-decoration:none;
+  color: var(--text-muted);
+  font-family: var(--font-primary);
+  font-style: italic;
+  text-decoration: none;    
 }
-a.link:link  {color:#9ba5ad}
-a.link:visited {color:#9ba5ad}
-a.link:hover {color:#cdd2d6}
-a.link:active {color:#cdd2d6}
 
-.responsiveCal {
-position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
+a.link:hover,
+a.link:active {
+  color: var(--text-hover);
 }
- 
-.responsiveCal iframe {
-position: absolute; top:0; left: 0; width: 100%; height: 100%;
+
+
+/* Utility classes */
+
+.container-fluid {
+  padding-top: 5%;
+  background-color: var(--bg-dark);
 }
 
 .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(155, 165, 173, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(155, 165, 173, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 .navbar-light .navbar-toggler {
-    color: #9ba5ad;
-    border-color: #9ba5ad;
+  color: var(--text-muted);
+  border-color: var(--text-muted);
 }
