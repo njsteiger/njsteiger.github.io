@@ -1,8 +1,9 @@
 html {
     margin: 0;
     padding: 0;
-    background-color: #041E32;
-    height: 100vh;
+    background: #041E32;
+    overflow-y: scroll;
+    background-attachment: fixed;
 }
 
 /* Fonts from: https://gwfh.mranftl.com/fonts */
@@ -65,16 +66,16 @@ html {
 body {
     margin: 0;
     font-size: 100%;
-    background-color: #041E32;
+    background: #041E32;
     padding-right: 9%;
     padding-left: 5%;
     padding-top: 1.5%;
     padding-bottom: 7%;
-    min-height: 100vh;
 }
 
 div.container-fluid {
     padding-top: 5%;
+    background-color: #041E32;
 }
 
 p    {
