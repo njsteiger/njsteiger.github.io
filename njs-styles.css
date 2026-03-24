@@ -67,6 +67,7 @@ html {
 }
 
 body {
+    margin: 0;
     font-size: 100%;
     background-color: #041E32;
     padding-right: 9%;
