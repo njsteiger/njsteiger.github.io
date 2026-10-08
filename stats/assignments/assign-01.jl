@@ -4,8 +4,6 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ 7e7c9f34-c30c-11f1-9cc5-b9dedd469031
-using Statistics, StatsPlots, CSV
 
 # ╔═╡ 50a7500c-37bb-4435-8009-2939bc006402
 md"""
@@ -22,6 +20,9 @@ When you start up Julia you don't automatically have access to everything that J
 
 Every assignment will begin with a list of packages that must be loaded in order to complete the assignment. To load the packages you can either click the play button on the bottom right hand side of the cell that appears when your cursor hovers over the cell or you can press the two keys SHIFT+ENTER; follow either method to load the packages in the cell below. Note that when you run the initialization for the first time, it could take up to 15 minutes to load everything if there are big packages that must be loaded.
 """
+
+# ╔═╡ 7e7c9f34-c30c-11f1-9cc5-b9dedd469031
+using Statistics, StatsPlots, CSV
 
 # ╔═╡ 51fd23f5-4fa7-4c23-a69f-0db17ba8a43c
 md"""
